@@ -30,7 +30,7 @@ client.send(b'Connecting to server as middle')
 
 while True:
     client, addr = server.accept()
-    print('Accepted cxn from {addr[0]}:{addr[1]}')
+    print(f'Accepted cxn from {addr[0]}:{addr[1]}')
 
     client_handler = threading.Thread(target=handle_client, args=(client,))
     client_handler.start()
