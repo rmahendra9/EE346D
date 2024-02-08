@@ -1,41 +1,25 @@
-import socket
+from typing import List, Tuple
 
-def main():
-    host = '127.0.0.1'
-    port = 8000
-    num_clients = int(input('Number of clients: '))
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind((host, port))
-    server_socket.listen(num_clients)
-    connections = []
-    for i in range(num_clients):
-        conn = server_socket.accept()
-        connections.append(conn)
-    
-    fileno = 0
-    idx = 0
+import flwr as fl
+from flwr.common import Metrics
 
-    for conn in connections:
-        idx += 1
-        data = conn[0].recv(1024).decode()
-    
-        if not data:
-            continue
-    
-        filename = 'out'+str(fileno)+'.txt'
-        fileno = fileno + 1
-        fo = open(filename, 'w')
-        while data:
-            if not data:
-                break
-            else:
-                fo.write(data)
-                data = conn[0].recv(1024).decode()
-        fo.close()
-    
-    for conn in connections:
-        conn[0].close()
-    
 
-if __name__ == '__main__':
-    main()
+# Define metric aggregation function
+def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
+    # Multiply accuracy of each client by number of examples used
+    accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]
+    examples = [num_examples for num_examples, _ in metrics]
+
+    # Aggregate and return custom metric (weighted average)
+    return {"accuracy": sum(accuracies) / sum(examples)}
+
+
+# Define strategy
+strategy = fl.server.strategy.FedAvg(evaluate_metrics_aggregation_fn=weighted_average)
+
+# Start Flower server
+fl.server.start_server(
+    server_address="0.0.0.0:8080",
+    config=fl.server.ServerConfig(num_rounds=3),
+    strategy=strategy,
+)
