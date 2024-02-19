@@ -5,7 +5,6 @@ from flwr.common import Metrics
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
 
 METRICS_FILE = "metrics.json"
 
@@ -25,12 +24,13 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     # Multiply accuracy of each client by the number of examples used
     print(metrics)
     accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]
+    losses = [num_examples * m["loss"] for num_examples, m in metrics]
     examples = [num_examples for num_examples, _ in metrics]
     
     print('GETTING METRICS')
     
     # Aggregate and return custom metric (weighted average)
-    metric = {"accuracy": sum(accuracies) / sum(examples)}
+    metric = {"accuracy": sum(accuracies) / sum(examples), "loss": sum(losses) / sum(examples)}
     metricList.append(metric)
     
     # Save the updated metrics to the file
@@ -50,4 +50,5 @@ def get_metrics():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    CORS(app)
+    app.run(debug=True, port=80)
