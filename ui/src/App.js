@@ -7,15 +7,15 @@ function App() {
   const [selectedStrategy, setSelectedStrategy] = useState('FedAvg'); // Default strategy
   const [selectedModel, setSelectedModel] = useState('CNN'); // Default strategy
   const [logOpen, setLogOpen] = useState(false);
+  const [selectedMetrics, setSelectedMetrics] = useState([]);
+  const [isNonIID, setIsNonIID] = useState(false); // Track if non-IID data is selected
+  const [numGroups, setNumGroups] = useState(''); // Number of groups input value
 
   // Function to fetch metrics and update state
   const fetchMetrics = async () => {
     try {
-      console.log('Hi');
-      const response = await fetch('http://localhost:80/metrics');
-      console.log(response);
+      const response = await fetch('http://localhost:80/metrics'); // Locally handling CORS error
       const data = await response.json();
-      console.log(data);
       setMetricsData(data);
     } catch (error) {
       console.error('Error fetching metrics:', error);
@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMetrics();
-    }, 500); // Fetch every 5 seconds (adjust as needed)
+    }, 2800); // Fetch every 2.8 seconds (adjust as needed)
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -44,6 +44,32 @@ function App() {
     setLogOpen(!logOpen);
   };
 
+  function handleMetricsChange(event) {
+    const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
+    console.log(selectedOptions);
+    setSelectedMetrics(selectedOptions);
+  }
+
+  // Function to handle radio button change for IID and non-IID data
+  const handleDataTypeChange = (event) => {
+    if (event.target.value === 'non-iid') {
+      setIsNonIID(true);
+    } else {
+      setIsNonIID(false);
+      setNumGroups(''); // Reset number of groups input value
+    }
+  };
+
+  // TO DO: file input for model select
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+  }
+
+  // Function to handle input change for number of groups
+  const handleNumGroupsChange = (event) => {
+    setNumGroups(event.target.value);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -53,7 +79,7 @@ function App() {
 
       <div className='Inputs'>
         <div className='strategy'>
-          <h3>Select Strategy Type</h3>
+          <h3>Strategy Type</h3>
           <select value={selectedStrategy} onChange={handleStrategyChange}>
             <option value="FedAvg">FedAvg</option>
             <option value="FedProx">FedProx</option>
@@ -64,7 +90,7 @@ function App() {
         </div>
 
         <div className='parameters'>
-          <h3>Parameters</h3>
+          <h3>Hyperparameters</h3>
           <div className="parameter-inputs">
             <div className="parameter-input">
               <input type="text" id="learning-rate" name="learning-rate" placeholder='Learning rate'/>
@@ -75,22 +101,58 @@ function App() {
           </div>
         </div>
 
+        {/*TO DO: Align model preselect and file input*/}
         <div className='model'>
-          <h3>Model Selection</h3>
-          <select value={selectedModel} onChange={handleModelChange}>
-            <option value="FedAvg">CNN</option>
-            <option value="FedProx">ResNet</option>
-            <option value="FedAdam">BERT</option>
-            <option value="Krum">GPT</option>
-            <option value="Bulyan">LSTM</option>
-          </select>
+          <h3>Model ID</h3>
+          <div>
+            <text style={{marginRight: '10px'}}>Preselect: </text>
+            <select value={selectedModel} onChange={handleModelChange}>
+              <option value="FedAvg">CNN</option>
+              <option value="FedProx">ResNet</option>
+              <option value="FedAdam">BERT</option>
+              <option value="Krum">GPT</option>
+              <option value="Bulyan">LSTM</option>
+            </select>
+          </div>
+          <div>
+            <text style={{marginRight: '10px'}}>File: </text>
+            <input type="file" onChange={handleFileChange} />
+          </div>
         </div>
 
-        <div className='rounds'>
+        {/*<div className='rounds'>
           <h3>Number of Rounds</h3>
           <div className="round-input">
               <input type="text" id="round" name="rounds" placeholder='Rounds'/>
           </div>
+        </div>*/}
+
+        <div className='distribution'>
+          <h3>Data Distribution</h3>
+          <div>
+            <input type="radio" id="iid" name="data-type" value="iid" checked={!isNonIID} onChange={handleDataTypeChange}/>
+            <label htmlFor="iid">IID Data</label>
+          </div>
+
+          <div>
+            <input type="radio" id="non-iid" name="data-type" value="non-iid" checked={isNonIID} onChange={handleDataTypeChange}/>
+            <label htmlFor="non-iid">Non-IID Data</label>
+          </div>
+
+          <div>
+            <input type="number" id="num-groups" placeholder="Number of groups" disabled={!isNonIID} value={numGroups} 
+            onChange={handleNumGroupsChange}/>
+          </div>
+        </div>
+
+        <div className='metrics'>
+          <h3>Output Metrics</h3>
+          <select value={selectedMetrics} onChange={handleMetricsChange} multiple>
+            <option value="Accuracy">Accuracy</option>
+            <option value="Loss">Loss</option>
+            <option value="Convergence Speed">Convergence Speed</option>
+            <option value="Delay">Delay</option>
+          </select>
         </div>
       </div>
       <hr/>

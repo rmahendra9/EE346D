@@ -35,3 +35,25 @@ body {
   background-color: bisque;
 }
 
+.model {
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;*/
+}
+
+.model > div {
+  display: flex;
+  margin-bottom: 3%;
+}
+
+.distribution {
+  display: flex;
+  flex-direction: column;
+}
+
+.distribution > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
