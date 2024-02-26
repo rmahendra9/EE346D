@@ -1,7 +1,7 @@
 import argparse
 import warnings
 from collections import OrderedDict
-from CustomPart import NonIidPartitioner
+from utils.num_nodes_grouped_natural_id_partitioner import NumNodesGroupedNaturalIdPartitioner
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
@@ -72,7 +72,7 @@ def test(net, testloader):
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
-    part = NonIidPartitioner("label",2)
+    part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=2,num_nodes=2)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test

@@ -1,5 +1,5 @@
 import datasets
-from flwr_datasets.partitioner.group_natural_id_partitioner import (
+from utils.group_natural_id_partitioner import (
     GroupNaturalIdPartitioner,
 )
 
