@@ -1,7 +1,7 @@
 import argparse
 import warnings
 from collections import OrderedDict
-from utils.num_nodes_grouped_natural_id_partitioner import NumNodesGroupedNaturalIdPartitioner
+from CustomPart import NonIidPartitioner
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
@@ -74,7 +74,7 @@ def test(net, testloader):
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
-    part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=2,num_nodes=2)
+    part = NonIidPartitioner("label",2)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -116,11 +116,10 @@ trainloader, testloader = load_data(node_id=node_id)
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, num_clients, parent_ip, parent_port):
+    def __init__(self, num_clients, port):
         self.num_clients = num_clients
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.parent_ip = parent_ip
-        self.parent_port = parent_port
+        self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.serversocket.bind((socket.gethostname(), port))
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -132,11 +131,22 @@ class FlowerClient(fl.client.NumPyClient):
 
     def fit(self, parameters, config):
         self.set_parameters(parameters)
+        #Train on params
         train(net, trainloader, epochs=1)
-        self.socket.connect((self.parent_ip, self.parent_port))
-        self.socket.send(self.get_parameters(config={}))
-        #Return empty array to server, send params to parent
-        return [], len(trainloader.dataset), {}
+        #Become a server and receive params from children
+        self.serversocket.listen(self.num_clients)
+        recv_params = []
+        for i in range(len(self.num_clients)):
+            (conn, addr) = self.serversocket.accept()
+            client_agg_param = conn.recv()
+            recv_params.append(client_agg_param)
+            conn.close()
+        recv_params.append(self.get_parameters(config={}))
+        #Aggregate parameters
+        
+        #Return aggregated parameters
+        self.set_parameters(new_params)
+        return self.get_parameters(config={}), len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
@@ -147,5 +157,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="10.0.0.87:8080",
-    client=FlowerClient(0, "127.0.0.1", 80).to_client(),
+    client=FlowerClient(1, 80).to_client(),
 )
