@@ -13,6 +13,7 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 from tqdm import tqdm
 import socket
 import sys
+import numpy as np
 
 
 # #############################################################################
@@ -71,6 +72,13 @@ def test(net, testloader):
     accuracy = correct / len(testloader.dataset)
     return loss, accuracy
 
+
+def agg(param_list):
+    final_params = []
+    for i in range(len(param_list[0])):
+        final_params.append(np.mean(np.array([param_list[j][i] for j in range(len(param_list))]), axis=0))
+
+    return final_params
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
@@ -143,7 +151,8 @@ class FlowerClient(fl.client.NumPyClient):
             conn.close()
         recv_params.append(self.get_parameters(config={}))
         #Aggregate parameters
-        
+
+        new_params = agg(recv_params)
         #Return aggregated parameters
         self.set_parameters(new_params)
         return self.get_parameters(config={}), len(trainloader.dataset), {}
