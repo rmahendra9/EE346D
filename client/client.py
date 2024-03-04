@@ -116,6 +116,7 @@ class FlowerClient(fl.client.NumPyClient):
         self.set_parameters(parameters)
         train(net, trainloader, epochs=1)
         self.socket.connect((self.parent_ip, self.parent_port))
+        # I think we need to add the len(training dataset here)
         self.socket.send(self.get_parameters(config={}))
         #Return empty array to server, send params to parent
         return [], len(trainloader.dataset), {}
