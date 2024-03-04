@@ -1,7 +1,7 @@
 import argparse
 import warnings
 from collections import OrderedDict
-from CustomPart import NonIidPartitioner
+from utils.num_nodes_grouped_natural_id_partitioner import NumNodesGroupedNaturalIdPartitioner
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
@@ -14,7 +14,8 @@ from tqdm import tqdm
 import socket
 import sys
 import numpy as np
-
+from models.ResNet import ResNet18
+from models.simpleCNN import SimpleCNN
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -22,27 +23,6 @@ import numpy as np
 
 warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-
-class Net(nn.Module):
-    """Model (simple CNN adapted from 'PyTorch: A 60 Minute Blitz')"""
-
-    def __init__(self) -> None:
-        super(Net, self).__init__()
-        self.conv1 = nn.Conv2d(3, 6, 5)
-        self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-        self.fc1 = nn.Linear(16 * 5 * 5, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = x.view(-1, 16 * 5 * 5)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        return self.fc3(x)
 
 
 def train(net, trainloader, epochs):
@@ -82,7 +62,7 @@ def agg(param_list):
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
-    part = NonIidPartitioner("label",2)
+    part = NumNodesGroupedNaturalIdPartitioner("label",2,2)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -118,7 +98,7 @@ parser.add_argument(
 node_id = parser.parse_args().node_id
 
 # Load model and data (simple CNN, CIFAR-10)
-net = Net().to(DEVICE)
+net = SimpleCNN().to(DEVICE)
 trainloader, testloader = load_data(node_id=node_id)
 
 
