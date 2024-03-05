@@ -1,3 +1,6 @@
 1. Dual client needs to have a parent field so that it can support more than 2 levels of aggregation
 2. Sparse arrays for sending weights
 3. Add configurability for the server
+
+AFTER DEMO
+- Dirichlet distribution for data (alpha = infinite -> Homogeneous, alpha = 0, Completely Non-IID)
