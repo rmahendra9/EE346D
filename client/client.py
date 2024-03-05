@@ -12,7 +12,6 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, Normalize, ToTensor
 from tqdm import tqdm
 import socket
-import sys
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 
@@ -140,11 +139,13 @@ class FlowerClient(fl.client.NumPyClient):
     def fit(self, parameters, config):
         self.set_parameters(parameters)
         train(net, trainloader, epochs=1)
+        #If node has parent as dual client, then it should send params to there
         if self.has_parent:
             self.socket.connect((self.parent_ip, self.parent_port))
             self.socket.send(self.get_parameters(config={}))
             #Return empty array to server, send params to parent
             return [], len(trainloader.dataset), {}
+        #Otherwise, node is directly connected to main server, send to there
         else:
             return self.get_parameters(config={}), len(trainloader.dataset), {}
 

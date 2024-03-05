@@ -12,7 +12,6 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, Normalize, ToTensor
 from tqdm import tqdm
 import socket
-import sys
 import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
