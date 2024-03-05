@@ -86,7 +86,7 @@ parser.add_argument(
     type=int,
     help="Partition of the dataset divided into 3 iid partitions created artificially.",
 )
-node_id = parser.parse_args().node_id
+
 
 parser.add_argument(
     "--parent_ip",
@@ -94,7 +94,7 @@ parser.add_argument(
     type=str,
     help="IP address of this nodes parent"
 )
-parent_ip=parser.parse_args().parent_ip
+
 
 parser.add_argument(
     "--parent_port",
@@ -102,7 +102,7 @@ parser.add_argument(
     type=int,
     help="Port of this nodes parent"
 )
-parent_port=parser.parse_args().parent_port
+
 
 parser.add_argument(
     "--has_parent",
@@ -111,7 +111,12 @@ parser.add_argument(
     type=int,
     help="Denotes if node parent is a dual client"
 )
-has_parent=parser.parse_args().has_parent
+args = parser.parse_args()
+
+has_parent= args.has_parent
+parent_port=args.parent_port
+parent_ip=args.parent_ip
+node_id = args.node_id
 
 # Load model and data (simple CNN, CIFAR-10)
 #net = ResNet18().to(DEVICE)

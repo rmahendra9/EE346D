@@ -21,7 +21,7 @@ from models.simpleCNN import SimpleCNN
 # #############################################################################
 
 warnings.filterwarnings("ignore", category=UserWarning)
-DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("cuda:0" if torch.cuda.is_availaxble() else "cpu")
 
 
 def train(net, trainloader, epochs):
@@ -94,7 +94,6 @@ parser.add_argument(
     type=int,
     help="Partition of the dataset divided into 3 iid partitions created artificially.",
 )
-node_id = parser.parse_args().node_id
 
 parser.add_argument(
     "--num_clients",
@@ -102,7 +101,6 @@ parser.add_argument(
     type=int,
     help="Number of clients this node has",
 )
-num_clients = parser.parse_args().num_clients
 
 parser.add_argument(
     "--port",
@@ -110,7 +108,13 @@ parser.add_argument(
     type=int,
     help="Port to expose for this client",
 )
-port = parser.parse_args().port
+
+args = parser.parse_args()
+
+node_id = args.node_id
+num_clients = args.num_clients
+port = args.port
+
 
 # Load model and data (simple CNN, CIFAR-10)
 net = SimpleCNN().to(DEVICE)
