@@ -16,6 +16,8 @@ import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 
+from utils.serializers import sparse_parameters_to_ndarrays
+
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
 # #############################################################################
@@ -148,7 +150,7 @@ class FlowerClient(fl.client.NumPyClient):
             (conn, addr) = self.serversocket.accept()
             client_agg_param, len_data = conn.recv()
             #Should also receive len
-            recv_params.append(client_agg_param)
+            recv_params.append(sparse_parameters_to_ndarrays(client_agg_param))
             len_datasets.append(len_data)
             conn.close()
         recv_params.append(self.get_parameters(config={}))

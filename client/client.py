@@ -14,6 +14,8 @@ from tqdm import tqdm
 import socket
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
+from utils.serializers import ndarrays_to_sparse_parameters
+
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -145,14 +147,16 @@ class FlowerClient(fl.client.NumPyClient):
         self.set_parameters(parameters)
         train(net, trainloader, epochs=1)
         #If node has parent as dual client, then it should send params to there
+        ndarray_updated = self.get_parameters(config={})
+        parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated)
         if self.has_parent:
             self.socket.connect((self.parent_ip, self.parent_port))
-            self.socket.send([self.get_parameters(config={}), len(trainloader.dataset)])
+            self.socket.send([parameters_updated, len(trainloader.dataset)])
             #Return empty array to server, send params to parent
             return [], len(trainloader.dataset), {}
         #Otherwise, node is directly connected to main server, send to there
         else:
-            return self.get_parameters(config={}), len(trainloader.dataset), {}
+            return parameters_updated, len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
