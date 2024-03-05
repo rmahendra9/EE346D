@@ -147,7 +147,7 @@ class FlowerClient(fl.client.NumPyClient):
         #If node has parent as dual client, then it should send params to there
         if self.has_parent:
             self.socket.connect((self.parent_ip, self.parent_port))
-            self.socket.send(self.get_parameters(config={}))
+            self.socket.send([self.get_parameters(config={}), len(trainloader.dataset)])
             #Return empty array to server, send params to parent
             return [], len(trainloader.dataset), {}
         #Otherwise, node is directly connected to main server, send to there

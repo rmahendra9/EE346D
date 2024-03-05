@@ -52,7 +52,7 @@ def test(net, testloader):
     return loss, accuracy
 
 
-def agg(param_list):
+def agg(param_list, len_datasets):
     final_params = []
     for i in range(len(param_list[0])):
         final_params.append(np.mean(np.array([param_list[j][i] for j in range(len(param_list))]), axis=0))
@@ -143,20 +143,24 @@ class FlowerClient(fl.client.NumPyClient):
         #Become a server and receive params from children
         self.serversocket.listen(self.num_clients)
         recv_params = []
+        len_datasets = [] 
         for i in range(len(self.num_clients)):
             (conn, addr) = self.serversocket.accept()
-            client_agg_param = conn.recv()
+            client_agg_param, len_data = conn.recv()
             #Should also receive len
             recv_params.append(client_agg_param)
+            len_datasets.append(len_data)
             conn.close()
         recv_params.append(self.get_parameters(config={}))
+        len_datasets.append(len(trainloader.dataset))
         #Aggregate parameters
-        new_params = agg(recv_params)
+        new_params = agg(recv_params, len_datasets)
         #Return aggregated parameters
         self.set_parameters(new_params)
+        len_data = sum(len_datasets)
 
         # len(trainloader.dataset) has to be the sum of the previous len (Check comment in client)
-        return self.get_parameters(config={}), len(trainloader.dataset), {}
+        return self.get_parameters(config={}), len_data, {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
