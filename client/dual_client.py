@@ -97,6 +97,22 @@ parser.add_argument(
 )
 node_id = parser.parse_args().node_id
 
+parser.add_argument(
+    "--num_clients",
+    required=True,
+    type=int,
+    help="Number of clients this node has",
+)
+num_clients = parser.parse_args().num_clients
+
+parser.add_argument(
+    "--port",
+    required=True,
+    type=int,
+    help="Port to expose for this client",
+)
+port = parser.parse_args().port
+
 # Load model and data (simple CNN, CIFAR-10)
 net = SimpleCNN().to(DEVICE)
 trainloader, testloader = load_data(node_id=node_id)
@@ -131,7 +147,6 @@ class FlowerClient(fl.client.NumPyClient):
             conn.close()
         recv_params.append(self.get_parameters(config={}))
         #Aggregate parameters
-
         new_params = agg(recv_params)
         #Return aggregated parameters
         self.set_parameters(new_params)
@@ -145,6 +160,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="10.0.0.87:8080",
-    client=FlowerClient(1, 80).to_client(),
+    server_address="0.0.0.0:8080",
+    client=FlowerClient(num_clients, port).to_client(),
 )

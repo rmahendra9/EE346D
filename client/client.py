@@ -89,6 +89,31 @@ parser.add_argument(
 )
 node_id = parser.parse_args().node_id
 
+parser.add_argument(
+    "--parent_ip",
+    required=False,
+    type=str,
+    help="IP address of this nodes parent"
+)
+parent_ip=parser.parse_args().parent_ip
+
+parser.add_argument(
+    "--parent_port",
+    required=False,
+    type=int,
+    help="Port of this nodes parent"
+)
+parent_port=parser.parse_args().parent_port
+
+parser.add_argument(
+    "--has_parent",
+    required=True,
+    choices=[0,1],
+    type=int,
+    help="Denotes if node parent is a dual client"
+)
+has_parent=parser.parse_args().has_parent
+
 # Load model and data (simple CNN, CIFAR-10)
 #net = ResNet18().to(DEVICE)
 net = SimpleCNN().to(DEVICE)
@@ -98,9 +123,9 @@ trainloader, testloader = load_data(node_id=node_id)
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, num_clients, parent_ip, parent_port):
-        self.num_clients = num_clients
+    def __init__(self, parent_ip="0.0.0.0", parent_port=8080, has_parent=0):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.has_parent = has_parent
         self.parent_ip = parent_ip
         self.parent_port = parent_port
 
@@ -115,10 +140,13 @@ class FlowerClient(fl.client.NumPyClient):
     def fit(self, parameters, config):
         self.set_parameters(parameters)
         train(net, trainloader, epochs=1)
-        self.socket.connect((self.parent_ip, self.parent_port))
-        self.socket.send(self.get_parameters(config={}))
-        #Return empty array to server, send params to parent
-        return [], len(trainloader.dataset), {}
+        if self.has_parent:
+            self.socket.connect((self.parent_ip, self.parent_port))
+            self.socket.send(self.get_parameters(config={}))
+            #Return empty array to server, send params to parent
+            return [], len(trainloader.dataset), {}
+        else:
+            return self.get_parameters(config={}), len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
@@ -128,6 +156,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="10.0.0.87:8080",
-    client=FlowerClient(0, "127.0.0.1", 80).to_client(),
+    server_address="0.0.0.0:8080",
+    client=FlowerClient(parent_ip, parent_port, has_parent).to_client(),
 )
