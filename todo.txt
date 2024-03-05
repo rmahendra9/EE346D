@@ -4,3 +4,4 @@
 
 AFTER DEMO
 - Dirichlet distribution for data (alpha = infinite -> Homogeneous, alpha = 0, Completely Non-IID)
+(T.M.H. Hsu, et al., 2019)
