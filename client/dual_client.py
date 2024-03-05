@@ -143,6 +143,7 @@ class FlowerClient(fl.client.NumPyClient):
         for i in range(len(self.num_clients)):
             (conn, addr) = self.serversocket.accept()
             client_agg_param = conn.recv()
+            #Should also receive len
             recv_params.append(client_agg_param)
             conn.close()
         recv_params.append(self.get_parameters(config={}))
@@ -150,6 +151,8 @@ class FlowerClient(fl.client.NumPyClient):
         new_params = agg(recv_params)
         #Return aggregated parameters
         self.set_parameters(new_params)
+
+        # len(trainloader.dataset) has to be the sum of the previous len (Check comment in client)
         return self.get_parameters(config={}), len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
