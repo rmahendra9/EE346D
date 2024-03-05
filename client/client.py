@@ -54,7 +54,7 @@ def test(net, testloader):
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
-    part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=2,num_nodes=2)
+    part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=3,num_nodes=3)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -82,7 +82,7 @@ def load_data(node_id):
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
     "--node-id",
-    choices=[0, 1, 2],
+    choices=[0, 1, 2, 3],
     required=True,
     type=int,
     help="Partition of the dataset divided into 3 iid partitions created artificially.",
