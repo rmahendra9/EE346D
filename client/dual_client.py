@@ -130,6 +130,7 @@ class FlowerClient(fl.client.NumPyClient):
         self.num_clients = num_clients
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostname(), port))
+        self.serversocket.listen(self.num_clients)
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -144,7 +145,6 @@ class FlowerClient(fl.client.NumPyClient):
         #Train on params
         train(net, trainloader, epochs=1)
         #Become a server and receive params from children
-        self.serversocket.listen(self.num_clients)
         recv_params = []
         len_datasets = [] 
         for i in range(self.num_clients):
@@ -183,7 +183,7 @@ class FlowerClient(fl.client.NumPyClient):
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
         loss, accuracy = test(net, testloader)
-        return loss, len(testloader.dataset), {"accuracy": accuracy}
+        return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
 
 
 # Start Flower client
