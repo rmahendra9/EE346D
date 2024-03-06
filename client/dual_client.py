@@ -157,20 +157,23 @@ class FlowerClient(fl.client.NumPyClient):
                 packet = conn.recv(4096)
                 packet_len = len(packet)
                 data.append(packet)
-                if packet_len < 4096:
+                #if packet_len < 4096:
+                try:
+                    pickle_data = b"".join(data)
+                    data_arr = pickle.loads(pickle_data)
                     break
+                except pickle.UnpicklingError:
+                    continue
+
 
             conn.shutdown(socket.SHUT_RDWR)
-            pickle_data = b"".join(data)
+
             print(f"Len received: {len(pickle_data)}")
-            try:
-                data_arr = pickle.loads(pickle_data)
-                recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
-                len_datasets.append(data_arr[1])
-            except pickle.UnpicklingError:
-                print("Error with TCP Communication")
-                conn.close()
-                
+
+            data_arr = pickle.loads(pickle_data)
+            recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
+            len_datasets.append(data_arr[1])
+
             conn.close()
 
 
