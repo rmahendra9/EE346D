@@ -130,7 +130,7 @@ trainloader, testloader = load_data(node_id=node_id)
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
     def __init__(self, parent_ip="0.0.0.0", parent_port=8080, has_parent=0):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        
         self.has_parent = has_parent
         self.parent_ip = parent_ip
         self.parent_port = parent_port
@@ -151,12 +151,14 @@ class FlowerClient(fl.client.NumPyClient):
         ndarray_updated = self.get_parameters(config={})
         parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
         if self.has_parent:
+            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sent = False
             while not sent:
                 try:
-                    if not self.open:
-                        self.socket.connect((self.parent_ip, self.parent_port))
-                        self.open = True
+                    print(f'Attempting to connect {self.parent_ip}:{self.parent_port}')
+                    self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    self.socket.connect((self.parent_ip, self.parent_port))
+                    self.open = True
 
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
                     print(f"data sent: {len(data)}")
