@@ -156,7 +156,7 @@ class FlowerClient(fl.client.NumPyClient):
             return [], len(trainloader.dataset), {}
         #Otherwise, node is directly connected to main server, send to there
         else:
-            return parameters_updated, len(trainloader.dataset), {}
+            return self.get_parameters(config={}), len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)

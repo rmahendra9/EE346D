@@ -1,4 +1,4 @@
 server - python server.py
 client_1 - python dual_client.py --node-id 0 --num_clients 1 --port 80
 client_2 - python client.py --node-id 1 --has_parent 0
-client_3 - python client.py --node-id 2 --parent_ip "0.0.0.0" --parent_port 80 --has_parent 1
+client_3 - python client.py --node-id 2 --parent_ip "127.0.0.1" --parent_port 80 --has_parent 1
