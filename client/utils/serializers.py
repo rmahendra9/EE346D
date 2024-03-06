@@ -13,7 +13,7 @@ def ndarrays_to_sparse_parameters(ndarrays: NDArrays) -> Parameters:
 
 def sparse_parameters_to_ndarrays(parameters: Parameters) -> NDArrays:
     """Convert parameters object to NumPy ndarrays."""
-    return [sparse_bytes_to_ndarray(tensor) for tensor in parameters.tensors]
+    return [sparse_bytes_to_ndarray(tensor) for tensor in parameters]
 
 
 def ndarray_to_sparse_bytes(ndarray: NDArray) -> bytes:

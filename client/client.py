@@ -15,7 +15,7 @@ import socket
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
-
+import pickle
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -134,6 +134,7 @@ class FlowerClient(fl.client.NumPyClient):
         self.has_parent = has_parent
         self.parent_ip = parent_ip
         self.parent_port = parent_port
+        self.open = False
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -148,15 +149,19 @@ class FlowerClient(fl.client.NumPyClient):
         train(net, trainloader, epochs=1)
         #If node has parent as dual client, then it should send params to there
         ndarray_updated = self.get_parameters(config={})
-        parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated)
+        parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
         if self.has_parent:
-            self.socket.connect((self.parent_ip, self.parent_port))
-            self.socket.send([parameters_updated, len(trainloader.dataset)])
+            if not self.open:
+                self.socket.connect((self.parent_ip, self.parent_port))
+                self.open = True
+            data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
+            print(f"data sent: {len(data)}")
+            self.socket.send(data)
             #Return empty array to server, send params to parent
-            return [], len(trainloader.dataset), {}
+            return self.get_parameters({}), 0, {}
         #Otherwise, node is directly connected to main server, send to there
         else:
-            return parameters_updated, len(trainloader.dataset), {}
+            return self.get_parameters({}), len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
@@ -166,6 +171,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="0.0.0.0:8080",
+    server_address="127.0.0.1:8080",
     client=FlowerClient(parent_ip, parent_port, has_parent).to_client(),
 )

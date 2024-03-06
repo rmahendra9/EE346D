@@ -2,6 +2,7 @@ import argparse
 import warnings
 from collections import OrderedDict
 from utils.num_nodes_grouped_natural_id_partitioner import NumNodesGroupedNaturalIdPartitioner
+import pickle
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
@@ -23,7 +24,7 @@ from utils.serializers import sparse_parameters_to_ndarrays
 # #############################################################################
 
 warnings.filterwarnings("ignore", category=UserWarning)
-DEVICE = torch.device("cuda:0" if torch.cuda.is_availaxble() else "cpu")
+DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 def train(net, trainloader, epochs):
@@ -146,13 +147,27 @@ class FlowerClient(fl.client.NumPyClient):
         self.serversocket.listen(self.num_clients)
         recv_params = []
         len_datasets = [] 
-        for i in range(len(self.num_clients)):
+        for i in range(self.num_clients):
             (conn, addr) = self.serversocket.accept()
-            client_agg_param, len_data = conn.recv()
-            #Should also receive len
-            recv_params.append(sparse_parameters_to_ndarrays(client_agg_param))
-            len_datasets.append(len_data)
+            data = []
+            it = 0
+            while True:
+                packet = conn.recv(4096)
+                packet_len = len(packet)
+                data.append(packet)
+                if packet_len < 4096:
+                    break
+
+            pickle_data = b"".join(data)
+            print(f"Len received: {len(pickle_data)}")
+            data_arr = pickle.loads(pickle_data)
+            recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
+            len_datasets.append(data_arr[1])
             conn.close()
+
+
+        
+
         recv_params.append(self.get_parameters(config={}))
         len_datasets.append(len(trainloader.dataset))
         #Aggregate parameters
@@ -160,9 +175,9 @@ class FlowerClient(fl.client.NumPyClient):
         #Return aggregated parameters
         self.set_parameters(new_params)
         len_data = sum(len_datasets)
-
+   
         # len(trainloader.dataset) has to be the sum of the previous len (Check comment in client)
-        return self.get_parameters(config={}), len_data, {}
+        return self.get_parameters(config={}), len(trainloader.dataset), {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
@@ -172,6 +187,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="0.0.0.0:8080",
+    server_address="127.0.0.1:8080",
     client=FlowerClient(num_clients, port).to_client(),
 )

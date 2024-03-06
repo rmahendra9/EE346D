@@ -20,3 +20,6 @@ class SimpleCNN(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         return self.fc3(x)
+    
+    def get_parameters(self):
+        return [val.cpu().numpy() for _, val in self.state_dict().items()]
