@@ -177,7 +177,7 @@ class FlowerClient(fl.client.NumPyClient):
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
         loss, accuracy = test(net, testloader)
-        return loss, len(testloader.dataset), {"accuracy": accuracy}
+        return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
 
 
 # Start Flower client
