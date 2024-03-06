@@ -5,7 +5,8 @@ import './App.css';
 function App() {
   const [metricsData, setMetricsData] = useState(null);
   const [selectedStrategy, setSelectedStrategy] = useState('FedAvg'); // Default strategy
-  const [selectedModel, setSelectedModel] = useState('CNN'); // Default strategy
+  const [selectedDataset, setSelectedDataset] = useState('CIFAR-10'); // Default dataset
+  const [selectedModel, setSelectedModel] = useState('CNN'); // Default model
   const [logOpen, setLogOpen] = useState(false);
   const [selectedMetrics, setSelectedMetrics] = useState([]);
   const [isNonIID, setIsNonIID] = useState(false); // Track if non-IID data is selected
@@ -26,7 +27,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMetrics();
-    }, 2800); // Fetch every 2.8 seconds (adjust as needed)
+    }, 8000); // Fetch every 8 seconds (adjust as needed)
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -34,6 +35,10 @@ function App() {
 
   const handleStrategyChange = (event) => {
     setSelectedStrategy(event.target.value);
+  };
+
+  const handleDatasetChange = (event) => {
+    setSelectedDataset(event.target.value);
   };
 
   const handleModelChange = (event) => {
@@ -89,23 +94,18 @@ function App() {
           </select>
         </div>
 
-        <div className='parameters'>
-          <h3>Hyperparameters</h3>
-          <div className="parameter-inputs">
-            <div className="parameter-input">
-              <input type="text" id="learning-rate" name="learning-rate" placeholder='Learning rate'/>
-            </div>
-            <div className="parameter-input">
-              <input type="text" id="momentum" name="momentum" placeholder='Momentum'/>
-            </div>
-          </div>
+        <div className='dataset'>
+          <h3>Dataset</h3>
+          <select value={selectedDataset} onChange={handleDatasetChange}>
+            <option value="CIFAR-10">CIFAR-10</option>
+          </select>
         </div>
 
         {/*TO DO: Align model preselect and file input*/}
         <div className='model'>
-          <h3>Model ID</h3>
+          <h3>Model Selection</h3>
           <div>
-            <text style={{marginRight: '10px'}}>Preselect: </text>
+            {/* UI Error: <text style={{marginRight: '10px'}}>Preselect: </text> */}
             <select value={selectedModel} onChange={handleModelChange}>
               <option value="FedAvg">CNN</option>
               <option value="FedProx">ResNet</option>
@@ -115,8 +115,20 @@ function App() {
             </select>
           </div>
           <div>
-            <text style={{marginRight: '10px'}}>File: </text>
+            {/* UI Error: <text style={{marginRight: '10px'}}>File: </text> */}
             <input type="file" onChange={handleFileChange} />
+          </div>
+        </div>
+
+        <div className='parameters'>
+          <h3>Hyperparameters</h3>
+          <div className="parameter-inputs">
+            <div className="parameter-input">
+              <input type="text" id="learning-rate" name="learning-rate" placeholder='Learning rate'/>
+            </div>
+            <div className="parameter-input">
+              <input type="text" id="momentum" name="momentum" placeholder='Momentum'/>
+            </div>
           </div>
         </div>
 
