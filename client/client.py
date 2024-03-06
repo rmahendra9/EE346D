@@ -151,14 +151,25 @@ class FlowerClient(fl.client.NumPyClient):
         ndarray_updated = self.get_parameters(config={})
         parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
         if self.has_parent:
-            if not self.open:
-                self.socket.connect((self.parent_ip, self.parent_port))
-                self.open = True
-            data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
-            print(f"data sent: {len(data)}")
-            self.socket.send(data)
-            #Return empty array to server, send params to parent
+            sent = False
+            while not sent:
+                try:
+                    if not self.open:
+                        self.socket.connect((self.parent_ip, self.parent_port))
+                        self.open = True
+
+                    data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
+                    print(f"data sent: {len(data)}")
+                    self.socket.send(data)
+                    sent = True
+                except BrokenPipeError:
+                    self.open = False
+                except ConnectionResetError:
+                    self.open = False
+
             return self.get_parameters({}), 0, {}
+            #Return empty array to server, send params to parent
+            
         #Otherwise, node is directly connected to main server, send to there
         else:
             return self.get_parameters({}), len(trainloader.dataset), {}

@@ -150,7 +150,6 @@ class FlowerClient(fl.client.NumPyClient):
         for i in range(self.num_clients):
             (conn, addr) = self.serversocket.accept()
             data = []
-            it = 0
             while True:
                 packet = conn.recv(4096)
                 packet_len = len(packet)
@@ -158,12 +157,14 @@ class FlowerClient(fl.client.NumPyClient):
                 if packet_len < 4096:
                     break
 
+            conn.shutdown(socket.SHUT_WR)
             pickle_data = b"".join(data)
             print(f"Len received: {len(pickle_data)}")
             data_arr = pickle.loads(pickle_data)
             recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
             len_datasets.append(data_arr[1])
             conn.close()
+
 
 
         
@@ -177,7 +178,7 @@ class FlowerClient(fl.client.NumPyClient):
         len_data = sum(len_datasets)
    
         # len(trainloader.dataset) has to be the sum of the previous len (Check comment in client)
-        return self.get_parameters(config={}), len(trainloader.dataset), {}
+        return self.get_parameters(config={}), len_data, {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
