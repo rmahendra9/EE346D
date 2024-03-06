@@ -5,6 +5,7 @@ from utils.num_nodes_grouped_natural_id_partitioner import NumNodesGroupedNatura
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
+from flwr_datasets.partitioner.iid_partitioner import IidPartitioner
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -55,7 +56,8 @@ def test(net, testloader):
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
-    part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=3,num_nodes=3)
+    #part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=3,num_nodes=3)
+    part = IidPartitioner(3)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -151,6 +153,8 @@ class FlowerClient(fl.client.NumPyClient):
         ndarray_updated = self.get_parameters(config={})
         parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
         if self.has_parent:
+            if self.open:
+                self.socket.close()
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sent = False
             while not sent:
@@ -162,12 +166,16 @@ class FlowerClient(fl.client.NumPyClient):
 
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
                     print(f"data sent: {len(data)}")
-                    self.socket.send(data)
+                    self.socket.sendall(data)
                     sent = True
                 except BrokenPipeError:
                     self.open = False
                 except ConnectionResetError:
                     self.open = False
+                except OSError:
+                    print("There was an error with TCP")
+                    sent = True
+            
 
             return self.get_parameters({}), 0, {}
             #Return empty array to server, send params to parent

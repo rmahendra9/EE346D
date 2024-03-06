@@ -6,6 +6,7 @@ import pickle
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
+from flwr_datasets.partitioner.iid_partitioner import IidPartitioner
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -64,7 +65,8 @@ def agg(param_list, len_datasets):
 
 def load_data(node_id):
     """Load partition CIFAR10 data."""
-    part = NumNodesGroupedNaturalIdPartitioner("label",3,3)
+    #part = NumNodesGroupedNaturalIdPartitioner("label",3,3)
+    part = IidPartitioner(3)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -148,6 +150,7 @@ class FlowerClient(fl.client.NumPyClient):
         recv_params = []
         len_datasets = [] 
         for i in range(self.num_clients):
+
             (conn, addr) = self.serversocket.accept()
             data = []
             while True:
@@ -157,12 +160,17 @@ class FlowerClient(fl.client.NumPyClient):
                 if packet_len < 4096:
                     break
 
-            conn.shutdown(socket.SHUT_WR)
+            conn.shutdown(socket.SHUT_RDWR)
             pickle_data = b"".join(data)
             print(f"Len received: {len(pickle_data)}")
-            data_arr = pickle.loads(pickle_data)
-            recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
-            len_datasets.append(data_arr[1])
+            try:
+                data_arr = pickle.loads(pickle_data)
+                recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
+                len_datasets.append(data_arr[1])
+            except pickle.UnpicklingError:
+                print("Error with TCP Communication")
+                conn.close()
+                
             conn.close()
 
 
