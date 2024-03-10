@@ -7,3 +7,8 @@ AFTER DEMO
 (T.M.H. Hsu, et al., 2019)
 
 LEAF - Benchmark for Federated Learning
+
+Front End:
+1. Topology for Tree
+2. Integration for model input
+3. W&B Experiment Log
