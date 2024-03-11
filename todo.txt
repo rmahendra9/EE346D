@@ -6,4 +6,6 @@ AFTER DEMO
 - Dirichlet distribution for data (alpha = infinite -> Homogeneous, alpha = 0, Completely Non-IID)
 (T.M.H. Hsu, et al., 2019)
 
+- Make sure there is not data leakage. Weird results when nodes drop and join again.
+
 LEAF - Benchmark for Federated Learning
