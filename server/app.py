@@ -3,6 +3,8 @@ from typing import List, Tuple
 import json
 from flwr.common import Metrics
 from flask_cors import CORS
+import wandb
+import numpy as np
 
 app = Flask(__name__)
 
@@ -22,15 +24,18 @@ def index():
 # Define metric aggregation function
 def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     # Multiply accuracy of each client by the number of examples used
-    print(metrics)
+    #print(metrics)
     accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]
     losses = [num_examples * m["loss"] for num_examples, m in metrics]
     examples = [num_examples for num_examples, _ in metrics]
     
+
     print('GETTING METRICS')
     
     # Aggregate and return custom metric (weighted average)
     metric = {"accuracy": sum(accuracies) / sum(examples), "loss": sum(losses) / sum(examples)}
+    wandb.log(metric)
+    print(metric)
     metricList.append(metric)
     
     # Save the updated metrics to the file
