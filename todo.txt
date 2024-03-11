@@ -9,3 +9,9 @@ AFTER DEMO
 - Make sure there is not data leakage. Weird results when nodes drop and join again.
 
 LEAF - Benchmark for Federated Learning
+LEAF - Benchmark for Federated Learning
+
+Front End:
+1. Topology for Tree
+2. Integration for model input
+3. W&B Experiment Log
