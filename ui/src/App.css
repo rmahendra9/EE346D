@@ -5,23 +5,158 @@
 }
 
 .App-header {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #84087f; /* Adjust color as needed */
+  margin-bottom: 20px;
+}
+
+.subheader {
+  font-size: 18px;
+  font-weight: bold;
+  color: #620c45; /* Adjust color as needed */
+  margin-bottom: 10px;
 }
 
 .Inputs {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-bottom: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #F8E0E0;
 }
 
-.parameter-input {
+.strategy {
+  display: flex;
+  flex-direction: column;
+}
+
+.strategy h3 {
+  margin-bottom: 5px;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  padding: 8px 40px 8px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.select-wrapper select::-ms-expand {
+  display: none;
+}
+
+.select-wrapper svg {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.dataset {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataset h3 {
+  margin-bottom: 5px;
+}
+
+.dataset .select-wrapper {
+  position: relative;
+}
+
+.dataset .select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  padding: 8px 40px 8px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.dataset .select-wrapper select::-ms-expand {
+  display: none;
+}
+
+.dataset .select-wrapper svg {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.parameters {
+  margin-bottom: 20px;
+}
+
+.parameters h3 {
   margin-bottom: 10px;
 }
 
-.start, .output {
-  margin-top: 40px;
-  margin-bottom: 40px;
+.parameter-inputs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.parameter-input {
+  flex: 1;
+  margin-right: 25px;
+}
+
+.parameter-input:last-child {
+  margin-right: 0;
+}
+
+.parameter-input label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.parameter-input input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+}
+
+.parameter-input input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+}
+
+.parameter-input input[type="range"]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
 }
 
 .topology {
@@ -32,19 +167,47 @@
 
 body {
   margin: 0;
-  background-color: bisque;
+  background-color: #E6E6FA;
 }
 
 .model {
   display: flex;
   flex-direction: column;
-  /*align-items: center;*/
 }
 
-.model > div {
-  display: flex;
-  margin-bottom: 3%;
+.model h3 {
+  margin-bottom: 5px;
 }
+
+.model .select-wrapper {
+  position: relative;
+}
+
+.model .select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #ccc;
+  padding: 8px 40px 8px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 120px;
+}
+
+.model .select-wrapper select::-ms-expand {
+  display: none;
+}
+
+.model .select-wrapper svg {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 
 .distribution {
   display: flex;
@@ -55,5 +218,87 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 3%;
+}
+
+.experiment-log {
+  background-color: #F8E0E0;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 5px; /* Add padding to the top of the experiment log */
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.charts-container {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-around; /* Distribute the charts evenly along the main axis */
+}
+
+.chart {
+  flex: 1; /* Make each chart fill available space */
+  margin-right: 15px; /* Add some spacing between the charts */
+  width: 20%;
+}
+
+.divider {
+  border-top: 1px solid #ccc; /* Adjust color as needed */
+  margin: 20px 0; /* Adjust margin as needed */
+}
+
+.start {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #F8E0E0;
+  min-height: 100px;
+}
+
+.button-container {
+  margin-right: 20px; /* Adjust margin as needed */
+}
+
+.start-button {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  padding: 10px 20px; /* Button padding */
+  font-size: 16px; /* Button font size */
+  border: none; /* Remove button border */
+  border-radius: 4px; /* Button border radius */
+  cursor: pointer; /* Cursor style */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.start-button:hover {
+  background-color: #0056b3; /* Button background color on hover */
+}
+
+.rounds-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.rounds-input-container label {
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.rounds-input-container input[type="range"] {
+  width: 150px; /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
+  outline: none;
+}
+
+.rounds-input-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; /* Adjust thumb size as needed */
+  height: 20px; /* Adjust thumb size as needed */
+  border-radius: 50%;
+  background: #007bff; /* Adjust color as needed */
+  cursor: pointer;
+}
+
+.rounds-input-container output {
+  margin-left: 10px; /* Adjust margin as needed */
 }
 

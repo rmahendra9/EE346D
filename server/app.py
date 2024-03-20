@@ -5,8 +5,10 @@ from flwr.common import Metrics
 from flask_cors import CORS
 import wandb
 import numpy as np
+import subprocess
 
 app = Flask(__name__)
+CORS(app)
 
 METRICS_FILE = "metrics.json"
 
@@ -44,6 +46,13 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     
     return metricList[-1]  # Return the latest metric as a dictionary
 
+@app.route('/start-experiment', methods=['POST'])
+def start_experiment():
+    subprocess.Popen(['python3', 'server.py'])
+    subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0'])
+    subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0'])
+    return 'Experiment started successfully'
+
 @app.route('/metrics', methods=['GET'])
 def get_metrics():
     try:
@@ -55,5 +64,4 @@ def get_metrics():
 
 
 if __name__ == "__main__":
-    CORS(app)
     app.run(debug=True, port=80)

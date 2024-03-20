@@ -1,23 +1,110 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import { Line } from 'react-chartjs-2';
+import "chart.js/auto";
 import './App.css';
 
 function App() {
-  const [metricsData, setMetricsData] = useState(null);
   const [selectedStrategy, setSelectedStrategy] = useState('FedAvg'); // Default strategy
   const [selectedDataset, setSelectedDataset] = useState('CIFAR-10'); // Default dataset
   const [selectedModel, setSelectedModel] = useState('CNN'); // Default model
   const [logOpen, setLogOpen] = useState(false);
-  const [selectedMetrics, setSelectedMetrics] = useState([]);
   const [isNonIID, setIsNonIID] = useState(false); // Track if non-IID data is selected
   const [numGroups, setNumGroups] = useState(''); // Number of groups input value
+  const [learningRate, setLearningRate] = useState(0);
+  const [momentum, setMomentum] = useState(0);
+  const [rounds, setRounds] = useState(0);
+  const [newAccuracyData, setAccuracyData] = useState({
+    labels: [],
+    datasets: [{
+      label: 'CNN',
+      data: [],
+      color: 'blue',
+      backgroundColor: 'blue'
+    }]
+  });
+  const [newLossData, setLossData] = useState({
+    labels: [],
+    datasets: [{
+      label: 'CNN',
+      data: [],
+      color: 'red',
+      backgroundColor: 'red'
+    }]
+  });
+  const lossOptions = {
+    scales: {
+      x: {
+        type: 'category', // Set the x-axis type to 'category' for labels
+        title: {
+          display: true,
+          text: 'Step' // Set the x-axis label text
+        }
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Loss', // Set the chart title
+        font: {
+          size: 15 // Adjust the font size of the title
+        }
+      }
+    }
+  };
+  const accOptions = {
+    scales: {
+      x: {
+        type: 'category', // Set the x-axis type to 'category' for labels
+        title: {
+          display: true,
+          text: 'Step' // Set the x-axis label text
+        }
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Accuracy', // Set the chart title
+        font: {
+          size: 15 // Adjust the font size of the title
+        }
+      }
+    }
+  };
 
   // Function to fetch metrics and update state
   const fetchMetrics = async () => {
     try {
       const response = await fetch('http://localhost:80/metrics'); // Locally handling CORS error
       const data = await response.json();
-      setMetricsData(data);
+      if (data) {
+        const newAccuracyData = {
+          labels: [],
+          datasets: [{
+            label: 'CNN',
+            data: [],
+            color: 'blue',
+            backgroundColor: 'blue'
+          }]
+        };
+        const newLossData = {
+          labels: [],
+          datasets: [{
+            label: 'CNN',
+            data: [],
+            color: 'red',
+            backgroundColor: 'red'
+          }]
+        };
+        data.forEach((item, index) => {
+          newAccuracyData.labels.push(index + 1);
+          newAccuracyData.datasets[0].data.push(item.accuracy);
+          newLossData.labels.push(index + 1);
+          newLossData.datasets[0].data.push(item.loss);
+        });
+        setAccuracyData(newAccuracyData);
+        setLossData(newLossData);
+      }
     } catch (error) {
       console.error('Error fetching metrics:', error);
     }
@@ -27,7 +114,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMetrics();
-    }, 8000); // Fetch every 8 seconds (adjust as needed)
+    }, 800); // Fetch every 0.8 seconds (adjust as needed)
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -49,12 +136,6 @@ function App() {
     setLogOpen(!logOpen);
   };
 
-  function handleMetricsChange(event) {
-    const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
-    console.log(selectedOptions);
-    setSelectedMetrics(selectedOptions);
-  }
-
   // Function to handle radio button change for IID and non-IID data
   const handleDataTypeChange = (event) => {
     if (event.target.value === 'non-iid') {
@@ -65,47 +146,78 @@ function App() {
     }
   };
 
-  // TO DO: file input for model select
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-  }
-
   // Function to handle input change for number of groups
   const handleNumGroupsChange = (event) => {
     setNumGroups(event.target.value);
   };
 
+  const handleLearningRateChange = (event) => {
+    setLearningRate(event.target.value);
+  };
+
+  const handleMomentumChange = (event) => {
+    setMomentum(event.target.value);
+  };
+
+  const handleRoundsChange = (event) => {
+    setRounds(event.target.value);
+  };
+
+  const handleStartExperiment = async () => {
+    try {
+      const response = await fetch('http://localhost:80/start-experiment', {
+        method: 'POST'
+      });
+      if (response.ok) {
+        console.log('Experiment started successfully');
+      } else {
+        console.error('Failed to start experiment');
+      }
+    } catch (error) {
+      console.error('Error starting experiment:', error);
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Federated Learning Experiment Dashboard</h1>
+        <h1 className='header'>Federated Learning Experiment Dashboard</h1>
       </header>
-      <hr/>
+      
+      <div class="divider"></div>
 
       <div className='Inputs'>
-        <div className='strategy'>
-          <h3>Strategy Type</h3>
-          <select value={selectedStrategy} onChange={handleStrategyChange}>
-            <option value="FedAvg">FedAvg</option>
-            <option value="FedProx">FedProx</option>
-            <option value="FedAdam">FedAdam</option>
-            <option value="Krum">Krum</option>
-            <option value="Bulyan">Bulyan</option>
-          </select>
+        <div class='strategy'>
+          <h3 className='subheader'>Strategy</h3>
+          <div class="select-wrapper">
+            <select value={selectedStrategy} onChange={handleStrategyChange}>
+              <option value="FedAvg">FedAvg</option>
+              <option value="FedProx">FedProx</option>
+              <option value="FedAdam">FedAdam</option>
+              <option value="Krum">Krum</option>
+              <option value="Bulyan">Bulyan</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
+          </div>
         </div>
 
+
         <div className='dataset'>
-          <h3>Dataset</h3>
-          <select value={selectedDataset} onChange={handleDatasetChange}>
-            <option value="CIFAR-10">CIFAR-10</option>
-          </select>
+          <h3 className='subheader'>Dataset</h3>
+          <div class="select-wrapper">
+            <select value={selectedDataset} onChange={handleDatasetChange}>
+              <option value="CIFAR-10">CIFAR-10</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
+          </div>
         </div>
+
+
 
         {/*TO DO: Align model preselect and file input*/}
         <div className='model'>
-          <h3>Model Selection</h3>
-          <div>
-            {/* UI Error: <text style={{marginRight: '10px'}}>Preselect: </text> */}
+          <h3 className='subheader'>Model</h3>
+          <div class="select-wrapper">
             <select value={selectedModel} onChange={handleModelChange}>
               <option value="FedAvg">CNN</option>
               <option value="FedProx">ResNet</option>
@@ -113,93 +225,57 @@ function App() {
               <option value="Krum">GPT</option>
               <option value="Bulyan">LSTM</option>
             </select>
-          </div>
-          <div>
-            {/* UI Error: <text style={{marginRight: '10px'}}>File: </text> */}
-            <input type="file" onChange={handleFileChange} />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
           </div>
         </div>
+
 
         <div className='parameters'>
-          <h3>Hyperparameters</h3>
+          <h3 className='subheader'>Hyperparameters</h3>
           <div className="parameter-inputs">
             <div className="parameter-input">
-              <input type="text" id="learning-rate" name="learning-rate" placeholder='Learning rate'/>
+              <label htmlFor="learning-rate">Learning Rate:</label>
+              <input type="range" id="learning-rate" name="learning-rate" min="0" max="1" step="0.01" value={learningRate} onChange={handleLearningRateChange} />
+              <output>{learningRate}</output>
             </div>
             <div className="parameter-input">
-              <input type="text" id="momentum" name="momentum" placeholder='Momentum'/>
+              <label htmlFor="momentum">Momentum:</label>
+              <input type="range" id="momentum" name="momentum" min="0" max="1" step="0.01" value={momentum} onChange={handleMomentumChange} />
+              <output>{momentum}</output>
             </div>
           </div>
         </div>
+      </div>
+      
+      <div class="divider"></div>
 
-        {/*<div className='rounds'>
-          <h3>Number of Rounds</h3>
-          <div className="round-input">
-              <input type="text" id="round" name="rounds" placeholder='Rounds'/>
-          </div>
-        </div>*/}
-
-        <div className='distribution'>
-          <h3>Data Distribution</h3>
-          <div>
-            <input type="radio" id="iid" name="data-type" value="iid" checked={!isNonIID} onChange={handleDataTypeChange}/>
-            <label htmlFor="iid">IID Data</label>
-          </div>
-
-          <div>
-            <input type="radio" id="non-iid" name="data-type" value="non-iid" checked={isNonIID} onChange={handleDataTypeChange}/>
-            <label htmlFor="non-iid">Non-IID Data</label>
-          </div>
-
-          <div>
-            <input type="number" id="num-groups" placeholder="Number of groups" disabled={!isNonIID} value={numGroups} 
-            onChange={handleNumGroupsChange}/>
-          </div>
+      <div class="start">
+        <div class="rounds-input-container">
+          <h3 className='subheader' style={{marginRight: '10px'}}>Number of Rounds</h3>
+          <input type="range" id="rounds" name="rounds" min="0" max="100" step="1" value={rounds} onChange={handleRoundsChange}/>
+          <output id="rounds-value">{rounds}</output>
         </div>
-
-        <div className='metrics'>
-          <h3>Output Metrics</h3>
-          <select value={selectedMetrics} onChange={handleMetricsChange} multiple>
-            <option value="Accuracy">Accuracy</option>
-            <option value="Loss">Loss</option>
-            <option value="Convergence Speed">Convergence Speed</option>
-            <option value="Delay">Delay</option>
-          </select>
+        <div class="button-container">
+          <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
         </div>
       </div>
-      <hr/>
 
-      <div className='start'>
-        <button>Start Experiment</button>
-      </div>
-      <hr/>
-
-      <div className='topology'>
-        <h2> Topology Visualization </h2>
-        <h3> (TBD) </h3>
-      </div>
-      <hr/>
+      <div class="divider"></div>
 
       <div className='output'>
-        {/* Button to toggle the experiment log */}
-        <button onClick={toggleLog}>{logOpen ? 'Close Experiment Log' : 'Open Experiment Log'}</button>
-
         {/* Experiment log */}
-        {logOpen && (
-          <div className="experiment-log">
-            <h2>Output Metrics</h2>
-            {/* Display metrics data */}
-            {metricsData && (
-              <div>
-                {metricsData.map((item, index) => (
-                  <div key={index}>
-                    <p>Round {index + 1} accuracy, loss: {item.accuracy}, {item.loss}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+        <div className="experiment-log">
+          <h3 class='subheader'>Experiment Log</h3>
+          {/* Display metrics data */}
+          <div className='charts-container'>
+            <div className='chart'>
+              <Line options={accOptions} data={newAccuracyData} />
+            </div>
+            <div className='chart'>
+              <Line options={lossOptions} data={newLossData} />
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
