@@ -1,0 +1,57 @@
+// TopologyVisualization.js
+// TopologyVisualization.js
+import React, { useEffect } from 'react';
+import CytoscapeComponent from 'react-cytoscapejs';
+import cytoscape from 'cytoscape';
+import dagre from 'cytoscape-dagre'
+
+cytoscape.use(dagre)
+
+const TopologyVisualization = ({ adjacencyList }) => {
+  useEffect(() => {
+    // Create a new Cytoscape instance
+    const cy = cytoscape({
+      container: document.getElementById('cy'),
+      elements: {
+        nodes: Object.keys(adjacencyList).map(id => ({ data: { id } })),
+        edges: Object.entries(adjacencyList).map(([source, targets]) =>
+          targets.map(target => ({ data: { source, target } }))
+        ).flat()
+      },
+      layout: {
+        name: 'dagre', // Use the DAG layout algorithm
+        center: true
+      },
+      style: [
+        {
+          selector: 'node',
+          style: {
+            'background-color': '#666',
+            'label': 'data(id)'
+          }
+        },
+        {
+          selector: 'edge',
+          style: {
+            'width': 3,
+            'line-color': '#ccc',
+            'target-arrow-color': '#ccc',
+            'target-arrow-shape': 'triangle'
+          }
+        }
+      ]
+    });
+
+    // Optionally, add event listeners or other customizations here
+
+
+    return () => {
+      // Cleanup when the component unmounts
+      cy.destroy();
+    };
+  }, [adjacencyList]);
+
+  return <CytoscapeComponent id="cy" style={{ width: '100%', height: '500px', margin: 'auto', }} />;
+};
+
+export default TopologyVisualization;

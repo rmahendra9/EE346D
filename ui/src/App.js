@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import "chart.js/auto";
+import TopologyVisualization from './TopologyVisualization';
 import './App.css';
 
 function App() {
@@ -71,6 +72,14 @@ function App() {
       }
     }
   };
+  const adjacencyList = {
+    A: ['B', 'C'],
+    B: ['C', 'D'],
+    C: ['D', 'E'],
+    D: ['E'],
+    E: []
+  };
+  
 
   // Function to fetch metrics and update state
   const fetchMetrics = async () => {
@@ -276,6 +285,10 @@ function App() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <h3 class='subheader'>Topology Visualization</h3>
+        <TopologyVisualization adjacencyList={adjacencyList} />
       </div>
     </div>
   );
