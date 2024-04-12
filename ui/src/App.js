@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import "chart.js/auto";
-import TopologyVisualization from './TopologyVisualization';
 import './App.css';
+import TopologyVisualization from './TopologyVisualization';
 
 function App() {
   const [selectedStrategy, setSelectedStrategy] = useState('FedAvg'); // Default strategy
   const [selectedDataset, setSelectedDataset] = useState('CIFAR-10'); // Default dataset
   const [selectedModel, setSelectedModel] = useState('CNN'); // Default model
-  const [logOpen, setLogOpen] = useState(false);
-  const [isNonIID, setIsNonIID] = useState(false); // Track if non-IID data is selected
-  const [numGroups, setNumGroups] = useState(''); // Number of groups input value
   const [learningRate, setLearningRate] = useState(0);
+  const [linkDelay, setLinkDelay] = useState(0);
   const [momentum, setMomentum] = useState(0);
   const [rounds, setRounds] = useState(0);
   const [newAccuracyData, setAccuracyData] = useState({
@@ -72,6 +70,7 @@ function App() {
       }
     }
   };
+
   const adjacencyList = {
     A: ['B', 'C'],
     B: ['C', 'D'],
@@ -79,7 +78,6 @@ function App() {
     D: ['E'],
     E: []
   };
-  
 
   // Function to fetch metrics and update state
   const fetchMetrics = async () => {
@@ -141,24 +139,6 @@ function App() {
     setSelectedModel(event.target.value);
   };
 
-  const toggleLog = () => {
-    setLogOpen(!logOpen);
-  };
-
-  // Function to handle radio button change for IID and non-IID data
-  const handleDataTypeChange = (event) => {
-    if (event.target.value === 'non-iid') {
-      setIsNonIID(true);
-    } else {
-      setIsNonIID(false);
-      setNumGroups(''); // Reset number of groups input value
-    }
-  };
-
-  // Function to handle input change for number of groups
-  const handleNumGroupsChange = (event) => {
-    setNumGroups(event.target.value);
-  };
 
   const handleLearningRateChange = (event) => {
     setLearningRate(event.target.value);
@@ -172,8 +152,19 @@ function App() {
     setRounds(event.target.value);
   };
 
+  const handleLinkDelayChange = (event) => {
+    setLinkDelay(event.target.value);
+  };
+
   const handleStartExperiment = async () => {
     try {
+      console.log(selectedStrategy);
+      console.log(selectedModel);
+      console.log(selectedDataset);
+      console.log(learningRate);
+      console.log(linkDelay);
+      console.log(momentum);
+      console.log(rounds);
       const response = await fetch('http://localhost:80/start-experiment', {
         method: 'POST'
       });
@@ -190,9 +181,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div class='titleDiv'>
         <h1 className='header'>Federated Learning Experiment Dashboard</h1>
-        </div>
       </header>
       
       <div class="divider"></div>
@@ -232,9 +221,6 @@ function App() {
             <select value={selectedModel} onChange={handleModelChange}>
               <option value="FedAvg">CNN</option>
               <option value="FedProx">ResNet</option>
-              <option value="FedAdam">BERT</option>
-              <option value="Krum">GPT</option>
-              <option value="Bulyan">LSTM</option>
             </select>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
           </div>
@@ -245,14 +231,12 @@ function App() {
           <h3 className='subheader'>Hyperparameters</h3>
           <div className="parameter-inputs">
             <div className="parameter-input">
-              <label htmlFor="learning-rate">Learning Rate:</label>
-              <input type="range" id="learning-rate" name="learning-rate" min="0" max="1" step="0.01" value={learningRate} onChange={handleLearningRateChange} />
-              <output>{learningRate}</output>
+            <label htmlFor="learning-rate" style={{fontStyle: 'italic'}}>Learning Rate:</label>
+              <input type="number" id="learning-rate" name="learning-rate" min="0" max="1" step="0.01" value={learningRate} onChange={handleLearningRateChange} />
             </div>
             <div className="parameter-input">
-              <label htmlFor="momentum">Momentum:</label>
-              <input type="range" id="momentum" name="momentum" min="0" max="1" step="0.01" value={momentum} onChange={handleMomentumChange} />
-              <output>{momentum}</output>
+              <label htmlFor="momentum" style={{fontStyle: 'italic'}}>Momentum:</label>
+              <input type="number" id="momentum" name="momentum" min="0" max="1" step="0.01" value={momentum} onChange={handleMomentumChange} />
             </div>
           </div>
         </div>
@@ -261,10 +245,15 @@ function App() {
       <div class="divider"></div>
 
       <div class="start">
-        <div class="rounds-input-container">
+        <div class="input-container">
           <h3 className='subheader' style={{marginRight: '10px'}}>Number of Rounds</h3>
           <input type="range" id="rounds" name="rounds" min="0" max="100" step="1" value={rounds} onChange={handleRoundsChange}/>
           <output id="rounds-value">{rounds}</output>
+        </div>
+        <div class="input-container">
+          <h3 className='subheader' style={{marginRight: '10px'}}>Link Delay</h3>
+          <input type="range" id="rounds" name="rounds" min="0" max="5000" step="1" value={linkDelay} onChange={handleLinkDelayChange}/>
+          <output id="delay-value">{linkDelay}</output>
         </div>
         <div class="button-container">
           <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
@@ -288,10 +277,48 @@ function App() {
           </div>
         </div>
       </div>
+
+      <div class="divider"></div>
+
+      <div class='table'>
+        <table class='clean-table'>
+          <thead>
+            <tr>
+              <th>Iteration</th>
+              <th>Model</th>
+              <th>Rounds</th>
+              <th>Config</th>
+              <th>Topology</th>
+              <th>Logs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>SimpleCNN</td>
+              <td>10</td>
+              <td>
+                <button className='view-button'>Preview</button>
+              </td>
+              <td>
+                <button className='view-button'>Open</button>
+              </td>
+              <td>
+                <button className='view-button'>View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+
       <h3 class='subheader'>Topology Visualization</h3>
       <div class="topology-visualization-div">
         <TopologyVisualization adjacencyList={adjacencyList} />
       </div>
+
+      <div class="divider"></div>
     </div>
   );
 }
