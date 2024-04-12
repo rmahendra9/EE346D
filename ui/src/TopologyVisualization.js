@@ -51,7 +51,7 @@ const TopologyVisualization = ({ adjacencyList }) => {
     };
   }, [adjacencyList]);
 
-  return <CytoscapeComponent id="cy" style={{ width: '100%', height: '500px', margin: 'auto', }} />;
+  return <CytoscapeComponent id="cy" style={{display: 'flex', width: '100%', height: '500px', alignContent: "flex-start"}} />;
 };
 
 export default TopologyVisualization;

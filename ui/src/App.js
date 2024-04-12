@@ -190,7 +190,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div class='titleDiv'>
         <h1 className='header'>Federated Learning Experiment Dashboard</h1>
+        </div>
       </header>
       
       <div class="divider"></div>
@@ -286,8 +288,8 @@ function App() {
           </div>
         </div>
       </div>
-      <div>
-        <h3 class='subheader'>Topology Visualization</h3>
+      <h3 class='subheader'>Topology Visualization</h3>
+      <div class="topology-visualization-div">
         <TopologyVisualization adjacencyList={adjacencyList} />
       </div>
     </div>

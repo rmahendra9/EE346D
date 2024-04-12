@@ -1,14 +1,9 @@
-.App {
-  text-align: center;
-  justify-content: space-around;
-  height: 100vh;
-}
-
 .App-header {
   margin-bottom: 20px;
 }
 
 .header {
+  text-align: center;
   font-size: 24px;
   font-weight: bold;
   color: #84087f; /* Adjust color as needed */
@@ -16,6 +11,7 @@
 }
 
 .subheader {
+  text-align: center;
   font-size: 18px;
   font-weight: bold;
   color: #620c45; /* Adjust color as needed */
@@ -300,5 +296,10 @@ body {
 
 .rounds-input-container output {
   margin-left: 10px; /* Adjust margin as needed */
+}
+
+.topology-visualization-div {
+  display: flex;
+  align-items: center;
 }
 
