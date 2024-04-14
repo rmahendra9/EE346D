@@ -209,8 +209,8 @@ class FlowerClient(fl.client.NumPyClient):
                     self.socket.sendall(data)
                     print(f"Node {node_id} sent data of size: {len(data)}")
                     sent = True
-                except (BrokenPipeError, ConnectionResetError, OSError):
-                    print("There was an error with TCP")
+                except Exception as e:
+                    print(f'Unexpected {e=}, {type(e)=}')
                 finally:
                     sent = True
             return self.get_parameters({}), 0, {}
