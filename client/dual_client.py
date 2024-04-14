@@ -147,7 +147,6 @@ port = args.port
 num_nodes = args.num_nodes
 is_parent_dual = args.is_parent_dual
 model_type = args.model_type
-num_nodes = args.num_nodes
 
 
 # Load model and data (simple CNN, CIFAR-10)
