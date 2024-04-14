@@ -17,6 +17,7 @@ from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
 import pickle
+import datetime
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -54,10 +55,12 @@ def test(net, testloader):
     return loss, accuracy
 
 
-def load_data(node_id):
+def load_data(num_parts, is_iid, node_id):
     """Load partition CIFAR10 data."""
-    #part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=3,num_nodes=3)
-    part = IidPartitioner(3)
+    if is_iid:
+        part = IidPartitioner(num_parts)
+    else:
+        part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=num_parts,num_nodes=num_parts)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -85,10 +88,9 @@ def load_data(node_id):
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
     "--node-id",
-    choices=[0, 1, 2, 3],
     required=True,
     type=int,
-    help="Partition of the dataset divided into 3 iid partitions created artificially.",
+    help="Partition of the dataset divided into iid partitions created artificially.",
 )
 
 
@@ -96,7 +98,7 @@ parser.add_argument(
     "--parent_ip",
     required=False,
     type=str,
-    help="IP address of this nodes parent"
+    help="IP address of the parent"
 )
 
 
@@ -104,39 +106,60 @@ parser.add_argument(
     "--parent_port",
     required=False,
     type=int,
-    help="Port of this nodes parent"
+    help="Port exposed on the parent"
 )
 
 
 parser.add_argument(
-    "--has_parent",
+    "--is_parent_dual",
     required=True,
     choices=[0,1],
     type=int,
     help="Denotes if node parent is a dual client"
 )
+
+parser.add_argument(
+    "--num_nodes",
+    required=True,
+    type=int,
+    help="Number of nodes in the federated learning"
+)
+
+parser.add_argument(
+    "--model_type",
+    required=True,
+    type=int,
+    choices=[0,1],
+    help="Select model type - 0 for ResNet18, 1 for SimpleCNN"
+)
+
 args = parser.parse_args()
 
-has_parent= args.has_parent
+is_parent_dual= args.is_parent_dual
 parent_port=args.parent_port
 parent_ip=args.parent_ip
 node_id = args.node_id
+num_nodes = args.num_nodes
+model_type = args.model_type
 
 # Load model and data (simple CNN, CIFAR-10)
-#net = ResNet18().to(DEVICE)
-net = SimpleCNN().to(DEVICE)
+if model_type == 0:
+    net = ResNet18().to(DEVICE)
+else:
+    net = SimpleCNN().to(DEVICE)
 
-trainloader, testloader = load_data(node_id=node_id)
+trainloader, testloader = load_data(num_parts=num_nodes, node_id=node_id)
 
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, parent_ip="0.0.0.0", parent_port=8080, has_parent=0):
+    def __init__(self, parent_ip, parent_port, is_parent_dual):
         
-        self.has_parent = has_parent
+        self.is_parent_dual = is_parent_dual
         self.parent_ip = parent_ip
         self.parent_port = parent_port
-        self.open = False
+        self.socket_open = False
+
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -148,35 +171,39 @@ class FlowerClient(fl.client.NumPyClient):
 
     def fit(self, parameters, config):
         self.set_parameters(parameters)
+        #Train locally
         train(net, trainloader, epochs=1)
-        #If node has parent as dual client, then it should send params to there
+        #Serialize parameters
         ndarray_updated = self.get_parameters(config={})
         parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
-        if self.has_parent:
-            if self.open:
+        #Parent is dual client, so need to send params there
+        if self.is_parent_dual:
+            if self.socket_open:
                 self.socket.close()
+                self.socket_open = False
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.socket_open = True
             sent = False
             while not sent:
                 try:
-                    print(f'Attempting to connect {self.parent_ip}:{self.parent_port}')
-                    self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    #Attempt connection
+                    print(f'Node {node_id} is attempting to connect to {self.parent_ip}:{self.parent_port}')
                     self.socket.connect((self.parent_ip, self.parent_port))
-                    self.open = True
-
+                    print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
+                    #Send node id
+                    self.socket.sendall(str(node_id).encode())
+                    #Prepare data to send
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
-                    print(f"data sent: {len(data)}")
+                    #Send timestamp before sending data
+                    self.socket.sendall(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f").encode())
+                    #Send data
                     self.socket.sendall(data)
+                    print(f"Node {node_id} sent data of size: {len(data)}")
                     sent = True
-                except BrokenPipeError:
-                    self.open = False
-                except ConnectionResetError:
-                    self.open = False
-                except OSError:
+                except (BrokenPipeError, ConnectionResetError, OSError):
                     print("There was an error with TCP")
+                finally:
                     sent = True
-            
-
             return self.get_parameters({}), 0, {}
             #Return empty array to server, send params to parent
             
@@ -192,6 +219,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="127.0.0.1:443",
-    client=FlowerClient(parent_ip, parent_port, has_parent).to_client(),
+    server_address="127.0.0.1:8080",
+    client=FlowerClient(parent_ip, parent_port, is_parent_dual).to_client(),
 )

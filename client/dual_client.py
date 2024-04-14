@@ -17,8 +17,9 @@ import socket
 import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
-
+from utils.serializers import ndarrays_to_sparse_parameters
 from utils.serializers import sparse_parameters_to_ndarrays
+import datetime
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -63,10 +64,12 @@ def agg(param_list, len_datasets):
 
     return final_params
 
-def load_data(node_id):
+def load_data(num_parts, is_iid, node_id):
     """Load partition CIFAR10 data."""
-    #part = NumNodesGroupedNaturalIdPartitioner("label",3,3)
-    part = IidPartitioner(3)
+    if is_iid:
+        part = IidPartitioner(num_parts)
+    else:
+        part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=num_parts,num_nodes=num_parts)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
     partition = fds.load_partition(node_id)
     # Divide data on each node: 80% train, 20% test
@@ -94,10 +97,9 @@ def load_data(node_id):
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
     "--node-id",
-    choices=[0, 1, 2, 3],
     required=True,
     type=int,
-    help="Partition of the dataset divided into 3 iid partitions created artificially.",
+    help="Partition of the dataset divided into iid partitions created artificially.",
 )
 
 parser.add_argument(
@@ -114,25 +116,58 @@ parser.add_argument(
     help="Port to expose for this client",
 )
 
+parser.add_argument(
+    "--num_nodes",
+    required=True,
+    type=int,
+    help="Number of nodes in the federated learning"
+)
+
+parser.add_argument(
+    "--is_parent_dual",
+    required=True,
+    choices=[0,1],
+    type=int,
+    help="Denotes if node parent is a dual client"
+)
+
+parser.add_argument(
+    "--model_type",
+    required=True,
+    type=int,
+    choices=[0,1],
+    help="Select model type - 0 for ResNet18, 1 for SimpleCNN"
+)
+
 args = parser.parse_args()
 
 node_id = args.node_id
 num_clients = args.num_clients
 port = args.port
+num_nodes = args.num_nodes
+is_parent_dual = args.is_parent_dual
+model_type = args.model_type
+num_nodes = args.num_nodes
 
 
 # Load model and data (simple CNN, CIFAR-10)
-net = SimpleCNN().to(DEVICE)
+if model_type == 0:
+    net = ResNet18().to(DEVICE)
+else:
+    net = SimpleCNN().to(DEVICE)
+
 trainloader, testloader = load_data(node_id=node_id)
 
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, num_clients, port):
+    def __init__(self, num_clients, port, is_parent_dual):
         self.num_clients = num_clients
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostname(), port))
         self.serversocket.listen(self.num_clients)
+        self.is_parent_dual = is_parent_dual
+        self.socket_open = False
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -150,46 +185,79 @@ class FlowerClient(fl.client.NumPyClient):
         recv_params = []
         len_datasets = [] 
         for i in range(self.num_clients):
-
             (conn, addr) = self.serversocket.accept()
             data = []
+            child_node_id = conn.recv(4096).decode()
+            print(f'Receiving data from node {child_node_id}')
+            recv_date_string = conn.recv(4096).decode()
+            print(f'Received timestamp of {recv_date_string} from node {node_id}')
             while True:
                 packet = conn.recv(4096)
-                packet_len = len(packet)
                 data.append(packet)
-                #if packet_len < 4096:
                 try:
                     pickle_data = b"".join(data)
                     data_arr = pickle.loads(pickle_data)
                     break
                 except pickle.UnpicklingError:
                     continue
-
+            
+            recv_date_time = datetime.datetime.strptime(recv_date_string, "%Y-%m-%d %H:%M:%S.%f")
+            delay = recv_date_time - datetime.datetime.now()
+            us_delay = delay.microseconds + delay.seconds*1000
+            print(f'There was a {us_delay} microsecond delay between node {node_id} and this node')
 
             conn.shutdown(socket.SHUT_RDWR)
 
-            print(f"Len received: {len(pickle_data)}")
+            print(f"Length of data received: {len(pickle_data)}")
 
             data_arr = pickle.loads(pickle_data)
             recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
             len_datasets.append(data_arr[1])
 
-            conn.close()
-
-
-
-        
-
+            conn.close()      
+              
         recv_params.append(self.get_parameters(config={}))
         len_datasets.append(len(trainloader.dataset))
         #Aggregate parameters
         new_params = agg(recv_params, len_datasets)
-        #Return aggregated parameters
         self.set_parameters(new_params)
         len_data = sum(len_datasets)
-   
+        #Serialize params
+        ndarray_updated = self.get_parameters(config={})
+        parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
+        
+        #Send to parent, if exists
+        if self.is_parent_dual:
+            if self.socket_open:
+                self.socket.close()
+                self.socket_open = False
+            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.socket_open = True
+            sent = False
+            while not sent:
+                try:
+                    #Attempt connection
+                    print(f'Node {node_id} is attempting to connect to {self.parent_ip}:{self.parent_port}')
+                    self.socket.connect((self.parent_ip, self.parent_port))
+                    print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
+                    #Send node id
+                    self.socket.sendall(str(node_id).encode())
+                    #Prepare data to send
+                    data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
+                    #Send timestamp before sending data
+                    self.socket.sendall(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f").encode())
+                    #Send data
+                    self.socket.sendall(data)
+                    print(f"Node {node_id} sent data of size: {len(data)}")
+                    sent = True
+                except (BrokenPipeError, ConnectionResetError, OSError):
+                    print("There was an error with TCP")
+                finally:
+                    sent = True
+            return self.get_parameters({}), 0, {}
+        else:
         # len(trainloader.dataset) has to be the sum of the previous len (Check comment in client)
-        return self.get_parameters(config={}), len_data, {}
+            return self.get_parameters(config={}), len_data, {}
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
