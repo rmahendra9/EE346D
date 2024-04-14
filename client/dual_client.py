@@ -139,6 +139,14 @@ parser.add_argument(
     help="Select model type - 0 for ResNet18, 1 for SimpleCNN"
 )
 
+parser.add_argument(
+    "--is_iid",
+    required=True,
+    type=int,
+    choices=[0,1],
+    help="Denotes if data is iid - 0 for no, 1 for yes"
+)
+
 args = parser.parse_args()
 
 node_id = args.node_id
@@ -147,7 +155,7 @@ port = args.port
 num_nodes = args.num_nodes
 is_parent_dual = args.is_parent_dual
 model_type = args.model_type
-
+is_iid=args.is_iid
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -155,7 +163,7 @@ if model_type == 0:
 else:
     net = SimpleCNN().to(DEVICE)
 
-trainloader, testloader = load_data(node_id=node_id)
+trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=node_id)
 
 
 # Define Flower client
