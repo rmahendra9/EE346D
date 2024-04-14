@@ -267,5 +267,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="127.0.0.1:8080",
-    client=FlowerClient(num_clients, port).to_client(),
+    client=FlowerClient(num_clients, port, is_parent_dual).to_client(),
 )
