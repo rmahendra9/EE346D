@@ -109,7 +109,6 @@ parser.add_argument(
     help="Port exposed on the parent"
 )
 
-
 parser.add_argument(
     "--is_parent_dual",
     required=True,
@@ -162,8 +161,7 @@ trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, parent_ip, parent_port, is_parent_dual):
-        
+    def __init__(self, is_parent_dual, parent_ip="0.0.0.0", parent_port=0):
         self.is_parent_dual = is_parent_dual
         self.parent_ip = parent_ip
         self.parent_port = parent_port

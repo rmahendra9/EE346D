@@ -103,6 +103,20 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "--parent_ip",
+    required=False,
+    type=str,
+    help="IP address of the parent"
+)
+
+parser.add_argument(
+    "--parent_port",
+    required=False,
+    type=int,
+    help="Port exposed on the parent"
+)
+
+parser.add_argument(
     "--num_clients",
     required=True,
     type=int,
@@ -156,6 +170,8 @@ num_nodes = args.num_nodes
 is_parent_dual = args.is_parent_dual
 model_type = args.model_type
 is_iid=args.is_iid
+parent_ip = args.parent_ip
+parent_port = args.parent_port
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -168,13 +184,15 @@ trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, num_clients, port, is_parent_dual):
+    def __init__(self, num_clients, port, is_parent_dual, parent_ip="0.0.0.0", parent_port=0):
         self.num_clients = num_clients
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostname(), port))
         self.serversocket.listen(self.num_clients)
         self.is_parent_dual = is_parent_dual
         self.socket_open = False
+        self.parent_ip = parent_ip
+        self.parent_port = parent_port
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -275,5 +293,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="127.0.0.1:8080",
-    client=FlowerClient(num_clients, port, is_parent_dual).to_client(),
+    client=FlowerClient(num_clients, port, is_parent_dual, parent_ip, parent_port).to_client(),
 )
