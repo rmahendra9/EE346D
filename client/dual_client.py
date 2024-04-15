@@ -20,6 +20,7 @@ from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
 from utils.serializers import sparse_parameters_to_ndarrays
 import datetime
+from utils.scheduler import Optimal_Schedule
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -96,7 +97,7 @@ def load_data(num_parts, is_iid, node_id):
 # Get node id
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
-    "--node-id",
+    "--client-id",
     required=True,
     type=int,
     help="Partition of the dataset divided into iid partitions created artificially.",
@@ -117,10 +118,10 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--num_clients",
+    "--num_children",
     required=True,
     type=int,
-    help="Number of clients this node has",
+    help="Number of children this node has",
 )
 
 parser.add_argument(
@@ -131,7 +132,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--num_nodes",
+    "--num_clients",
     required=True,
     type=int,
     help="Number of nodes in the federated learning"
@@ -163,15 +164,17 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-node_id = args.node_id
-num_clients = args.num_clients
+client_id = args.client_id
+num_children = args.num_children
 port = args.port
-num_nodes = args.num_nodes
+num_clients = args.num_clients
 is_parent_dual = args.is_parent_dual
 model_type = args.model_type
 is_iid=args.is_iid
 parent_ip = args.parent_ip
 parent_port = args.parent_port
+node_id = client_id + 1
+num_nodes = num_clients + 1
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -179,16 +182,26 @@ if model_type == 0:
 else:
     net = SimpleCNN().to(DEVICE)
 
-trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=node_id)
+trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, node_id=client_id)
+
+
+#Get schedule for node
+num_chunks = 3
+num_replicas = 1
+num_segments = num_chunks*num_replicas
+scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
+schedule = scheduler.nodes_schedule[node_id]
+
+#Mapping of node id to IP addr - TODO
 
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, num_clients, port, is_parent_dual, parent_ip="0.0.0.0", parent_port=0):
-        self.num_clients = num_clients
+    def __init__(self, num_children, port, is_parent_dual, parent_ip="0.0.0.0", parent_port=0):
+        self.num_children = num_children
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostname(), port))
-        self.serversocket.listen(self.num_clients)
+        self.serversocket.listen(self.num_children)
         self.is_parent_dual = is_parent_dual
         self.socket_open = False
         self.parent_ip = parent_ip
@@ -209,7 +222,7 @@ class FlowerClient(fl.client.NumPyClient):
         #Become a server and receive params from children
         recv_params = []
         len_datasets = [] 
-        for i in range(self.num_clients):
+        for i in range(self.num_children):
             (conn, addr) = self.serversocket.accept()
             data = []
             child_node_id = conn.recv(4096).decode()
@@ -279,6 +292,8 @@ class FlowerClient(fl.client.NumPyClient):
                     print("There was an error with TCP")
                 finally:
                     sent = True
+            self.socket.close()
+            self.socket_open = False
             return self.get_parameters({}), 0, {}
         else:
         # len(trainloader.dataset) has to be the sum of the previous len (Check comment in client)
@@ -293,5 +308,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="127.0.0.1:8080",
-    client=FlowerClient(num_clients, port, is_parent_dual, parent_ip, parent_port).to_client(),
+    client=FlowerClient(num_children, port, is_parent_dual, parent_ip, parent_port).to_client(),
 )

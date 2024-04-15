@@ -1,4 +1,4 @@
 server - python server.py --num_rounds 10
-client_1 - python dual_client.py --node-id 0 --num_clients 1 --port 80 --num_nodes 3 --is_parent_dual 0 --model_type 1 --is_iid 1
-client_2 - python client.py --node-id 1 --is_parent_dual 0 --num_nodes 3 --model_type 1 --is_iid 1
-client_3 - python client.py --node-id 2 --parent_ip "127.0.0.1" --parent_port 80 --is_parent_dual 1 --num_nodes 3 --model_type 1 --is_iid 1
+client_1 - python dual_client.py --client-id 0 --num_children 1 --port 80 --num_clients 3 --is_parent_dual 0 --model_type 1 --is_iid 1
+client_2 - python client.py --client-id 1 --is_parent_dual 0 --num_clients 3 --model_type 1 --is_iid 1
+client_3 - python client.py --client-id 2 --parent_ip "127.0.0.1" --parent_port 80 --is_parent_dual 1 --num_clients 3 --model_type 1 --is_iid 1

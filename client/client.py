@@ -88,7 +88,7 @@ def load_data(num_parts, is_iid, node_id):
 # Get node id
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
-    "--node-id",
+    "--client-id",
     required=True,
     type=int,
     help="Partition of the dataset divided into iid partitions created artificially.",
@@ -119,10 +119,10 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--num_nodes",
+    "--num_clients",
     required=True,
     type=int,
-    help="Number of nodes in the federated learning"
+    help="Number of clients in the federated learning"
 )
 
 parser.add_argument(
@@ -146,10 +146,12 @@ args = parser.parse_args()
 is_parent_dual= args.is_parent_dual
 parent_port=args.parent_port
 parent_ip=args.parent_ip
-node_id = args.node_id + 1 # We do node_id + 1 because the scheduler assumes node 0 is the server
-num_nodes = args.num_nodes
+client_id = args.client_id # Number of the client
+num_clients = args.num_clients
 model_type = args.model_type
 is_iid=args.is_iid
+num_nodes = num_clients + 1 # Total number of nodes in federated learning, including server
+node_id = client_id + 1 # Id of node in federated learning experiment
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -157,7 +159,7 @@ if model_type == 0:
 else:
     net = SimpleCNN().to(DEVICE)
 
-trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=node_id)
+trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, node_id=client_id)
 
 #Get schedule for node
 num_chunks = 3
@@ -209,10 +211,12 @@ class FlowerClient(fl.client.NumPyClient):
                     print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
                     #Send node id
                     self.socket.sendall(str(node_id).encode())
+                    print(f'Successfully sent node id to {self.parent_ip}:{self.parent_port}')
                     #Prepare data to send
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
                     #Send timestamp before sending data
                     self.socket.sendall(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f").encode())
+                    print(f'Successfully sent timestamp to {self.parent_ip}:{self.parent_port}')
                     #Send data
                     self.socket.sendall(data)
                     print(f"Node {node_id} sent data of size: {len(data)}")
@@ -221,6 +225,8 @@ class FlowerClient(fl.client.NumPyClient):
                     print(f'Unexpected {e=}, {type(e)=}')
                 finally:
                     sent = True
+            self.socket.close()
+            self.open = False
             return self.get_parameters({}), 0, {}
             #Return empty array to server, send params to parent
             
