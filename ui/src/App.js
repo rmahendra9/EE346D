@@ -158,15 +158,26 @@ function App() {
 
   const handleStartExperiment = async () => {
     try {
-      console.log(selectedStrategy);
-      console.log(selectedModel);
-      console.log(selectedDataset);
-      console.log(learningRate);
-      console.log(linkDelay);
-      console.log(momentum);
-      console.log(rounds);
+      // console.log(selectedStrategy);
+      // console.log(selectedModel);
+      // console.log(selectedDataset);
+      // console.log(learningRate);
+      // console.log(linkDelay);
+      // console.log(momentum);
+      // console.log(rounds);
       const response = await fetch('http://localhost:80/start-experiment', {
-        method: 'POST'
+        method: 'POST',
+        body: JSON.stringify({
+          strategy: selectedStrategy,
+          model: selectedModel,
+          learningRate: learningRate,
+          momentum: momentum,
+          rounds: rounds,
+          linkDelay: linkDelay
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
       });
       if (response.ok) {
         console.log('Experiment started successfully');
@@ -219,8 +230,8 @@ function App() {
           <h3 className='subheader'>Model</h3>
           <div class="select-wrapper">
             <select value={selectedModel} onChange={handleModelChange}>
-              <option value="FedAvg">CNN</option>
-              <option value="FedProx">ResNet</option>
+              <option value="CNN">CNN</option>
+              <option value="ResNet">ResNet</option>
             </select>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
           </div>

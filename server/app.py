@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from typing import List, Tuple
 import json
 from flwr.common import Metrics
@@ -48,9 +48,14 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
 
 @app.route('/start-experiment', methods=['POST'])
 def start_experiment():
+    data = request.json
+    print(data)
+    model = data.get('model')
     subprocess.Popen(['python3', 'server.py'])
-    subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0'])
-    subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0'])
+    subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0'
+    , '--model', model])
+    subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0'
+    , '--model', model])
     return 'Experiment started successfully'
 
 @app.route('/metrics', methods=['GET'])

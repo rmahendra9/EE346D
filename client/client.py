@@ -115,16 +115,33 @@ parser.add_argument(
     type=int,
     help="Denotes if node parent is a dual client"
 )
+
+parser.add_argument(
+    "--model",
+    required=True,
+    choices=['CNN','ResNet'],
+    type=str,
+    help="Choose between CNN and ResNet"
+)
+
 args = parser.parse_args()
 
 has_parent= args.has_parent
 parent_port=args.parent_port
 parent_ip=args.parent_ip
 node_id = args.node_id
+model = args.model
+
+def choose_model(model):
+    print(model)
+    if model == "CNN":
+        net = SimpleCNN().to(DEVICE)
+    elif model == "ResNet":
+        net = ResNet18().to(DEVICE)
+    return net
 
 # Load model and data (simple CNN, CIFAR-10)
-#net = ResNet18().to(DEVICE)
-net = SimpleCNN().to(DEVICE)
+net = choose_model(model)
 
 trainloader, testloader = load_data(node_id=node_id)
 
@@ -192,6 +209,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="127.0.0.1:443",
+    server_address="127.0.0.1:8008",
     client=FlowerClient(parent_ip, parent_port, has_parent).to_client(),
 )
