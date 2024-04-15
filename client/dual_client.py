@@ -20,7 +20,7 @@ from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
 from utils.serializers import sparse_parameters_to_ndarrays
 import datetime
-
+import time
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
 # #############################################################################
@@ -212,9 +212,11 @@ class FlowerClient(fl.client.NumPyClient):
         for i in range(self.num_clients):
             (conn, addr) = self.serversocket.accept()
             data = []
-            child_node_id = conn.recv(4096).decode()
+            child_node_id_utf = conn.recv(4096)
+            print(child_node_id_utf)
+            child_node_id = child_node_id_utf.decode()
             print(f'Receiving data from node {child_node_id}')
-            recv_date_string = conn.recv(4096).decode()
+            recv_date_string = conn.recv(1024).decode(encoding='utf-16')
             print(f'Received timestamp of {recv_date_string} from node {node_id}')
             while True:
                 packet = conn.recv(4096)
@@ -226,10 +228,9 @@ class FlowerClient(fl.client.NumPyClient):
                 except pickle.UnpicklingError:
                     continue
             
-            recv_date_time = datetime.datetime.strptime(recv_date_string, "%Y-%m-%d %H:%M:%S.%f")
-            delay = recv_date_time - datetime.datetime.now()
-            us_delay = delay.microseconds + delay.seconds*1000
-            print(f'There was a {us_delay} microsecond delay between node {node_id} and this node')
+            recv_time = int(recv_date_string)
+            delay = time.time_ns() - recv_time
+            print(f'There was a {delay} nanoseconds delay between node {node_id} and this node')
 
             conn.shutdown(socket.SHUT_RDWR)
 

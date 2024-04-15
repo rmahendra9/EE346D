@@ -18,6 +18,8 @@ from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
 import pickle
 import datetime
+from datetime import datetime
+import time
 from utils.scheduler import Optimal_Schedule
 
 # #############################################################################
@@ -59,11 +61,14 @@ def test(net, testloader):
 def load_data(num_parts, is_iid, node_id):
     """Load partition CIFAR10 data."""
     if is_iid:
+        print('IID')
         part = IidPartitioner(num_parts)
     else:
-        part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=num_parts,num_nodes=num_parts)
+        print(f'Non-IID')
+        part = NumNodesGroupedNaturalIdPartitioner("label",num_groups=2,num_nodes=3)
     fds = FederatedDataset(dataset="cifar10", partitioners={"train": part})
-    partition = fds.load_partition(node_id)
+    #part.dataset = FederatedDataset(dataset="cifar10", partitioners={"train": part})._dataset
+    partition = fds.load_partition(node_id-1)
     # Divide data on each node: 80% train, 20% test
     partition_train_test = partition.train_test_split(test_size=0.2)
     pytorch_transforms = Compose(
@@ -151,6 +156,7 @@ num_nodes = args.num_nodes
 model_type = args.model_type
 is_iid=args.is_iid
 
+print(f'Parent ip: {parent_ip} | Parent port {parent_port} ')
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
     net = ResNet18().to(DEVICE)
@@ -163,7 +169,7 @@ trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=
 num_chunks = 3
 num_replicas = 1
 num_segments = num_chunks*num_replicas
-scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
+scheduler = Optimal_Schedule(num_nodes+1, num_segments, num_chunks, num_replicas)
 schedule = scheduler.nodes_schedule[node_id]
 
 #Mapping of node id to IP addr - TODO
@@ -205,14 +211,20 @@ class FlowerClient(fl.client.NumPyClient):
                 try:
                     #Attempt connection
                     print(f'Node {node_id} is attempting to connect to {self.parent_ip}:{self.parent_port}')
+                    print('======================')
                     self.socket.connect((self.parent_ip, self.parent_port))
                     print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
                     #Send node id
-                    self.socket.sendall(str(node_id).encode())
+                    print(f'node id: {str(node_id).encode()}')
+                    self.socket.send(str(node_id).encode())
                     #Prepare data to send
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
                     #Send timestamp before sending data
-                    self.socket.sendall(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f").encode())
+
+                    message = str(time.time_ns()).encode(encoding='utf-16')
+                    #self.socket.sendall(datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f').encode())
+                    print(message)
+                    self.socket.send(message)
                     #Send data
                     self.socket.sendall(data)
                     print(f"Node {node_id} sent data of size: {len(data)}")
@@ -221,6 +233,8 @@ class FlowerClient(fl.client.NumPyClient):
                     print(f'Unexpected {e=}, {type(e)=}')
                 finally:
                     sent = True
+                    #self.socket.close()
+                    #self.socket_open = False
             return self.get_parameters({}), 0, {}
             #Return empty array to server, send params to parent
             
@@ -237,5 +251,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="127.0.0.1:8080",
-    client=FlowerClient(parent_ip, parent_port, is_parent_dual).to_client(),
+    client=FlowerClient(is_parent_dual, parent_ip, parent_port).to_client(),
 )

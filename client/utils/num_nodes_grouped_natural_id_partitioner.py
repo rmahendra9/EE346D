@@ -79,6 +79,7 @@ class NumNodesGroupedNaturalIdPartitioner(GroupNaturalIdPartitioner):
 
         dataset = super().load_partition(num_group)
 
+        print(f'Num_group: {num_group}; Position: {position_in_group}')
         dataset = dataset.shard(
             num_shards=int(group_sizes[num_group]),
             index=position_in_group,
