@@ -18,6 +18,7 @@ from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
 import pickle
 import datetime
+from utils.scheduler import Optimal_Schedule
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -145,7 +146,7 @@ args = parser.parse_args()
 is_parent_dual= args.is_parent_dual
 parent_port=args.parent_port
 parent_ip=args.parent_ip
-node_id = args.node_id
+node_id = args.node_id + 1 # We do node_id + 1 because the scheduler assumes node 0 is the server
 num_nodes = args.num_nodes
 model_type = args.model_type
 is_iid=args.is_iid
@@ -158,6 +159,14 @@ else:
 
 trainloader, testloader = load_data(num_parts=num_nodes, is_iid=is_iid, node_id=node_id)
 
+#Get schedule for node
+num_chunks = 3
+num_replicas = 1
+num_segments = num_chunks*num_replicas
+scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
+schedule = scheduler.nodes_schedule[node_id]
+
+#Mapping of node id to IP addr - TODO
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
@@ -177,6 +186,7 @@ class FlowerClient(fl.client.NumPyClient):
         net.load_state_dict(state_dict, strict=True)
 
     def fit(self, parameters, config):
+        #TODO - Change to support chunking
         self.set_parameters(parameters)
         #Train locally
         train(net, trainloader, epochs=1)

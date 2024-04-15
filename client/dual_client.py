@@ -56,7 +56,7 @@ def test(net, testloader):
     accuracy = correct / len(testloader.dataset)
     return loss, accuracy
 
-
+#TODO - is this the only agg function we want?
 def agg(param_list, len_datasets):
     final_params = []
     for i in range(len(param_list[0])):
