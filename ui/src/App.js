@@ -72,14 +72,51 @@ function App() {
       }
     }
   };
-  const adjacencyList = {
+  const initialAdjacencyList = {
     A: ['B', 'C'],
     B: ['C', 'D'],
     C: ['D', 'E'],
     D: ['E'],
     E: []
   };
+
+  const [adjacencyList, setAdjacencyList] = useState(initialAdjacencyList);
+  const [newNodeName, setNewNodeName] = useState('');
+  const [newNodeConnections, setNewNodeConnections] = useState('');
   
+  const handleAddNode = () => {
+    if (newNodeName.trim() === '') {
+      alert('Node name cannot be empty');
+      return;
+    }
+
+    const newAdjacencyList = { ...adjacencyList, [newNodeName]: [] };
+    setAdjacencyList(newAdjacencyList);
+    setNewNodeName('');
+  };
+
+
+  const handleDeleteNode = (node) => {
+    const newAdjacencyList = { ...adjacencyList };
+    delete newAdjacencyList[node];
+    for (let key in newAdjacencyList) {
+      newAdjacencyList[key] = newAdjacencyList[key].filter((val) => val !== node);
+    }
+    setAdjacencyList(newAdjacencyList);
+  };
+
+  const handleCheckboxChange = (source, target, checked) => {
+    const newAdjacencyList = { ...adjacencyList };
+    if (checked) {
+      if (!newAdjacencyList[source]) {
+        newAdjacencyList[source] = [];
+      }
+      newAdjacencyList[source].push(target);
+    } else {
+      newAdjacencyList[source] = newAdjacencyList[source].filter((node) => node !== target);
+    }
+    setAdjacencyList(newAdjacencyList);
+  };
 
   // Function to fetch metrics and update state
   const fetchMetrics = async () => {
@@ -291,6 +328,46 @@ function App() {
       <h3 class='subheader'>Topology Visualization</h3>
       <div class="topology-visualization-div">
         <TopologyVisualization adjacencyList={adjacencyList} />
+      </div>
+      <div>
+        <h4>Add Node</h4>
+        <input
+          type="text"
+          placeholder="Node Name"
+          value={newNodeName}
+          onChange={(e) => setNewNodeName(e.target.value)}
+        />
+        <button onClick={handleAddNode}>Add Node</button>
+      </div>
+      <div>
+        <h4>Adjacency Matrix</h4>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              {Object.keys(adjacencyList).map(node => (
+                <th key={node}>{node}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(adjacencyList).map(source => (
+              <tr key={source}>
+                <td>{source}</td>
+                {Object.keys(adjacencyList).map(target => (
+                  <td key={`${source}-${target}`}>
+                    <input
+                      type="checkbox"
+                      checked={adjacencyList[source].includes(target)}
+                      onChange={(e) => handleCheckboxChange(source, target, e.target.checked)}
+                    />
+                  </td>
+                ))}
+                <td><button onClick={() => handleDeleteNode(source)}>Delete Node</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
