@@ -72,11 +72,13 @@ function App() {
   };
 
   const initialAdjacencyList = {
-    A: ['B', 'C'],
-    B: ['C', 'D'],
-    C: ['D', 'E'],
-    D: ['E'],
-    E: []
+    // A: ['B', 'C'],
+    // B: [],
+    // C: []
+
+    A: [],
+    B: [],
+    C: []
   };
 
   const [adjacencyList, setAdjacencyList] = useState(initialAdjacencyList);
@@ -211,7 +213,8 @@ function App() {
           learningRate: learningRate,
           momentum: momentum,
           rounds: rounds,
-          linkDelay: linkDelay
+          linkDelay: linkDelay,
+          num: 0 // 0 --> single level, 1 multilevel
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -294,16 +297,6 @@ function App() {
       <div class="divider"></div>
 
       <div class="start">
-        <div class="input-container">
-          <h3 className='subheader' style={{marginRight: '10px'}}>Number of Rounds</h3>
-          <input type="range" id="rounds" name="rounds" min="0" max="100" step="1" value={rounds} onChange={handleRoundsChange}/>
-          <output id="rounds-value">{rounds}</output>
-        </div>
-        <div class="input-container">
-          <h3 className='subheader' style={{marginRight: '10px'}}>Link Delay</h3>
-          <input type="range" id="rounds" name="rounds" min="0" max="5000" step="1" value={linkDelay} onChange={handleLinkDelayChange}/>
-          <output id="delay-value">{linkDelay}</output>
-        </div>
         <div class="button-container">
           <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
         </div>
@@ -329,7 +322,7 @@ function App() {
 
       <div class="divider"></div>
 
-      <div class='table'>
+      {/*<div class='table'>
         <table class='clean-table'>
           <thead>
             <tr>
@@ -360,7 +353,7 @@ function App() {
         </table>
       </div>
 
-      <div class="divider"></div>
+      <div class="divider"></div>*/}
 
       <h3 class='subheader'>Topology Visualization</h3>
       <div class="topology-visualization-div">

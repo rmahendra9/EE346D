@@ -51,14 +51,18 @@ def start_experiment():
     data = request.json
     print(data)
     model = data.get('model')
+    num = data.get('num')
     subprocess.Popen(['python3', 'server.py'])
 
-    subprocess.Popen(['python3', '../client/dual_client.py', '--node-id', '0', '--num_clients', '1'
-    , '--port', '81'])
-    subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0'
-    , '--model', model])
-    subprocess.Popen(['python3', '../client/client.py', '--node-id', '2', '--parent_ip', '127.0.0.1', '--parent_port', '81', '--has_parent', '1'
-    , '--model', model])
+    if num == 0:
+        subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0', '--model', model])
+        subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0', '--model', model])
+
+    elif num == 1:
+        subprocess.Popen(['python3', '../client/dual_client.py', '--node-id', '0', '--num_clients', '1', '--port', '81'])
+        subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0', '--model', model])
+        subprocess.Popen(['python3', '../client/client.py', '--node-id', '2', '--parent_ip', '127.0.0.1', '--parent_port', '81', '--has_parent', '1','--model', model])
+    
     return 'Experiment started successfully'
 
 @app.route('/metrics', methods=['GET'])
