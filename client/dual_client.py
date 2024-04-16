@@ -222,13 +222,18 @@ class FlowerClient(fl.client.NumPyClient):
         #Become a server and receive params from children
         recv_params = []
         len_datasets = [] 
-        for i in range(self.num_children):
+        for _ in range(self.num_children):
+            #Accept connection
             (conn, addr) = self.serversocket.accept()
             data = []
-            child_node_id = conn.recv(4096).decode()
-            print(f'Receiving data from node {child_node_id}')
-            recv_date_string = conn.recv(4096).decode()
-            print(f'Received timestamp of {recv_date_string} from node {node_id}')
+            #Get child node id
+            child_node_id = conn.recv(1024).decode()
+            print(f"Receiving data from node {child_node_id}")
+            #Send acknowledgement
+            conn.send('Ack'.encode())
+            #Get current time to measure time delay of sending the data
+            start_time = datetime.datetime.now()
+            #Receive the data
             while True:
                 packet = conn.recv(4096)
                 data.append(packet)
@@ -238,15 +243,14 @@ class FlowerClient(fl.client.NumPyClient):
                     break
                 except pickle.UnpicklingError:
                     continue
-            
-            recv_date_time = datetime.datetime.strptime(recv_date_string, "%Y-%m-%d %H:%M:%S.%f")
-            delay = recv_date_time - datetime.datetime.now()
-            us_delay = delay.microseconds + delay.seconds*1000
-            print(f'There was a {us_delay} microsecond delay between node {node_id} and this node')
+
+            end_time = datetime.datetime.now()
+            delay = end_time - start_time
+            print(f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
 
             conn.shutdown(socket.SHUT_RDWR)
 
-            print(f"Length of data received: {len(pickle_data)}")
+            print(f"Length of data received from node {child_node_id}: {len(pickle_data)}")
 
             data_arr = pickle.loads(pickle_data)
             recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
@@ -278,12 +282,8 @@ class FlowerClient(fl.client.NumPyClient):
                     print(f'Node {node_id} is attempting to connect to {self.parent_ip}:{self.parent_port}')
                     self.socket.connect((self.parent_ip, self.parent_port))
                     print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
-                    #Send node id
-                    self.socket.sendall(str(node_id).encode())
                     #Prepare data to send
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
-                    #Send timestamp before sending data
-                    self.socket.sendall(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f").encode())
                     #Send data
                     self.socket.sendall(data)
                     print(f"Node {node_id} sent data of size: {len(data)}")

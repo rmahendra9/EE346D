@@ -17,7 +17,6 @@ from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
 import pickle
-import datetime
 from utils.scheduler import Optimal_Schedule
 
 # #############################################################################
@@ -209,14 +208,12 @@ class FlowerClient(fl.client.NumPyClient):
                     print(f'Node {node_id} is attempting to connect to {self.parent_ip}:{self.parent_port}')
                     self.socket.connect((self.parent_ip, self.parent_port))
                     print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
-                    #Send node id
-                    self.socket.sendall(str(node_id).encode())
-                    print(f'Successfully sent node id to {self.parent_ip}:{self.parent_port}')
+                    #Send node_id
+                    self.socket.send(str(node_id).encode())
+                    ack = self.socket.recv(1024).decode()
+                    print(f'Node {node_id} received ack from server, will send data')
                     #Prepare data to send
                     data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
-                    #Send timestamp before sending data
-                    self.socket.sendall(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f").encode())
-                    print(f'Successfully sent timestamp to {self.parent_ip}:{self.parent_port}')
                     #Send data
                     self.socket.sendall(data)
                     print(f"Node {node_id} sent data of size: {len(data)}")
@@ -243,5 +240,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="127.0.0.1:8080",
-    client=FlowerClient(parent_ip, parent_port, is_parent_dual).to_client(),
+    client=FlowerClient(is_parent_dual, parent_ip, parent_port).to_client(),
 )
