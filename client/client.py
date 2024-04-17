@@ -2,6 +2,7 @@ import argparse
 import warnings
 from collections import OrderedDict
 from utils.num_nodes_grouped_natural_id_partitioner import NumNodesGroupedNaturalIdPartitioner
+import pickle
 
 import flwr as fl
 from flwr_datasets import FederatedDataset
@@ -13,11 +14,14 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import Compose, Normalize, ToTensor
 from tqdm import tqdm
 import socket
+import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 from utils.serializers import ndarrays_to_sparse_parameters
-import pickle
+from utils.serializers import sparse_parameters_to_ndarrays
+import datetime
 from utils.scheduler import Optimal_Schedule
+from utils.node_ip_mappings import generate_node_ip_mappings, get_node_info
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -54,6 +58,13 @@ def test(net, testloader):
     accuracy = correct / len(testloader.dataset)
     return loss, accuracy
 
+#TODO - is this the only agg function we want?
+def agg(param_list, len_datasets):
+    final_params = []
+    for i in range(len(param_list[0])):
+        final_params.append(np.mean(np.array([param_list[j][i] for j in range(len(param_list))]), axis=0))
+
+    return final_params
 
 def load_data(num_parts, is_iid, node_id):
     """Load partition CIFAR10 data."""
@@ -93,35 +104,11 @@ parser.add_argument(
     help="Partition of the dataset divided into iid partitions created artificially.",
 )
 
-
-parser.add_argument(
-    "--parent_ip",
-    required=False,
-    type=str,
-    help="IP address of the parent"
-)
-
-
-parser.add_argument(
-    "--parent_port",
-    required=False,
-    type=int,
-    help="Port exposed on the parent"
-)
-
-parser.add_argument(
-    "--is_parent_dual",
-    required=True,
-    choices=[0,1],
-    type=int,
-    help="Denotes if node parent is a dual client"
-)
-
 parser.add_argument(
     "--num_clients",
     required=True,
     type=int,
-    help="Number of clients in the federated learning"
+    help="Number of nodes in the federated learning"
 )
 
 parser.add_argument(
@@ -142,15 +129,12 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-is_parent_dual= args.is_parent_dual
-parent_port=args.parent_port
-parent_ip=args.parent_ip
-client_id = args.client_id # Number of the client
+client_id = args.client_id
 num_clients = args.num_clients
 model_type = args.model_type
 is_iid=args.is_iid
-num_nodes = num_clients + 1 # Total number of nodes in federated learning, including server
-node_id = client_id + 1 # Id of node in federated learning experiment
+node_id = client_id + 1
+num_nodes = num_clients + 1
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -160,6 +144,7 @@ else:
 
 trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, node_id=client_id)
 
+
 #Get schedule for node
 num_chunks = 3
 num_replicas = 1
@@ -167,16 +152,17 @@ num_segments = num_chunks*num_replicas
 scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
 schedule = scheduler.nodes_schedule[node_id]
 
-#Mapping of node id to IP addr - TODO
+#Get port to expose on this client
+ip_mappings = generate_node_ip_mappings()
+ip, port = get_node_info(node_id, ip_mappings)
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
-    def __init__(self, is_parent_dual, parent_ip="0.0.0.0", parent_port=0):
-        self.is_parent_dual = is_parent_dual
-        self.parent_ip = parent_ip
-        self.parent_port = parent_port
+    def __init__(self, port):
+        self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.serversocket.bind((socket.gethostname(), port))
+        self.serversocket.listen(self.num_children)
         self.socket_open = False
-
 
     def get_parameters(self, config):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
@@ -187,49 +173,105 @@ class FlowerClient(fl.client.NumPyClient):
         net.load_state_dict(state_dict, strict=True)
 
     def fit(self, parameters, config):
-        #TODO - Change to support chunking
         self.set_parameters(parameters)
-        #Train locally
+        #Train on params
         train(net, trainloader, epochs=1)
-        #Serialize parameters
-        ndarray_updated = self.get_parameters(config={})
-        parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
-        #Parent is dual client, so need to send params there
-        if self.is_parent_dual:
-            if self.socket_open:
-                self.socket.close()
-                self.socket_open = False
-            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.socket_open = True
-            sent = False
-            while not sent:
-                try:
-                    #Attempt connection
-                    print(f'Node {node_id} is attempting to connect to {self.parent_ip}:{self.parent_port}')
-                    self.socket.connect((self.parent_ip, self.parent_port))
-                    print(f'Node {node_id} successfully connected to {self.parent_ip}:{self.parent_port}')
-                    #Send node_id
-                    self.socket.send(str(node_id).encode())
-                    ack = self.socket.recv(1024).decode()
-                    print(f'Node {node_id} received ack from server, will send data')
-                    #Prepare data to send
-                    data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
-                    #Send data
-                    self.socket.sendall(data)
-                    print(f"Node {node_id} sent data of size: {len(data)}")
-                    sent = True
-                except Exception as e:
-                    print(f'Unexpected {e=}, {type(e)=}')
-                finally:
-                    sent = True
-            self.socket.close()
-            self.open = False
-            return self.get_parameters({}), 0, {}
-            #Return empty array to server, send params to parent
-            
-        #Otherwise, node is directly connected to main server, send to there
+        send_to_server = False
+        params_to_send_to_server = None 
+        len_of_params = 0
+        for communication in schedule:
+            if communication['tx'] == 1:
+                #Transmit chunk
+                recv_node_id = communication['other_node']
+                if recv_node_id != 0:
+                    #Not communicating with server, so send params over tcp
+                    recv_node_ip, recv_node_port = get_node_info(recv_node_id)
+                    if self.socket_open:
+                        self.socket.close()
+                        self.socket_open = False
+                    self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    self.socket_open = True
+                    sent = False
+                    while not sent:
+                        try:
+                            #Attempt connection
+                            print(f'Node {node_id} is attempting to connect to {recv_node_ip}:{recv_node_port}')
+                            self.socket.connect((recv_node_ip, recv_node_port))
+                            print(f'Node {node_id} successfully connected to {recv_node_ip}:{recv_node_port}')
+                            #Send node_id
+                            self.socket.send(str(node_id).encode())
+                            ack = self.socket.recv(1024).decode()
+                            print(f'Node {node_id} received ack from parent, will send data')
+
+                            #TODO - send chunk of data
+                            
+                            #Send data
+                            self.socket.sendall(data)
+                            print(f"Node {node_id} sent data of size: {len(data)}")
+                            sent = True
+                        except Exception as e:
+                            print(f'Unexpected {e=}, {type(e)=}')
+                        finally:
+                            sent = True
+                    self.socket.close()
+                    self.socket_open = False
+                else:
+                    #Make note to send chunk to server
+                    send_to_server = True
+                    params_to_send_to_server = self.get_parameters(config={})
+                    len_of_params = len(self.get_parameters(config={}))
+            else:
+                #Receiving chunk
+                #Accept connection
+                (conn, addr) = self.serversocket.accept()
+                #Get child node id
+                child_node_id = conn.recv(1024).decode()
+                print(f"Receiving data from node {child_node_id}")
+                #Send acknowledgement
+                conn.send('Ack'.encode())
+                #Get current time to measure time delay of sending the data 
+                start_time = datetime.datetime.now()
+                #Receive the data
+                data = []
+                recv_params = []
+                len_datasets = []
+                while True:
+                    packet = conn.recv(4096)
+                    data.append(packet)
+                    try:
+                        pickle_data = b"".join(data)
+                        data_arr = pickle.loads(pickle_data)
+                        break
+                    except pickle.UnpicklingError:
+                        continue
+
+                end_time = datetime.datetime.now()
+                delay = end_time - start_time
+                print(f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
+
+                #TODO - Post to API
+
+                conn.shutdown(socket.SHUT_RDWR)
+
+                data_arr = pickle.loads(pickle_data)
+                recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
+                len_datasets.append(data_arr[1])
+
+                print(f"Length of data received from node {child_node_id}: {len(pickle_data)}")
+                conn.close()     
+                #Aggregate parameters
+                new_params = agg(recv_params, len_datasets)
+                self.set_parameters(new_params)
+                len_data = sum(len_datasets)
+                #Serialize params
+                ndarray_updated = self.get_parameters(config={})
+                parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
+        
+        if send_to_server:
+            return params_to_send_to_server, len_of_params, {}
         else:
-            return self.get_parameters({}), len(trainloader.dataset), {}
+            return self.get_parameters({}), 0, {}
+            
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
@@ -240,5 +282,5 @@ class FlowerClient(fl.client.NumPyClient):
 # Start Flower client
 fl.client.start_client(
     server_address="127.0.0.1:8080",
-    client=FlowerClient(is_parent_dual, parent_ip, parent_port).to_client(),
+    client=FlowerClient(port).to_client(),
 )
