@@ -14,6 +14,7 @@ Front End:
 
 
 Back End:
-1. Add in support for timestamps and logging
+1. Connect logging to API (maybe revisit measurement of round delay)
 2. Add in networking support for chunking
 3. Add in strategies other than FedAvg
+4. Fix node IP mappings

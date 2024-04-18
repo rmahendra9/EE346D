@@ -49,6 +49,9 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
 # Define strategy
 strategy = fl.server.strategy.FedAvg(evaluate_metrics_aggregation_fn=weighted_average)
 
+#Configure logging
+fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
+
 # Start Flower server
 fl.server.start_server(
     server_address="0.0.0.0:8080",
