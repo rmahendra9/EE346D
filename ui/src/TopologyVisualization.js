@@ -40,7 +40,8 @@ const TopologyVisualization = ({ adjacencyList }) => {
             'curve-style': 'bezier' // Use bezier curves for edges
           }
         }
-      ]
+      ],
+      userZoomingEnabled: false
     });
 
     // Optionally, add event listeners or other customizations here

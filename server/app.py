@@ -6,6 +6,7 @@ from flask_cors import CORS
 import wandb
 import numpy as np
 import subprocess
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -29,15 +30,19 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     #print(metrics)
     accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]
     losses = [num_examples * m["loss"] for num_examples, m in metrics]
+    models = [num_examples * m["model"] for num_examples, m in metrics]
     examples = [num_examples for num_examples, _ in metrics]
     
-
-    print('GETTING METRICS')
+    model = ""
+    if "CNN" in models[0]:
+        model = "CNN"
+    else:
+        model = "ResNet"
     
     # Aggregate and return custom metric (weighted average)
-    metric = {"accuracy": sum(accuracies) / sum(examples), "loss": sum(losses) / sum(examples)}
-    wandb.log(metric)
+    metric = {"accuracy": sum(accuracies) / sum(examples), "loss": sum(losses) / sum(examples), "model": model}
     print(metric)
+    wandb.log(metric)
     metricList.append(metric)
     
     # Save the updated metrics to the file
@@ -48,6 +53,9 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
 
 @app.route('/start-experiment', methods=['POST'])
 def start_experiment():
+    if os.path.exists(METRICS_FILE):
+        os.remove(METRICS_FILE)
+    
     data = request.json
     print(data)
     model = data.get('model')

@@ -132,16 +132,7 @@ parent_ip=args.parent_ip
 node_id = args.node_id
 model = args.model
 
-def choose_model(model):
-    print(model)
-    if model == "CNN":
-        net = SimpleCNN().to(DEVICE)
-    elif model == "ResNet":
-        net = ResNet18().to(DEVICE)
-    return net
-
-# Load model and data (simple CNN, CIFAR-10)
-net = choose_model(model)
+net = SimpleCNN().to(DEVICE)
 
 trainloader, testloader = load_data(node_id=node_id)
 
@@ -204,11 +195,11 @@ class FlowerClient(fl.client.NumPyClient):
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)
         loss, accuracy = test(net, testloader)
-        return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
+        return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss, "model": model}
 
 
 # Start Flower client
 fl.client.start_client(
-    server_address="127.0.0.1:8008",
+    server_address="127.0.0.1:8080",
     client=FlowerClient(parent_ip, parent_port, has_parent).to_client(),
 )

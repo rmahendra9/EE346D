@@ -260,4 +260,10 @@ body {
 .topology-visualization-div {
   display: flex;
   align-items: center;
+  background-color: #f8f6f6;
+}
+
+.add-node, .adjacency-matrix, .topology-visualization-div {
+  margin-left: 20px;
+  margin-right: 20px;
 }

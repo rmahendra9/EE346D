@@ -5,17 +5,15 @@ import './App.css';
 import TopologyVisualization from './TopologyVisualization';
 
 function App() {
-  const [selectedStrategy, setSelectedStrategy] = useState('FedAvg'); // Default strategy
-  const [selectedDataset, setSelectedDataset] = useState('CIFAR-10'); // Default dataset
-  const [selectedModel, setSelectedModel] = useState('CNN'); // Default model
+  const [selectedStrategy, setSelectedStrategy] = useState('FedAvg');
+  const [selectedDataset, setSelectedDataset] = useState('CIFAR-10');
+  const [selectedModel, setSelectedModel] = useState('CNN');
   const [learningRate, setLearningRate] = useState(0);
-  const [linkDelay, setLinkDelay] = useState(0);
   const [momentum, setMomentum] = useState(0);
-  const [rounds, setRounds] = useState(0);
   const [newAccuracyData, setAccuracyData] = useState({
     labels: [],
     datasets: [{
-      label: 'CNN',
+      label: 'Model',
       data: [],
       color: 'blue',
       backgroundColor: 'blue'
@@ -24,7 +22,7 @@ function App() {
   const [newLossData, setLossData] = useState({
     labels: [],
     datasets: [{
-      label: 'CNN',
+      label: 'Model',
       data: [],
       color: 'red',
       backgroundColor: 'red'
@@ -72,10 +70,6 @@ function App() {
   };
 
   const initialAdjacencyList = {
-    // A: ['B', 'C'],
-    // B: [],
-    // C: []
-
     A: [],
     B: [],
     C: []
@@ -83,7 +77,6 @@ function App() {
 
   const [adjacencyList, setAdjacencyList] = useState(initialAdjacencyList);
   const [newNodeName, setNewNodeName] = useState('');
-  const [newNodeConnections, setNewNodeConnections] = useState('');
 
   const handleAddNode = () => {
     if (newNodeName.trim() === '') {
@@ -122,13 +115,18 @@ function App() {
   // Function to fetch metrics and update state
   const fetchMetrics = async () => {
     try {
-      const response = await fetch('http://localhost:80/metrics'); // Locally handling CORS error
+      const response = await fetch('http://localhost:80/metrics');
       const data = await response.json();
       if (data) {
+        let labelModel = 'CNN';
+        if(data.length > 0 && data[0].model == 'ResNet') {
+          console.log('Reached');
+          labelModel = 'ResNet';
+        }
         const newAccuracyData = {
           labels: [],
           datasets: [{
-            label: 'CNN',
+            label: labelModel,
             data: [],
             color: 'blue',
             backgroundColor: 'blue'
@@ -137,12 +135,12 @@ function App() {
         const newLossData = {
           labels: [],
           datasets: [{
-            label: 'CNN',
+            label: labelModel,
             data: [],
             color: 'red',
             backgroundColor: 'red'
           }]
-        };
+        }; 
         data.forEach((item, index) => {
           newAccuracyData.labels.push(index + 1);
           newAccuracyData.datasets[0].data.push(item.accuracy);
@@ -161,7 +159,7 @@ function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMetrics();
-    }, 800); // Fetch every 0.8 seconds (adjust as needed)
+    }, 1000); // Fetch every 0.8 seconds (adjust as needed)
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -188,14 +186,6 @@ function App() {
     setMomentum(event.target.value);
   };
 
-  const handleRoundsChange = (event) => {
-    setRounds(event.target.value);
-  };
-
-  const handleLinkDelayChange = (event) => {
-    setLinkDelay(event.target.value);
-  };
-
   const handleStartExperiment = async () => {
     try {
       // console.log(selectedStrategy);
@@ -212,9 +202,7 @@ function App() {
           model: selectedModel,
           learningRate: learningRate,
           momentum: momentum,
-          rounds: rounds,
-          linkDelay: linkDelay,
-          num: 0 // 0 --> single level, 1 multilevel
+          num: 0
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8"
@@ -264,9 +252,6 @@ function App() {
           </div>
         </div>
 
-
-
-        {/*TO DO: Align model preselect and file input*/}
         <div className='model'>
           <h3 className='subheader'>Model</h3>
           <div class="select-wrapper">
@@ -299,6 +284,7 @@ function App() {
       <div class="start">
         <div class="button-container">
           <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
+          {/* TO DO: Loading button functionality to indicate duration of experiment */}
         </div>
       </div>
 
@@ -321,6 +307,8 @@ function App() {
       </div>
 
       <div class="divider"></div>
+
+      {/* TO DO: Add log file server output here --> different branch */}
 
       {/*<div class='table'>
         <table class='clean-table'>
@@ -359,7 +347,7 @@ function App() {
       <div class="topology-visualization-div">
         <TopologyVisualization adjacencyList={adjacencyList} />
       </div>
-      <div>
+      <div class='add-node'>
         <h4>Add Node</h4>
         <input
           type="text"
@@ -369,7 +357,7 @@ function App() {
         />
         <button onClick={handleAddNode}>Add Node</button>
       </div>
-      <div>
+      <div class='adjacency-matrix'>
         <h4>Adjacency Matrix</h4>
         <table>
           <thead>

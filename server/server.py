@@ -23,7 +23,7 @@ wandb.init(
 
 # Start Flower server
 fl.server.start_server(
-    server_address="0.0.0.0:8008",
-    config=fl.server.ServerConfig(num_rounds=10),
+    server_address="0.0.0.0:8080",
+    config=fl.server.ServerConfig(num_rounds=5),
     strategy=strategy,
 )
