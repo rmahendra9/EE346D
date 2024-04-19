@@ -13,10 +13,13 @@ def get_cum_sum(parameters):
     return np.array([0] + list(np.cumsum(get_shapes(parameters))))
 
 def restore_weights_from_flat(model, flattened_weights):
+    flattened_weights = np.array(flattened_weights).flatten().tolist()
     lens = get_cum_sum(model.get_parameters())
     splitted = [flattened_weights[lens[i]:lens[i+1]] for i in range(len(lens)-1)]
-    for i,param in enumerate(model.parameters()):
-        param.data = torch.from_numpy(splitted[i].reshape(param.data.shape))
+    i = 0
+    for param in model.parameters():
+        param.data = torch.from_numpy(np.array(splitted[i]).reshape(param.data.shape))
+        i += 1
 
 
 
@@ -33,5 +36,4 @@ def split_list(lst, n):
 
 def get_chunk(params, num_chunks, chunk_id):
     weights = get_flattened_weights(params)
-    print(len(weights))
     return split_list(weights, num_chunks)[chunk_id]

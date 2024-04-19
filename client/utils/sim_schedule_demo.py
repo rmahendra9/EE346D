@@ -3,9 +3,9 @@ import numpy as np
 from scheduler import Optimal_Schedule
 
 # Parameters
-num_nodes = 8 # nodes are numbered 0 to num_nodes-1, with node 0 being 
+num_nodes = 3 # nodes are numbered 0 to num_nodes-1, with node 0 being 
               # the server (i.e., the node at which the final aggregate is received)
-num_chunks = 3
+num_chunks = 2
 num_replicas = 1 # number of replicas per chunk (DON'T WORRY ABOUT THIS PARAMETER FOR NOW)
 
 num_segments = num_chunks*num_replicas # segments \equiv chunks in the simple case of num_replicas = 1
@@ -16,11 +16,12 @@ scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
 
 # nodes_schedule is a dictionary, where the keys are node indices (each node has its schedule)
 # in the next line, I am printing the schedule of node 1
-print(f' Node 1\'s Schedule: {scheduler.nodes_schedule[1]}')
+for i in range(len(scheduler.nodes_schedule)):
+    print(f' Node {i}\'s Schedule: {scheduler.nodes_schedule[i]}')
 
 # Each node's schedule (like the one printed above) is a (ordered) list of communications that it needs to make.
 # I am printing the 2nd communication that Node 1 needs to make (note: index starts from 0)
-print(f'Node 1\'s 2nd communication: {scheduler.nodes_schedule[1][1]}')
+#print(f'Node 1\'s 2nd communication: {scheduler.nodes_schedule[1][1]}')
 
 # Notice each communication variable has 4 attributes:
 # slot: you can ignore this as it is only relevant for synchronous communication

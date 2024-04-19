@@ -14,7 +14,23 @@ Front End:
 
 
 Back End:
-1. Connect logging to API (maybe revisit measurement of round delay)
-2. Add in networking support for chunking
-3. Add in strategies other than FedAvg
-4. Fix node IP mappings
+
+1. Centralized distribution
+    - need schedule, ip mappings sent from a central place to clients
+
+2. Round delay
+    - need a good way of measuring round delay
+
+3. Logging
+    - move server and client code to same folder to test logging
+
+4. Strategies
+    - Add in strategies other than FedAvg
+    - fit aggregate and eval aggregate for metrics
+
+5. Chunking
+    - eval function
+    - inhomogenous chunk sizes
+    - do we care the order we receive in?
+
+6. Non-IID data?

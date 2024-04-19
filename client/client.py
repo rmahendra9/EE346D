@@ -17,13 +17,12 @@ import socket
 import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
-from utils.serializers import ndarrays_to_sparse_parameters
-from utils.serializers import sparse_parameters_to_ndarrays
 import datetime
-from utils.scheduler import Optimal_Schedule
 from utils.node_ip_mappings import generate_node_ip_mappings, get_node_info
 from logging import INFO 
 from flwr.common.logger import log 
+from pathlib import Path
+from utils.chunker import get_flattened_weights, split_list, restore_weights_from_flat
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -99,7 +98,7 @@ def load_data(num_parts, is_iid, client_id):
 
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
-    "--node-id",
+    "--node_id",
     required=True,
     type=int,
     help="ID of the current node",
@@ -136,6 +135,8 @@ model_type = args.model_type
 is_iid=args.is_iid
 num_nodes = num_clients + 1
 client_id = node_id - 1
+num_chunks = 2
+num_replicas = 1
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -146,24 +147,24 @@ else:
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
 
+if node_id == 0:
+    schedule = [{'slot': 0, 'tx': 0, 'other_node': 2, 'segment': 0}, {'slot': 2, 'tx': 0, 'other_node': 1, 'segment': 0}, {'slot': 3, 'tx': 0, 'other_node': 2, 'segment': 1}]
+elif node_id == 1:
+    schedule = [{'slot': 1, 'tx': 1, 'other_node': 2, 'segment': 1}, {'slot': 2, 'tx': 1, 'other_node': 0, 'segment': 0}]
+else:
+    schedule = [{'slot': 0, 'tx': 1, 'other_node': 0, 'segment': 0}, {'slot': 1, 'tx': 0, 'other_node': 1, 'segment': 1}, {'slot': 3, 'tx': 1, 'other_node': 0, 'segment': 1}]
 
-#Get schedule for node - TODO
-num_chunks = 3
-num_replicas = 1
-num_segments = num_chunks*num_replicas
-scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
-schedule = scheduler.nodes_schedule[client_id]
-
-#Get port to expose on this client
-ip_mappings = generate_node_ip_mappings()
-ip, port = get_node_info(client_id, ip_mappings)
+#Get port to expose on this client - TODO
+ip_mappings = generate_node_ip_mappings(num_nodes)
+ip, port = get_node_info(node_id, ip_mappings)
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
     def __init__(self, port):
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostname(), port))
-        self.serversocket.listen(self.num_children)
+        log(INFO, f'Node {node_id} listening on port {port}')
+        self.serversocket.listen(num_nodes)
         self.socket_open = False
 
     def get_parameters(self, config):
@@ -175,47 +176,66 @@ class FlowerClient(fl.client.NumPyClient):
         net.load_state_dict(state_dict, strict=True)
 
     def fit(self, parameters, config):
+        #Get server round
+        current_round = config['current_round']
+        #Print schedule for the round
+        log(INFO, f'Node {node_id} schedule for round {current_round}: {schedule}')
+        #Set parameters
         self.set_parameters(parameters)
-        #Train on params
+        #Train on params if not server
         if node_id != 0:
             train(net, trainloader, epochs=1)
+        #Generate chunks from parameters
+        chunks = split_list(get_flattened_weights(parameters), num_chunks)
+        #Length of the dataset for each chunk
+        if node_id != 0:
+            len_datasets = [len(trainloader.dataset)]*num_chunks
+        else:
+            len_datasets = [0]*num_chunks
+        #Maximum size dataset for a chunk
+        len_data = 0
         for communication in schedule:
             if communication['tx'] == 1:
                 #Transmit chunk
+                chunk_id = communication['segment']
                 recv_node_id = communication['other_node']
-                recv_node_ip, recv_node_port = get_node_info(recv_node_id)
+                recv_node_ip, recv_node_port = get_node_info(recv_node_id, ip_mappings)
+                log(INFO, f'Node {node_id} will send chunk {chunk_id} to node {recv_node_id}')
+
+                #Just to be safe, close the socket
                 if self.socket_open:
                     self.socket.close()
                     self.socket_open = False
+                #Create socket
                 self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.socket_open = True
                 sent = False
                 while not sent:
                     try:
                         #Attempt connection
-                        log(INFO, f'Node {client_id} is attempting to connect to {recv_node_ip}:{recv_node_port}')
+                        log(INFO, f'Node {node_id} is attempting to connect to {recv_node_ip}:{recv_node_port}')
                         self.socket.connect((recv_node_ip, recv_node_port))
-                        log(INFO, f'Node {client_id} successfully connected to {recv_node_ip}:{recv_node_port}')
-                        #Send node_id
-                        self.socket.send(str(client_id).encode())
+                        log(INFO, f'Node {node_id} successfully connected to {recv_node_ip}:{recv_node_port}')
+
+                        #Send node_id and chunk_id
+                        self.socket.send(f'{node_id}:{chunk_id}'.encode())
                         ack = self.socket.recv(1024).decode()
-                        log(INFO, f'Node {client_id} received ack from parent, will send data')
+                        log(INFO, f'Node {node_id} received ack from parent, will send chunk {chunk_id}')
 
-                        #TODO - Create chunk of data
+                        #Create chunk of data
+                        chunk = chunks[chunk_id]
 
-                        #TODO - Serialize parameters
-                        ndarray_updated = self.get_parameters(config={})
-                        parameters_updated = ndarrays_to_sparse_parameters(ndarray_updated).tensors
-                        data = pickle.dumps([parameters_updated,len(trainloader.dataset)])
+                        #Serialize the chunk
+                        data = pickle.dumps([chunk,len_datasets[chunk_id]])
                         
                         #Send data
                         self.socket.sendall(data)
-                        log(INFO, f"Node {client_id} sent data of size: {len(data)}")
+                        log(INFO, f"Node {node_id} sent data of size: {len(data)}")
                         sent = True
+
                     except Exception as e:
-                        print(f'Unexpected {e=}, {type(e)=}')
-                    finally:
-                        sent = True
+                        log(INFO, f'Unexpected {e=}, {type(e)=} from node {node_id}')
+
                 self.socket.close()
                 self.socket_open = False
             else:
@@ -223,16 +243,17 @@ class FlowerClient(fl.client.NumPyClient):
                 #Accept connection
                 (conn, addr) = self.serversocket.accept()
                 #Get child node id
-                child_node_id = conn.recv(1024).decode()
-                log(INFO, f"Receiving data from node {child_node_id}")
+                msg = conn.recv(1024).decode()
+                info = msg.split(":")
+                chunk_id = int(info[1])
+                child_node_id = int(info[0])
+                log(INFO, f"Node is receiving chunk {chunk_id} from node {child_node_id}")
                 #Send acknowledgement
                 conn.send('Ack'.encode())
-                #Get current time to measure time delay of sending the data 
-                start_time = datetime.datetime.now()
                 #Receive the data
                 data = []
-                recv_params = [self.get_parameters(config={})]
-                len_datasets = [len(self.get_parameters(config={}))]
+                #Get current time to measure time delay of sending the data 
+                start_time = datetime.datetime.now()
                 while True:
                     packet = conn.recv(4096)
                     data.append(packet)
@@ -247,26 +268,26 @@ class FlowerClient(fl.client.NumPyClient):
                 delay = end_time - start_time
                 log(INFO, f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
 
-                conn.shutdown(socket.SHUT_RDWR)
-
+                #Load data
                 data_arr = pickle.loads(pickle_data)
-                recv_params.append(sparse_parameters_to_ndarrays(data_arr[0]))
-                len_datasets.append(data_arr[1])
+                #Aggregate parameters using weighted average
+                new_params = data_arr[0]
+                len_datasets_chunk = data_arr[1]
+                chunks[chunk_id] = ((np.array(new_params)* len_datasets_chunk + np.array(chunks[chunk_id])* len_datasets[chunk_id])/(len_datasets_chunk + len_datasets[chunk_id])).tolist()
+                len_datasets[chunk_id] += len_datasets_chunk
 
                 log(INFO, f"Length of data received from node {child_node_id}: {len(pickle_data)}")
                 conn.close()     
-                #Aggregate parameters
-                new_params = agg(recv_params, len_datasets)
-                self.set_parameters(new_params)
-        if client_id == 0:
+
+                len_data = max(len_datasets)
+        #Set model parameters
+        restore_weights_from_flat(net, chunks)
+        if node_id == 0:
             #Send to server
-            return self.get_parameters({}), len(self.get_parameters({})), {}
+            return self.get_parameters(config={}), len_data, {}
         else:
             #Send null to server
             return [], 0, {}
-
-        
-            
 
     def evaluate(self, parameters, config):
         self.set_parameters(parameters)

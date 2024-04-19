@@ -1,11 +1,15 @@
-#TODO - need list of IPs to gen mappings
+#TODO - need list of IPs to gen mappings (ping API for IPs and ports)
 
-def generate_node_ip_mappings():
-    base_port = 2048
+def generate_node_ip_mappings(num_nodes):
+    #assert num_clients <= len(ip_list)
+    #assert num_clients <= len(port_list)
+
+    #TODO - this should be replaced with API call to get IP list and port list
+    ip = '127.0.1.1'
+    port_list = range(3050,3050+num_nodes+1)
     mappings = {}
-    for i in range(num_clients):
-        ports[i+1] = ['127.0.1.1', base_port]
-        base_port = base_port + 1
+    for i in range(num_nodes):
+        mappings[i] = [ip, port_list[i]]
     return mappings
 
 def get_node_info(node_id, ip_mappings):

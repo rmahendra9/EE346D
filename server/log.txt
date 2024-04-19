@@ -1,0 +1,79 @@
+Federated_Learning | INFO flwr 2024-04-19 03:52:48,442 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 03:52:48,452 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 03:52:48,452 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 03:52:48,453 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 03:53:01,402 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 03:53:01,402 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 03:53:01,403 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 03:53:01,403 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 03:53:01,405 | server.py:236 | fit_round 1 received 0 results and 3 failures
+Federated_Learning | DEBUG flwr 2024-04-19 03:53:01,405 | server.py:173 | evaluate_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 03:53:03,417 | server.py:187 | evaluate_round 1 received 2 results and 1 failures
+Federated_Learning | INFO flwr 2024-04-19 03:53:03,417 | server.py:75 | {'accuracy': 0.0989, 'loss': 361.81538450717926}
+Federated_Learning | INFO flwr 2024-04-19 04:10:11,253 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:10:11,262 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:10:11,262 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:10:11,262 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:12:41,278 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:12:41,279 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:12:41,279 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:12:41,279 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:12:41,288 | server.py:236 | fit_round 1 received 0 results and 3 failures
+Federated_Learning | INFO flwr 2024-04-19 04:13:55,635 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:13:55,645 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:13:55,645 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:13:55,646 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:14:06,560 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:14:06,561 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:14:06,561 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:14:06,561 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:14:06,572 | server.py:236 | fit_round 1 received 0 results and 3 failures
+Federated_Learning | INFO flwr 2024-04-19 04:15:03,989 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:15:03,998 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:15:03,999 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:15:03,999 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:15:13,737 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:15:13,737 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:15:13,737 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:15:13,737 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:15:13,748 | server.py:236 | fit_round 1 received 0 results and 3 failures
+Federated_Learning | INFO flwr 2024-04-19 04:15:43,243 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:15:43,251 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:15:43,251 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:15:43,251 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:15:53,180 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:15:53,180 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:15:53,181 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:15:53,181 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:16:02,570 | server.py:236 | fit_round 1 received 0 results and 3 failures
+Federated_Learning | INFO flwr 2024-04-19 04:16:26,274 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:16:26,283 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:16:26,283 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:16:26,284 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:16:36,054 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:16:36,055 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:16:36,055 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:16:36,056 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:21:00,332 | server.py:236 | fit_round 1 received 2 results and 1 failures
+Federated_Learning | WARNING flwr 2024-04-19 04:21:00,335 | fedavg.py:250 | No fit_metrics_aggregation_fn provided
+Federated_Learning | INFO flwr 2024-04-19 04:27:12,451 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:27:12,459 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:27:12,460 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:27:12,460 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:27:49,958 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:27:49,958 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:27:49,958 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:27:49,958 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:27:58,569 | server.py:236 | fit_round 1 received 0 results and 3 failures
+Federated_Learning | INFO flwr 2024-04-19 04:28:44,383 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-19 04:28:44,393 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-19 04:28:44,393 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-19 04:28:44,393 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:28:54,134 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-19 04:28:54,134 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-19 04:28:54,134 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-19 04:28:54,135 | server.py:222 | fit_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:29:03,165 | server.py:236 | fit_round 1 received 3 results and 0 failures
+Federated_Learning | WARNING flwr 2024-04-19 04:29:03,166 | fedavg.py:250 | No fit_metrics_aggregation_fn provided
+Federated_Learning | DEBUG flwr 2024-04-19 04:29:03,167 | server.py:173 | evaluate_round 1: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-19 04:29:03,170 | server.py:187 | evaluate_round 1 received 0 results and 3 failures
