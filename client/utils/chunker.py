@@ -19,3 +19,19 @@ def restore_weights_from_flat(model, flattened_weights):
     for param in model.parameters():
         param.data = torch.from_numpy(splitted[i].reshape(param.data.shape))
         i += 1
+
+
+def split_list(lst, n):
+    avg = len(lst) / float(n)
+    parts = []
+    last = 0.0
+
+    while last < len(lst):
+        parts.append(lst[int(last):int(last + avg)])
+        last += avg
+
+    return parts
+
+def get_chunk(model, num_chunks, chunk_id):
+    weights = get_flattened_weights(model)
+    return split_list(weights, num_chunks)[chunk_id]
