@@ -89,7 +89,7 @@ class CustomFed(Strategy):
         self,
         *,
         fraction_fit: float = 1.0,
-        fraction_evaluate: float = 0,
+        fraction_evaluate: float = 0.2,
         min_fit_clients: int = 2,
         min_evaluate_clients: int = 2,
         min_available_clients: int = 2,
@@ -274,6 +274,7 @@ class CustomFed(Strategy):
             [
                 (evaluate_res.num_examples, evaluate_res.loss)
                 for _, evaluate_res in results
+                if evaluate_res.num_examples > 0
             ]
         )
 
