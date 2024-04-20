@@ -9,7 +9,7 @@ from flwr.common.logger import log
 from pathlib import Path
 from flwr.server.client_manager import SimpleClientManager
 from flwr.server.client_proxy import ClientProxy
-
+from strategy import CustomFed
 
 #TODO - strategy stuff - diff strats, etc
 
@@ -56,7 +56,7 @@ def fit_config(server_round: int):
     return config
 
 # Define strategy - TODO (We need to be able to support more strategies)
-strategy = fl.server.strategy.FedAvg(evaluate_metrics_aggregation_fn=weighted_average,on_fit_config_fn=fit_config, fraction_evaluate=0)
+strategy = CustomFed(evaluate_metrics_aggregation_fn=weighted_average,on_fit_config_fn=fit_config, fraction_evaluate=0)
 
 #Configure logging
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")

@@ -167,12 +167,15 @@ class FlowerClient(fl.client.NumPyClient):
         self.serversocket.listen(num_nodes)
         self.socket_open = False
 
-    def get_parameters(self, config):
+    def get_parameters(self, config=None):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
 
     def set_parameters(self, parameters):
+        print('====================================================')
+        print(f"Recieved len: {len(parameters)}")
+        print('====================================================')
         params_dict = zip(net.state_dict().keys(), parameters)
-        state_dict = OrderedDict({k: torch.tensor(v) for k, v in params_dict})
+        state_dict = OrderedDict({k: torch.tensor(v).float() for k, v in params_dict})
         net.load_state_dict(state_dict, strict=True)
 
     def fit(self, parameters, config):
@@ -284,9 +287,11 @@ class FlowerClient(fl.client.NumPyClient):
         model = restore_weights_from_flat(net, chunks)
         if node_id == 0:
             #Send to server
-            print(f"{len(model.get_parameters())}")
-            print([param for param in model.parameters()])
-            print('++++============++++++++++++')
+            print('==========================================') 
+            print(f"SENT: {len(model.get_parameters())}")
+            print('==========================================')
+            #print([param for param in model.parameters()])
+            #print('++++============++++++++++++')
             return model.get_parameters(), len_data, {}
         else:
             #Send null to server
