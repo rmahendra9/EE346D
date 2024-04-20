@@ -36,6 +36,7 @@ def train(net, trainloader, epochs):
     """Train the model on the training set."""
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    net = net.float()
     for _ in range(epochs):
         for batch in tqdm(trainloader, "Training"):
             images = batch["img"]
