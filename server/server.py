@@ -56,7 +56,7 @@ def fit_config(server_round: int):
     return config
 
 # Define strategy - TODO (We need to be able to support more strategies)
-strategy = fl.server.strategy.FedAvg(evaluate_metrics_aggregation_fn=weighted_average,on_fit_config_fn=fit_config)
+strategy = fl.server.strategy.FedAvg(evaluate_metrics_aggregation_fn=weighted_average,on_fit_config_fn=fit_config, fraction_evaluate=0)
 
 #Configure logging
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
@@ -74,6 +74,10 @@ class ClientManager(SimpleClientManager):
         criterion = None,
     ) -> List[ClientProxy]:
         return super().sample(num_clients,self.min_clients,criterion)
+
+
+
+
 
 # Start Flower server
 fl.server.start_server(

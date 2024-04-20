@@ -20,6 +20,8 @@ def restore_weights_from_flat(model, flattened_weights):
     for param in model.parameters():
         param.data = torch.from_numpy(np.array(splitted[i]).reshape(param.data.shape))
         i += 1
+        
+    return model
 
 
 

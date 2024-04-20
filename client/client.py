@@ -281,10 +281,13 @@ class FlowerClient(fl.client.NumPyClient):
 
                 len_data = max(len_datasets)
         #Set model parameters
-        restore_weights_from_flat(net, chunks)
+        model = restore_weights_from_flat(net, chunks)
         if node_id == 0:
             #Send to server
-            return self.get_parameters(config={}), len_data, {}
+            print(f"{len(model.get_parameters())}")
+            print([param for param in model.parameters()])
+            print('++++============++++++++++++')
+            return model.get_parameters(), len_data, {}
         else:
             #Send null to server
             return [], 0, {}
