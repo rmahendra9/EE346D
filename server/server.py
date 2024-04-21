@@ -70,9 +70,12 @@ def get_on_fit_config_fn() -> Callable[[int], Dict[str, bytes]]:
     def fit_config(server_round: int) -> Dict[str, bytes]:
         """Return training configuration dict for each round."""
         config = {}
+        #Create scheduler instance
         scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
+        #Set schedule for each node
         for i in range(len(scheduler.nodes_schedule)):
             config[str(i)] = pickle.dumps(scheduler.nodes_schedule[i])
+        #Send other information
         config['server_round'] = pickle.dumps(server_round)
         config['num_chunks'] = pickle.dumps(num_chunks)
         config['num_replicas'] = pickle.dumps(num_replicas)
