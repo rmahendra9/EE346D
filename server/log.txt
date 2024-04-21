@@ -118,3 +118,13 @@ Federated_Learning | DEBUG flwr 2024-04-20 21:38:13,975 | server.py:173 | evalua
 Federated_Learning | DEBUG flwr 2024-04-20 21:38:16,852 | server.py:187 | evaluate_round 9 received 3 results and 0 failures
 Federated_Learning | INFO flwr 2024-04-20 21:38:16,852 | server.py:46 | {'accuracy': 0.4923, 'loss': 224.2482914030552}
 Federated_Learning | DEBUG flwr 2024-04-20 21:38:16,853 | server.py:222 | fit_round 10: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-20 21:38:29,731 | server.py:236 | fit_round 10 received 3 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-20 21:38:29,734 | server.py:173 | evaluate_round 10: strategy sampled 3 clients (out of 3)
+Federated_Learning | DEBUG flwr 2024-04-20 21:38:32,217 | server.py:187 | evaluate_round 10 received 3 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,218 | server.py:46 | {'accuracy': 0.4983, 'loss': 222.03023517131805}
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,219 | server.py:153 | FL finished in 142.09131450699897
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,221 | app.py:226 | app_fit: losses_distributed [(1, 360.39527893066406), (2, 339.0831756591797), (3, 303.61541748046875), (4, 280.09678649902344), (5, 258.9038848876953), (6, 247.1265640258789), (7, 239.51690673828125), (8, 231.2450942993164), (9, 224.248291015625), (10, 222.03023529052734)]
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,222 | app.py:227 | app_fit: metrics_distributed_fit {}
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,222 | app.py:228 | app_fit: metrics_distributed {'accuracy': [(1, 0.142), (2, 0.2296), (3, 0.3125), (4, 0.3571), (5, 0.4063), (6, 0.4344), (7, 0.4568), (8, 0.4757), (9, 0.4923), (10, 0.4983)], 'loss': [(1, 360.3952877521515), (2, 339.08317255973816), (3, 303.61543250083923), (4, 280.0967957377434), (5, 258.90387827157974), (6, 247.12656539678574), (7, 239.5169061422348), (8, 231.245092689991), (9, 224.2482914030552), (10, 222.03023517131805)]}
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,222 | app.py:229 | app_fit: losses_centralized []
+Federated_Learning | INFO flwr 2024-04-20 21:38:32,223 | app.py:230 | app_fit: metrics_centralized {}

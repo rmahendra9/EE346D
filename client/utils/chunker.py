@@ -13,7 +13,7 @@ def get_cum_sum(parameters):
     return np.array([0] + list(np.cumsum(get_shapes(parameters))))
 
 def restore_weights_from_flat(model, flattened_weights):
-    flattened_weights = np.array(flattened_weights).flatten().tolist()
+    flattened_weights = [element for sublist in flattened_weights for element in sublist]
     lens = get_cum_sum(model.get_parameters())
     splitted = [flattened_weights[lens[i]:lens[i+1]] for i in range(len(lens)-1)]
     i = 0
