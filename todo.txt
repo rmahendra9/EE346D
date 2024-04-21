@@ -29,8 +29,4 @@ Back End:
     - fit aggregate and eval aggregate for metrics
 
 5. Chunking
-    - eval function
     - inhomogenous chunk sizes
-    - do we care the order we receive in?
-
-6. Non-IID data?

@@ -36,6 +36,9 @@ class ResNet(nn.Module):
     
         return nn.Sequential(*layers)
     
+    def get_parameters(self):
+        return [val.cpu().numpy() for _, val in self.state_dict().items()]
+    
 class BasicBlock(nn.Module):
     expansion = 1
 

@@ -220,9 +220,6 @@ class CustomFed(Strategy):
         failures: List[Union[Tuple[ClientProxy, FitRes], BaseException]],
     ) -> Tuple[Optional[Parameters], Dict[str, Scalar]]:
         """Aggregate fit results using weighted average."""
-        print('================================================')
-        print('EXECUTING AGREGGATION')
-        print('================================')
         if not results:
             return None, {}
         # Do not aggregate if there are failures and failures are not accepted
@@ -230,7 +227,6 @@ class CustomFed(Strategy):
             return None, {}
 
         if self.inplace:
-            print('AGREGGATING IN PLACE')
             # Does in-place weighted average of results
             aggregated_ndarrays = aggregate_inplace(results)
         else:
@@ -241,7 +237,6 @@ class CustomFed(Strategy):
             if fit_res.num_examples > 0
             ]
             
-            print([len(weights) for weights in weights_results])
             aggregated_ndarrays = aggregate(weights_results)
 
         parameters_aggregated = ndarrays_to_parameters(aggregated_ndarrays)

@@ -23,6 +23,7 @@ from logging import INFO
 from flwr.common.logger import log 
 from pathlib import Path
 from utils.chunker import get_flattened_weights, split_list, restore_weights_from_flat
+import time
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -137,8 +138,6 @@ model_type = args.model_type
 is_iid=args.is_iid
 num_nodes = num_clients + 1
 client_id = node_id - 1
-num_chunks = 2
-num_replicas = 1
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -148,13 +147,6 @@ else:
 
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
-
-if node_id == 0:
-    schedule = [{'slot': 0, 'tx': 0, 'other_node': 2, 'segment': 0}, {'slot': 2, 'tx': 0, 'other_node': 1, 'segment': 0}, {'slot': 3, 'tx': 0, 'other_node': 2, 'segment': 1}]
-elif node_id == 1:
-    schedule = [{'slot': 1, 'tx': 1, 'other_node': 2, 'segment': 1}, {'slot': 2, 'tx': 1, 'other_node': 0, 'segment': 0}]
-else:
-    schedule = [{'slot': 0, 'tx': 1, 'other_node': 0, 'segment': 0}, {'slot': 1, 'tx': 0, 'other_node': 1, 'segment': 1}, {'slot': 3, 'tx': 1, 'other_node': 0, 'segment': 1}]
 
 #Get port to expose on this client - TODO
 ip_mappings = generate_node_ip_mappings(num_nodes)
@@ -179,7 +171,12 @@ class FlowerClient(fl.client.NumPyClient):
 
     def fit(self, parameters, config):
         #Get server round
-        current_round = config['current_round']
+        current_round = pickle.loads(config['server_round'])
+        #Get schedule
+        schedule = pickle.loads(config[str(node_id)])
+        #Get num_chunks and num_replicas
+        num_chunks = pickle.loads(config['num_chunks'])
+        num_replicas = pickle.loads(config['num_replicas'])
         #Print schedule for the round
         log(INFO, f'Node {node_id} schedule for round {current_round}: {schedule}')
         #Set parameters
@@ -210,6 +207,7 @@ class FlowerClient(fl.client.NumPyClient):
                     self.socket_open = False
                 #Create socket
                 self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 self.socket_open = True
                 sent = False
                 while not sent:
@@ -237,6 +235,7 @@ class FlowerClient(fl.client.NumPyClient):
 
                     except Exception as e:
                         log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
+                        time.sleep(5)
 
                 self.socket.close()
                 self.socket_open = False
@@ -257,7 +256,7 @@ class FlowerClient(fl.client.NumPyClient):
                 #Get current time to measure time delay of sending the data 
                 start_time = datetime.datetime.now()
                 while True:
-                    packet = conn.recv(4096)
+                    packet = conn.recv(16384)
                     data.append(packet)
                     try:
                         pickle_data = b"".join(data)

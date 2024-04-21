@@ -2,7 +2,7 @@ import flwr as fl
 import wandb
 import argparse
 import datetime
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Callable, Dict
 from flwr.common import Metrics
 from logging import INFO 
 from flwr.common.logger import log
@@ -10,6 +10,8 @@ from pathlib import Path
 from flwr.server.client_manager import SimpleClientManager
 from flwr.server.client_proxy import ClientProxy
 from strategy import CustomFed
+from scheduler import Optimal_Schedule
+import pickle
 
 #TODO - strategy stuff - diff strats, etc
 
@@ -26,9 +28,24 @@ parser.add_argument(
     type=int,
     help="Number of nodes in the FL experiment",
 )
+parser.add_argument(
+    "--num_chunks",
+    required=True,
+    type=int,
+    help="Number of chunks to split files into"
+)
+parser.add_argument(
+    "--num_replicas",
+    required=True,
+    type=int,
+    help="Number of replicas of each chunk"
+)
 args = parser.parse_args()
 num_rounds = args.num_rounds
 num_nodes = args.num_nodes
+num_chunks = args.num_chunks
+num_replicas = args.num_replicas
+num_segments = num_chunks*num_replicas
 
 wandb.init(
     project = 'FLNET',
@@ -48,15 +65,24 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
 
 
 #Config for fit function
-def fit_config(server_round: int):
-    """Return training configuration dict for each round."""
-    config = {
-        "current_round": server_round
-    }
-    return config
+def get_on_fit_config_fn() -> Callable[[int], Dict[str, bytes]]:
+    """Return a function which returns training configurations."""
+    def fit_config(server_round: int) -> Dict[str, bytes]:
+        """Return training configuration dict for each round."""
+        config = {}
+        scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
+        for i in range(len(scheduler.nodes_schedule)):
+            config[str(i)] = pickle.dumps(scheduler.nodes_schedule[i])
+        config['server_round'] = pickle.dumps(server_round)
+        config['num_chunks'] = pickle.dumps(num_chunks)
+        config['num_replicas'] = pickle.dumps(num_replicas)
+        return config
+    return fit_config
 
 # Define strategy - TODO (We need to be able to support more strategies)
-strategy = CustomFed(evaluate_metrics_aggregation_fn=weighted_average,on_fit_config_fn=fit_config)
+strategy = CustomFed(evaluate_metrics_aggregation_fn=weighted_average,
+                     on_fit_config_fn=get_on_fit_config_fn(),
+                    )
 
 #Configure logging
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
@@ -74,10 +100,6 @@ class ClientManager(SimpleClientManager):
         criterion = None,
     ) -> List[ClientProxy]:
         return super().sample(num_clients,self.min_clients,criterion)
-
-
-
-
 
 # Start Flower server
 fl.server.start_server(
