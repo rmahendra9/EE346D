@@ -173,9 +173,6 @@ class FlowerClient(fl.client.NumPyClient):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
 
     def set_parameters(self, parameters):
-        print('====================================================')
-        print(f"Recieved len: {len(parameters)}")
-        print('====================================================')
         params_dict = zip(net.state_dict().keys(), parameters)
         state_dict = OrderedDict({k: torch.tensor(v).float() for k, v in params_dict})
         net.load_state_dict(state_dict, strict=True)
@@ -191,7 +188,7 @@ class FlowerClient(fl.client.NumPyClient):
         if node_id != 0:
             train(net, trainloader, epochs=1)
         #Generate chunks from parameters
-        chunks = split_list(get_flattened_weights(parameters), num_chunks)
+        chunks = split_list(get_flattened_weights(self.get_parameters(config={})), num_chunks)
         #Length of the dataset for each chunk
         if node_id != 0:
             len_datasets = [len(trainloader.dataset)]*num_chunks
@@ -239,7 +236,7 @@ class FlowerClient(fl.client.NumPyClient):
                         sent = True
 
                     except Exception as e:
-                        log(INFO, f'Unexpected {e=}, {type(e)=} from node {node_id}')
+                        log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
 
                 self.socket.close()
                 self.socket_open = False
@@ -272,13 +269,13 @@ class FlowerClient(fl.client.NumPyClient):
                 end_time = datetime.datetime.now()
                 delay = end_time - start_time
                 log(INFO, f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
-
                 #Load data
                 data_arr = pickle.loads(pickle_data)
                 #Aggregate parameters using weighted average
                 new_params = data_arr[0]
                 len_datasets_chunk = data_arr[1]
                 chunks[chunk_id] = ((np.array(new_params)* len_datasets_chunk + np.array(chunks[chunk_id])* len_datasets[chunk_id])/(len_datasets_chunk + len_datasets[chunk_id])).tolist()
+
                 len_datasets[chunk_id] += len_datasets_chunk
 
                 log(INFO, f"Length of data received from node {child_node_id}: {len(pickle_data)}")
@@ -289,22 +286,20 @@ class FlowerClient(fl.client.NumPyClient):
         model = restore_weights_from_flat(net, chunks)
         if node_id == 0:
             #Send to server
-            print('==========================================') 
-            print(f"SENT: {len(model.get_parameters())}")
-            print('==========================================')
-            #print([param for param in model.parameters()])
-            #print('++++============++++++++++++')
             return model.get_parameters(), len_data, {}
         else:
             #Send null to server
             return [], 0, {}
 
     def evaluate(self, parameters, config):
-        if node_id == 0:
-            return 0.5, 0, {"accuracy": 1.0}
-        self.set_parameters(parameters)
-        loss, accuracy = test(net, testloader)
-        return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
+        #Client nodes send loss and accuracy to server
+        if node_id != 0:
+            self.set_parameters(parameters)
+            loss, accuracy = test(net, testloader)
+            return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
+        #"Server node" should not send anything, be ignored
+        else:
+            return 0.0, 0, {"accuracy": 0.0, "loss": 0.0}
 
 
 # Start Flower client
