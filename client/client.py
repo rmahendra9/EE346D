@@ -235,7 +235,7 @@ class FlowerClient(fl.client.NumPyClient):
 
                     except Exception as e:
                         log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
-                        time.sleep(5)
+                        time.sleep(1) #Retry after 1 second
 
                 self.socket.close()
                 self.socket_open = False
