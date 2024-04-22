@@ -23,7 +23,6 @@ from logging import INFO
 from flwr.common.logger import log 
 from pathlib import Path
 from utils.chunker import get_flattened_weights, split_list, restore_weights_from_flat
-import time
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -193,6 +192,7 @@ class FlowerClient(fl.client.NumPyClient):
             len_datasets = [0]*num_chunks
         #Maximum size dataset for a chunk
         len_data = 0
+        #TODO - deadlock sometimes because comms not in slot order, need to fix
         for communication in schedule:
             if communication['tx'] == 1:
                 #Transmit chunk
@@ -235,7 +235,6 @@ class FlowerClient(fl.client.NumPyClient):
 
                     except Exception as e:
                         log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
-                        time.sleep(1) #Retry after 1 second
 
                 self.socket.close()
                 self.socket_open = False
