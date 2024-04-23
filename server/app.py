@@ -51,6 +51,12 @@ def start_experiment():
     data = request.json
     print(data)
     model = data.get('model')
+    print(data)
+    
+    
+    
+    topologies = data.get('topologies')
+    print(type(topologies))
     subprocess.Popen(['python3', 'server.py'])
     subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0'
     , '--model', model])
