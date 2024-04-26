@@ -12,6 +12,7 @@ app = Flask(__name__)
 CORS(app)
 
 METRICS_FILE = "metrics.json"
+LOGS_FILE = "log.txt"
 
 # Load initial metrics from the file
 try:
@@ -55,23 +56,43 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
 def start_experiment():
     if os.path.exists(METRICS_FILE):
         os.remove(METRICS_FILE)
-    
-    data = request.json
-    print(data)
-    model = data.get('model')
-    num = data.get('num')
+
+    if os.path.exists(LOGS_FILE):
+        os.remove(LOGS_FILE)
+
+    # File is accessible from request.files
+    file = request.files.get('file')
+    if file:
+        # Save or process the file
+        file.save((os.path.join('../client/scheduler', file.filename)))
+
+    # Access other form data from request.form (not request.json)
+    model = request.form.get('model')
+    num = int(request.form.get('num', 0))
+
     subprocess.Popen(['python3', 'server.py'])
 
     if num == 0:
         subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0', '--model', model])
         subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0', '--model', model])
-
     elif num == 1:
         subprocess.Popen(['python3', '../client/dual_client.py', '--node-id', '0', '--num_clients', '1', '--port', '81'])
         subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0', '--model', model])
-        subprocess.Popen(['python3', '../client/client.py', '--node-id', '2', '--parent_ip', '127.0.0.1', '--parent_port', '81', '--has_parent', '1','--model', model])
-    
-    return 'Experiment started successfully'
+        subprocess.Popen(['python3', '../client/client.py', '--node-id', '2', '--parent_ip', '127.0.0.1', '--parent_port', '81'])
+
+    return jsonify({'message': 'Experiment started successfully'})
+
+@app.route('/upload', methods=['POST'])
+def file_upload():
+    # Check if a file is sent to the route
+    if 'file' in request.files:
+        file = request.files['file']
+        # You can now save the file, process it, etc.
+        file.save('/path/to/save/' + file.filename)  # Save the file
+
+        return jsonify({'message': 'File uploaded successfully!'}), 200
+    else:
+        return jsonify({'error': 'No file provided'}), 400
 
 @app.route('/metrics', methods=['GET'])
 def get_metrics():
@@ -81,6 +102,17 @@ def get_metrics():
     except FileNotFoundError:
         metricList = []
     return metricList
+
+@app.route('/logs', methods=['GET'])
+def get_logs():
+    log_list = []
+    try:
+        with open("log.txt", "r") as file:
+            for line in file:
+                log_list.append(line)
+    except FileNotFoundError:
+        log_list = []
+    return jsonify(log_list)
 
 
 if __name__ == "__main__":

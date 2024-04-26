@@ -10,6 +10,7 @@ function App() {
   const [selectedModel, setSelectedModel] = useState('CNN');
   const [learningRate, setLearningRate] = useState(0);
   const [momentum, setMomentum] = useState(0);
+  const [file, setFile] = useState(null);
   const [newAccuracyData, setAccuracyData] = useState({
     labels: [],
     datasets: [{
@@ -28,6 +29,8 @@ function App() {
       backgroundColor: 'red'
     }]
   });
+  const [logData, setLogData] = useState('');
+  const [logError, setLogError] = useState(null);
   const lossOptions = {
     scales: {
       x: {
@@ -112,7 +115,6 @@ function App() {
     setAdjacencyList(newAdjacencyList);
   };
 
-  // Function to fetch metrics and update state
   const fetchMetrics = async () => {
     try {
       const response = await fetch('http://localhost:80/metrics');
@@ -120,7 +122,6 @@ function App() {
       if (data) {
         let labelModel = 'CNN';
         if(data.length > 0 && data[0].model == 'ResNet') {
-          console.log('Reached');
           labelModel = 'ResNet';
         }
         const newAccuracyData = {
@@ -150,20 +151,25 @@ function App() {
         setAccuracyData(newAccuracyData);
         setLossData(newLossData);
       }
+      const newResponse = await fetch('http://localhost:80/logs');
+      const newData = await newResponse.json();
+      if(newData) {
+        setLogData(newData);
+        setLogError(null);
+      }
     } catch (error) {
       console.error('Error fetching metrics:', error);
+      setLogError('Log file not available yet.');
     }
   };
 
-  // Set up periodic fetching using useEffect and setInterval
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMetrics();
-    }, 1000); // Fetch every 0.8 seconds (adjust as needed)
+    }, 1000);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures that this effect runs once
+  }, []); 
 
   const handleStrategyChange = (event) => {
     setSelectedStrategy(event.target.value);
@@ -186,37 +192,50 @@ function App() {
     setMomentum(event.target.value);
   };
 
+  const handleFileInputChange = (event) => {
+    const uploadedFile = event.target.files[0];
+    if (uploadedFile) {
+        // Update the state
+        setFile(uploadedFile);
+    } else {
+        // Handle cases where the file is not selected or cleared
+        setFile(null);
+    }
+  };
+
   const handleStartExperiment = async () => {
     try {
-      // console.log(selectedStrategy);
-      // console.log(selectedModel);
-      // console.log(selectedDataset);
-      // console.log(learningRate);
-      // console.log(linkDelay);
-      // console.log(momentum);
-      // console.log(rounds);
+      // Create a FormData object
+      const formData = new FormData();
+      formData.append('strategy', selectedStrategy);
+      formData.append('model', selectedModel);
+      formData.append('learningRate', learningRate);
+      formData.append('momentum', momentum);
+      formData.append('num', 0);
+      formData.append('file', file); // Append the file object
+  
+      // Make the POST request with FormData
       const response = await fetch('http://localhost:80/start-experiment', {
         method: 'POST',
-        body: JSON.stringify({
-          strategy: selectedStrategy,
-          model: selectedModel,
-          learningRate: learningRate,
-          momentum: momentum,
-          num: 0
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
+        body: formData, // Use FormData
+        // Remove content-type header so the browser can set the boundary parameter automatically
       });
-      if (response.ok) {
-        console.log('Experiment started successfully');
-      } else {
-        console.error('Failed to start experiment');
-      }
+      setLogData('');
     } catch (error) {
       console.error('Error starting experiment:', error);
     }
   };
+  
+
+  function LogDisplay({ logData }) {
+    return (
+      <div className="log-display">
+        <h4>Logs:</h4>
+        <pre>{logData || "No logs available"}</pre>
+      </div>
+    );
+  }
+
 
   return (
     <div className="App">
@@ -283,6 +302,7 @@ function App() {
 
       <div class="start">
         <div class="button-container">
+          <input type="file" id="file-input" name="file-input" onChange={handleFileInputChange}></input>
           <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
           {/* TO DO: Loading button functionality to indicate duration of experiment */}
         </div>
@@ -303,45 +323,11 @@ function App() {
               <Line options={lossOptions} data={newLossData} />
             </div>
           </div>
+          <LogDisplay logData={logData} />
         </div>
       </div>
 
       <div class="divider"></div>
-
-      {/* TO DO: Add log file server output here --> different branch */}
-
-      {/*<div class='table'>
-        <table class='clean-table'>
-          <thead>
-            <tr>
-              <th>Iteration</th>
-              <th>Model</th>
-              <th>Rounds</th>
-              <th>Config</th>
-              <th>Topology</th>
-              <th>Logs</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>SimpleCNN</td>
-              <td>10</td>
-              <td>
-                <button className='view-button'>Preview</button>
-              </td>
-              <td>
-                <button className='view-button'>Open</button>
-              </td>
-              <td>
-                <button className='view-button'>View</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="divider"></div>*/}
 
       <h3 class='subheader'>Topology Visualization</h3>
       <div class="topology-visualization-div">

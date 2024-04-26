@@ -21,6 +21,8 @@ wandb.init(
     name  = 'FLNET'
 )
 
+fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
+
 # Start Flower server
 fl.server.start_server(
     server_address="0.0.0.0:8080",

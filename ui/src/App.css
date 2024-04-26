@@ -252,6 +252,30 @@ body {
   background-color: #aaa; /* Darker shade of grey */
 }
 
+.log-display {
+  margin-top: 20px;
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  max-height: 300px; /* Set a max-height that fits within your layout */
+  max-width: 100%;   /* Use 100% to make it responsive to the parent width */
+  overflow-x: auto;  /* Horizontal scroll */
+  overflow-y: auto;  /* Vertical scroll */
+  text-align: center; /* Center text horizontally */
+}
+
+.log-display h4 {
+  margin-bottom: 10px;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word; /* Ensure long words do not cause layout issues */
+  text-align: left; /* Keep actual log text left-aligned if preferred */
+}
+
+
 .divider {
   border-top: 1px solid #000; /* Black */
   margin: 20px 0;
