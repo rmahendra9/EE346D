@@ -11,6 +11,7 @@ function App() {
   const [learningRate, setLearningRate] = useState(0);
   const [momentum, setMomentum] = useState(0);
   const [file, setFile] = useState(null);
+  const [ipList, setIpList] = useState('');
   const [newAccuracyData, setAccuracyData] = useState({
     labels: [],
     datasets: [{
@@ -203,9 +204,14 @@ function App() {
     }
   };
 
+  const handleIpChange = (event) => {
+    setIpList(event.target.value);
+  }
+
   const handleStartExperiment = async () => {
     try {
       // Create a FormData object
+      console.log(ipList);
       const formData = new FormData();
       formData.append('strategy', selectedStrategy);
       formData.append('model', selectedModel);
@@ -213,6 +219,7 @@ function App() {
       formData.append('momentum', momentum);
       formData.append('num', 0);
       formData.append('file', file); // Append the file object
+      formData.append('ipList', ipList); // Append the IP list
   
       // Make the POST request with FormData
       const response = await fetch('http://localhost:80/start-experiment', {
@@ -301,10 +308,16 @@ function App() {
       <div class="divider"></div>
 
       <div class="start">
+        <div class="input-group1">
+            <label for="ip-input">IP List:</label>
+            <input type="text" id="ip-input" placeholder="Separate with commas" onChange={handleIpChange}></input>
+        </div>
+        <div class="input-group2">
+            <label for="file-input">Scheduler Code:</label>
+            <input type="file" id="file-input" name="file-input" onChange={handleFileInputChange}></input>
+        </div>
         <div class="button-container">
-          <input type="file" id="file-input" name="file-input" onChange={handleFileInputChange}></input>
-          <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
-          {/* TO DO: Loading button functionality to indicate duration of experiment */}
+            <button class="start-button" onClick={handleStartExperiment}>Start Experiment</button>
         </div>
       </div>
 
