@@ -3,3 +3,4 @@ client - python client.py --node_id 0 --num_clients 3 --model_type 1 --is_iid 1
          python client.py --node_id 1 --num_clients 3 --model_type 1 --is_iid 1
          python client.py --node_id 2 --num_clients 3 --model_type 1 --is_iid 1
          python client.py --node_id 3 --num_clients 3 --model_type 1 --is_iid 1
+synchronizer - python synchronizer.py --num_rounds 10 --num_nodes 4 --num_chunks 4 --num_replicas 1
