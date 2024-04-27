@@ -1,7 +1,3 @@
-1. Dual client needs to have a parent field so that it can support more than 2 levels of aggregation
-2. Sparse arrays for sending weights
-3. Add configurability for the server
-
 AFTER DEMO
 - Dirichlet distribution for data (alpha = infinite -> Homogeneous, alpha = 0, Completely Non-IID)
 (T.M.H. Hsu, et al., 2019)
@@ -15,3 +11,22 @@ Front End:
 1. Topology for Tree
 2. Integration for model input
 3. W&B Experiment Log
+
+
+Back End:
+
+1. Centralized distribution
+    - need schedule, ip mappings sent from a central place to clients
+
+2. Round delay
+    - need a good way of measuring round delay
+
+3. Logging
+    - move server and client code to same folder to test logging
+
+4. Strategies
+    - Add in strategies other than FedAvg
+    - fit aggregate and eval aggregate for metrics
+
+5. Chunking
+    - inhomogenous chunk sizes
