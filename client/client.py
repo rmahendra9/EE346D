@@ -148,9 +148,9 @@ else:
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
 
-ip_mappings = generate_node_ip_mappings(num_nodes+1)
+ip_mappings = generate_node_ip_mappings(num_nodes)
 ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '127.0.1.1'
+synchronizer_node_ip = '10.52.3.223'
 synchronizer_node_port = 6000
 
 # Define Flower client
