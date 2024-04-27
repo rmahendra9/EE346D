@@ -1,0 +1,64 @@
+Federated_Learning | INFO flwr 2024-04-26 19:11:34,778 | app.py:163 | Starting Flower server, config: ServerConfig(num_rounds=10, round_timeout=None)
+Federated_Learning | INFO flwr 2024-04-26 19:11:34,790 | app.py:176 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-26 19:11:34,791 | server.py:89 | Initializing global parameters
+Federated_Learning | INFO flwr 2024-04-26 19:11:34,791 | server.py:276 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-26 19:12:46,852 | server.py:280 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-26 19:12:46,853 | server.py:91 | Evaluating initial parameters
+Federated_Learning | INFO flwr 2024-04-26 19:12:46,853 | server.py:104 | FL starting
+Federated_Learning | DEBUG flwr 2024-04-26 19:12:46,854 | server.py:222 | fit_round 1: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:14:04,744 | server.py:236 | fit_round 1 received 4 results and 0 failures
+Federated_Learning | WARNING flwr 2024-04-26 19:14:04,746 | strategy.py:250 | No fit_metrics_aggregation_fn provided
+Federated_Learning | DEBUG flwr 2024-04-26 19:14:04,747 | server.py:173 | evaluate_round 1: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:14:15,087 | server.py:187 | evaluate_round 1 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:14:15,087 | server.py:63 | {'accuracy': 0.10257948410317937, 'loss': 241.6935784816742}
+Federated_Learning | DEBUG flwr 2024-04-26 19:14:15,088 | server.py:222 | fit_round 2: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:15:17,507 | server.py:236 | fit_round 2 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:15:17,510 | server.py:173 | evaluate_round 2: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:15:26,243 | server.py:187 | evaluate_round 2 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:15:26,243 | server.py:63 | {'accuracy': 0.10277944411117776, 'loss': 241.4195633729299}
+Federated_Learning | DEBUG flwr 2024-04-26 19:15:26,244 | server.py:222 | fit_round 3: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:16:30,624 | server.py:236 | fit_round 3 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:16:30,627 | server.py:173 | evaluate_round 3: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:16:40,782 | server.py:187 | evaluate_round 3 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:16:40,782 | server.py:63 | {'accuracy': 0.12297540491901619, 'loss': 240.48485930760702}
+Federated_Learning | DEBUG flwr 2024-04-26 19:16:40,783 | server.py:222 | fit_round 4: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:17:46,306 | server.py:236 | fit_round 4 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:17:46,307 | server.py:173 | evaluate_round 4: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:17:54,706 | server.py:187 | evaluate_round 4 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:17:54,707 | server.py:63 | {'accuracy': 0.22025594881023794, 'loss': 232.49537698427835}
+Federated_Learning | DEBUG flwr 2024-04-26 19:17:54,707 | server.py:222 | fit_round 5: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:18:39,469 | server.py:236 | fit_round 5 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:18:39,472 | server.py:173 | evaluate_round 5: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:18:45,947 | server.py:187 | evaluate_round 5 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:18:45,948 | server.py:63 | {'accuracy': 0.23385322935412917, 'loss': 214.5943069855372}
+Federated_Learning | DEBUG flwr 2024-04-26 19:18:45,949 | server.py:222 | fit_round 6: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:19:27,049 | server.py:236 | fit_round 6 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:19:27,051 | server.py:173 | evaluate_round 6: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:19:33,705 | server.py:187 | evaluate_round 6 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:19:33,706 | server.py:63 | {'accuracy': 0.277244551089782, 'loss': 205.05517013867697}
+Federated_Learning | DEBUG flwr 2024-04-26 19:19:33,706 | server.py:222 | fit_round 7: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:20:18,250 | server.py:236 | fit_round 7 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:20:18,252 | server.py:173 | evaluate_round 7: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:20:23,549 | server.py:187 | evaluate_round 7 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:20:23,550 | server.py:63 | {'accuracy': 0.3096380723855229, 'loss': 191.37408471107483}
+Federated_Learning | DEBUG flwr 2024-04-26 19:20:23,550 | server.py:222 | fit_round 8: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:04,259 | server.py:236 | fit_round 8 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:04,260 | server.py:173 | evaluate_round 8: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:10,441 | server.py:187 | evaluate_round 8 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:21:10,441 | server.py:63 | {'accuracy': 0.35742851429714056, 'loss': 180.67700584729513}
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:10,442 | server.py:222 | fit_round 9: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:52,120 | server.py:236 | fit_round 9 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:52,123 | server.py:173 | evaluate_round 9: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:58,372 | server.py:187 | evaluate_round 9 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:21:58,372 | server.py:63 | {'accuracy': 0.395120975804839, 'loss': 173.89417405923209}
+Federated_Learning | DEBUG flwr 2024-04-26 19:21:58,372 | server.py:222 | fit_round 10: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:22:51,645 | server.py:236 | fit_round 10 received 4 results and 0 failures
+Federated_Learning | DEBUG flwr 2024-04-26 19:22:51,647 | server.py:173 | evaluate_round 10: strategy sampled 4 clients (out of 4)
+Federated_Learning | DEBUG flwr 2024-04-26 19:22:58,515 | server.py:187 | evaluate_round 10 received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,516 | server.py:63 | {'accuracy': 0.40641871625674864, 'loss': 168.9031861225764}
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,516 | server.py:153 | FL finished in 611.6628384579963
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,517 | app.py:226 | app_fit: losses_distributed [(1, 241.6935780843099), (2, 241.41956075032553), (3, 240.48485819498697), (4, 232.49537658691406), (5, 214.59430440266928), (6, 205.05517069498697), (7, 191.37408447265625), (8, 180.677001953125), (9, 173.89417521158853), (10, 168.90318806966147)]
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,517 | app.py:227 | app_fit: metrics_distributed_fit {}
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,517 | app.py:228 | app_fit: metrics_distributed {'accuracy': [(1, 0.10257948410317937), (2, 0.10277944411117776), (3, 0.12297540491901619), (4, 0.22025594881023794), (5, 0.23385322935412917), (6, 0.277244551089782), (7, 0.3096380723855229), (8, 0.35742851429714056), (9, 0.395120975804839), (10, 0.40641871625674864)], 'loss': [(1, 241.6935784816742), (2, 241.4195633729299), (3, 240.48485930760702), (4, 232.49537698427835), (5, 214.5943069855372), (6, 205.05517013867697), (7, 191.37408471107483), (8, 180.67700584729513), (9, 173.89417405923209), (10, 168.9031861225764)]}
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,517 | app.py:229 | app_fit: losses_centralized []
+Federated_Learning | INFO flwr 2024-04-26 19:22:58,517 | app.py:230 | app_fit: metrics_centralized {}

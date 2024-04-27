@@ -23,6 +23,7 @@ from logging import INFO
 from flwr.common.logger import log 
 from pathlib import Path
 from utils.chunker import get_flattened_weights, split_list, restore_weights_from_flat
+import time
 
 # #############################################################################
 # 1. Regular PyTorch pipeline: nn.Module, train, test, and DataLoader
@@ -147,9 +148,10 @@ else:
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
 
-#Get port to expose on this client - TODO
-ip_mappings = generate_node_ip_mappings(num_nodes)
+ip_mappings = generate_node_ip_mappings(num_nodes+1)
 ip, port = get_node_info(node_id, ip_mappings)
+synchronizer_node_ip = '127.0.1.1'
+synchronizer_node_port = 6000
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
@@ -176,6 +178,9 @@ class FlowerClient(fl.client.NumPyClient):
         #Get num_chunks and num_replicas
         num_chunks = pickle.loads(config['num_chunks'])
         num_replicas = pickle.loads(config['num_replicas'])
+        total_slots = pickle.loads(config['total_slots'])
+        #Sort communications by slot id
+        schedule = sorted(schedule, key=lambda communication: communication['slot'])
         #Print schedule for the round
         log(INFO, f'Node {node_id} schedule for round {current_round}: {schedule}')
         #Set parameters
@@ -192,94 +197,178 @@ class FlowerClient(fl.client.NumPyClient):
             len_datasets = [0]*num_chunks
         #Maximum size dataset for a chunk
         len_data = 0
-        #TODO - deadlock sometimes because comms not in slot order, need to fix
-        for communication in schedule:
-            if communication['tx'] == 1:
-                #Transmit chunk
-                chunk_id = communication['segment']
-                recv_node_id = communication['other_node']
-                recv_node_ip, recv_node_port = get_node_info(recv_node_id, ip_mappings)
-                log(INFO, f'Node {node_id} will send chunk {chunk_id} to node {recv_node_id}')
-
-                #Just to be safe, close the socket
-                if self.socket_open:
-                    self.socket.close()
-                    self.socket_open = False
-                #Create socket
-                self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                self.socket_open = True
+        #Set slot id
+        slot_id = 0
+        #Set index for communication
+        communication_idx = 0
+        #Find max slot id in schedule
+        max_slot = 0
+        for i in range(len(schedule)):
+            max_slot = max(max_slot, schedule[i]['slot'])
+        while slot_id < total_slots:
+            if slot_id > max_slot or slot_id != schedule[communication_idx]['slot']:
+                #Not current slot id, send ack to synchronizer and wait for next slot id
+                log(INFO, f'Node {node_id} is not communicating in slot {slot_id}')
                 sent = False
                 while not sent:
                     try:
-                        #Attempt connection
-                        log(INFO, f'Node {node_id} is attempting to connect to {recv_node_ip}:{recv_node_port}')
-                        self.socket.connect((recv_node_ip, recv_node_port))
-                        log(INFO, f'Node {node_id} successfully connected to {recv_node_ip}:{recv_node_port}')
-
-                        #Send node_id and chunk_id
-                        self.socket.send(f'{node_id}:{chunk_id}'.encode())
-                        ack = self.socket.recv(1024).decode()
-                        log(INFO, f'Node {node_id} received ack from parent, will send chunk {chunk_id}')
-
-                        #Create chunk of data
-                        chunk = chunks[chunk_id]
-
-                        #Serialize the chunk
-                        data = pickle.dumps([chunk,len_datasets[chunk_id]])
-                        
-                        #Send data
-                        self.socket.sendall(data)
-                        log(INFO, f"Node {node_id} sent data of size: {len(data)}")
-                        sent = True
-
+                        #Close socket
+                        if self.socket_open:
+                            self.socket.close()
+                            self.socket_open = False
+                        #Create socket
+                        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                        self.socket_open = True
+                        log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
+                        self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
+                        log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
+                        #Send node id
+                        self.socket.send(str(node_id).encode())
+                        msg = self.socket.recv(1024).decode()
+                        if msg.isnumeric():
+                            slot_id = int(msg)
+                            log(INFO, f'Node {node_id} received slot {slot_id} from synchronizer')
+                            sent = True
+                        self.socket.close()
+                        self.socket_open = False
                     except Exception as e:
-                        log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
-
-                self.socket.close()
-                self.socket_open = False
+                        time.sleep(1)
             else:
-                #Receiving chunk
-                #Accept connection
-                (conn, addr) = self.serversocket.accept()
-                #Get child node id
-                msg = conn.recv(1024).decode()
-                info = msg.split(":")
-                chunk_id = int(info[1])
-                child_node_id = int(info[0])
-                log(INFO, f"Node is receiving chunk {chunk_id} from node {child_node_id}")
-                #Send acknowledgement
-                conn.send('Ack'.encode())
-                #Receive the data
-                data = []
-                #Get current time to measure time delay of sending the data 
-                start_time = datetime.datetime.now()
-                while True:
-                    packet = conn.recv(16384)
-                    data.append(packet)
-                    try:
-                        pickle_data = b"".join(data)
-                        data_arr = pickle.loads(pickle_data)
-                        break
-                    except pickle.UnpicklingError:
-                        continue
-                #Get current time to measure time delay
-                end_time = datetime.datetime.now()
-                delay = end_time - start_time
-                log(INFO, f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
-                #Load data
-                data_arr = pickle.loads(pickle_data)
-                #Aggregate parameters using weighted average
-                new_params = data_arr[0]
-                len_datasets_chunk = data_arr[1]
-                chunks[chunk_id] = ((np.array(new_params)* len_datasets_chunk + np.array(chunks[chunk_id])* len_datasets[chunk_id])/(len_datasets_chunk + len_datasets[chunk_id])).tolist()
+                #Talk in current slot id
+                if schedule[communication_idx]['tx'] == 1:
+                    log(INFO, f'Node {node_id} is transmitter for slot {slot_id}')
+                    #Transmit chunk
+                    chunk_id = schedule[communication_idx]['segment']
+                    recv_node_id = schedule[communication_idx]['other_node']
+                    recv_node_ip, recv_node_port = get_node_info(recv_node_id, ip_mappings)
+                    log(INFO, f'Node {node_id} will send chunk {chunk_id} to node {recv_node_id}')
 
-                len_datasets[chunk_id] += len_datasets_chunk
+                    #Just to be safe, close the socket
+                    if self.socket_open:
+                        self.socket.close()
+                        self.socket_open = False
+                    #Create socket
+                    self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    self.socket_open = True
+                    sent = False
+                    while not sent:
+                        try:
+                            #Attempt connection
+                            log(INFO, f'Node {node_id} is attempting to connect to {recv_node_ip}:{recv_node_port}')
+                            self.socket.connect((recv_node_ip, recv_node_port))
+                            log(INFO, f'Node {node_id} successfully connected to {recv_node_ip}:{recv_node_port}')
 
-                log(INFO, f"Length of data received from node {child_node_id}: {len(pickle_data)}")
-                conn.close()     
+                            #Send node_id and chunk_id
+                            self.socket.send(f'{node_id}:{chunk_id}'.encode())
+                            ack = self.socket.recv(1024).decode()
+                            log(INFO, f'Node {node_id} received ack from parent, will send chunk {chunk_id}')
 
-                len_data = max(len_datasets)
+                            #Create chunk of data
+                            chunk = chunks[chunk_id]
+
+                            #Serialize the chunk
+                            data = pickle.dumps([chunk,len_datasets[chunk_id]])
+                            
+                            #Send data
+                            self.socket.sendall(data)
+                            log(INFO, f"Node {node_id} sent data of size: {len(data)}")
+                            sent = True
+
+                        except Exception as e:
+                            log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
+
+                    self.socket.close()
+                    self.socket_open = False
+                    sent = False
+                    while not sent:
+                        try:
+                            #Now send ack to synchronizer and recv slot_id
+                            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                            self.socket_open = True
+                            log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
+                            self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
+                            log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
+                            #Send node id
+                            self.socket.send(str(node_id).encode())
+                            msg = self.socket.recv(1024).decode()
+                            if msg.isnumeric():
+                                slot_id = int(msg)
+                                log(INFO, f'Node {node_id} received slot {slot_id} from synchronizer')
+                                sent = True
+                            self.socket.close()
+                            self.socket_open = False
+                        except Exception as e:
+                            time.sleep(1)
+                else:
+                    #Receiving chunk
+                    log(INFO, f'Node {node_id} is receiver for slot {slot_id}')
+                    #Accept connection
+                    (conn, addr) = self.serversocket.accept()
+                    #Get child node id
+                    msg = conn.recv(1024).decode()
+                    info = msg.split(":")
+                    chunk_id = int(info[1])
+                    child_node_id = int(info[0])
+                    log(INFO, f"Node is receiving chunk {chunk_id} from node {child_node_id}")
+                    #Send acknowledgement
+                    conn.send('Ack'.encode())
+                    #Receive the data
+                    data = []
+                    #Get current time to measure time delay of sending the data 
+                    start_time = datetime.datetime.now()
+                    while True:
+                        packet = conn.recv(16384)
+                        data.append(packet)
+                        try:
+                            pickle_data = b"".join(data)
+                            data_arr = pickle.loads(pickle_data)
+                            break
+                        except pickle.UnpicklingError:
+                            continue
+                    #Get current time to measure time delay
+                    end_time = datetime.datetime.now()
+                    delay = end_time - start_time
+                    log(INFO, f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
+                    #Load data
+                    data_arr = pickle.loads(pickle_data)
+                    #Aggregate parameters using weighted average
+                    new_params = data_arr[0]
+                    len_datasets_chunk = data_arr[1]
+                    chunks[chunk_id] = ((np.array(new_params)* len_datasets_chunk + np.array(chunks[chunk_id])* len_datasets[chunk_id])/(len_datasets_chunk + len_datasets[chunk_id])).tolist()
+
+                    len_datasets[chunk_id] += len_datasets_chunk
+
+                    log(INFO, f"Length of data received from node {child_node_id}: {len(pickle_data)}")
+                    conn.close()     
+
+                    len_data = max(len_datasets)
+
+                    sent = False
+                    while not sent:
+                        try:
+                            #Now send ack to synchronizer and recv slot_id
+                            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                            self.socket_open = True
+                            log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
+                            self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
+                            log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
+                            #Send node id
+                            self.socket.send(str(node_id).encode())
+                            msg = self.socket.recv(1024).decode()
+                            if msg.isnumeric():
+                                slot_id = int(msg)
+                                log(INFO, f'Node {node_id} received slot {slot_id} from synchronizer')
+                                sent = True
+                            self.socket.close()
+                            self.socket_open = False
+                        except Exception as e:
+                            time.sleep(1)
+                #Increment communication id
+                communication_idx += 1
         #Set model parameters
         model = restore_weights_from_flat(net, chunks)
         if node_id == 0:

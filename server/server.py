@@ -79,6 +79,12 @@ def get_on_fit_config_fn() -> Callable[[int], Dict[str, bytes]]:
         config['server_round'] = pickle.dumps(server_round)
         config['num_chunks'] = pickle.dumps(num_chunks)
         config['num_replicas'] = pickle.dumps(num_replicas)
+        #Send total number of communication slots
+        total_slots = 0
+        for i in range(len(scheduler.nodes_schedule)):
+            for communication in scheduler.nodes_schedule[i]:
+                total_slots = max(total_slots, communication['slot'])
+        config['total_slots'] = pickle.dumps(total_slots)
         return config
     return fit_config
 
@@ -103,6 +109,9 @@ class ClientManager(SimpleClientManager):
         criterion = None,
     ) -> List[ClientProxy]:
         return super().sample(num_clients,self.min_clients,criterion)
+
+#Clean out log file
+open('log.txt','w').close()
 
 # Start Flower server
 fl.server.start_server(
