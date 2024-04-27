@@ -37,7 +37,7 @@ num_replicas = args.num_replicas
 num_segments = num_chunks*num_replicas
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind(('127.0.1.1', 6000))
+serversocket.bind((socket.gethostbyname(socket.gethostname()), 6000))
 log(INFO, f'Synchronizer listening on port 6000')
 serversocket.listen(num_nodes)
 
@@ -70,3 +70,5 @@ for i in range(num_rounds):
             if len(nodes_seen) == num_nodes:
                 seen_all = True
         log(INFO, f'Slot {i} is done')
+
+serversocket.close()

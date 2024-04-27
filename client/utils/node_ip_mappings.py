@@ -5,8 +5,8 @@ def generate_node_ip_mappings(num_nodes):
     #assert num_clients <= len(port_list)
 
     #TODO - this should be replaced with API call to get IP list and port list
-    ip_list = ['127.0.1.1']*(num_nodes)
-    port_list = list(range(4000,4000+num_nodes))
+    ip_list = ['10.52.2.171', '10.52.3.58', '10.52.3.70', '10.52.3.62']
+    port_list = [3000]*(num_nodes)
     mappings = {}
     for i in range(num_nodes):
         mappings[i] = [ip_list[i], port_list[i]]
