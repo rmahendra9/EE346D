@@ -34,7 +34,7 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 def train(net, trainloader, epochs):
-    """Train the model on the training set."""x
+    """Train the model on the training set."""
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
     net = net.float()
