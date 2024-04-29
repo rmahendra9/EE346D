@@ -114,6 +114,17 @@ def get_logs():
         log_list = []
     return jsonify(log_list)
 
+@app.route('/schedule', methods=['GET'])
+def get_logs():
+    schedule_list = []
+    try:
+        with open("schedule.txt", "r") as file:
+            for line in file:
+                schedule_list.append(line)
+    except FileNotFoundError:
+        schedule_list = []
+    return jsonify(schedule_list)
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=80)

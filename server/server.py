@@ -72,9 +72,19 @@ def get_on_fit_config_fn() -> Callable[[int], Dict[str, bytes]]:
         config = {}
         #Create scheduler instance
         scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
+        schedule = {}
+        
+        #clear schedule file
+        open('schedule.txt','w').close()
+        
         #Set schedule for each node
         for i in range(len(scheduler.nodes_schedule)):
             config[str(i)] = pickle.dumps(scheduler.nodes_schedule[i])
+            schedule[str(i)] = pickle.dumps(scheduler.nodes_schedule[i])
+        #Save schedule to file
+        with open('schedule.txt','a') as f:
+            f.write(str(schedule)+'\n')
+        
         #Send other information
         config['server_round'] = pickle.dumps(server_round)
         config['num_chunks'] = pickle.dumps(num_chunks)
@@ -112,6 +122,8 @@ class ClientManager(SimpleClientManager):
 
 #Clean out log file
 open('log.txt','w').close()
+
+open('schedule.txt','w').close()
 
 # Start Flower server
 fl.server.start_server(
