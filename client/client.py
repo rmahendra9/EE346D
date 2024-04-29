@@ -157,10 +157,13 @@ synchronizer_node_port = 6000
 class FlowerClient(fl.client.NumPyClient):
     def __init__(self, port):
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.serversocket.bind((socket.gethostname(), port))
+        self.serversocket.bind((socket.gethostbyname(socket.gethostname()), port))
         log(INFO, f'Node {node_id} listening on port {port}')
         self.serversocket.listen(num_nodes)
         self.socket_open = False
+    
+    def __del__(self):
+        self.serversocket.close()
 
     def get_parameters(self, config=None):
         return [val.cpu().numpy() for _, val in net.state_dict().items()]
