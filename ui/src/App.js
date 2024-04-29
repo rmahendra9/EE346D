@@ -73,48 +73,13 @@ function App() {
     }
   };
 
-  const initialAdjacencyList = {
-    A: [],
-    B: [],
-    C: []
-  };
+  const initialAdjacencyLists = {0:{}};
+  const initNumChunks = 1;
+  const initSelectedChunk = 0;
+  const [adjacencyLists, setAdjacencyLists] = useState(initialAdjacencyLists);
+  const [numChunks, setNumChunks] = useState(initNumChunks);
+  const [selectedChunk, setSelectedChunk] = useState(initSelectedChunk);
 
-  const [adjacencyList, setAdjacencyList] = useState(initialAdjacencyList);
-  const [newNodeName, setNewNodeName] = useState('');
-
-  const handleAddNode = () => {
-    if (newNodeName.trim() === '') {
-      alert('Node name cannot be empty');
-      return;
-    }
-
-    const newAdjacencyList = { ...adjacencyList, [newNodeName]: [] };
-    setAdjacencyList(newAdjacencyList);
-    setNewNodeName('');
-  };
-
-
-  const handleDeleteNode = (node) => {
-    const newAdjacencyList = { ...adjacencyList };
-    delete newAdjacencyList[node];
-    for (let key in newAdjacencyList) {
-      newAdjacencyList[key] = newAdjacencyList[key].filter((val) => val !== node);
-    }
-    setAdjacencyList(newAdjacencyList);
-  };
-
-  const handleCheckboxChange = (source, target, checked) => {
-    const newAdjacencyList = { ...adjacencyList };
-    if (checked) {
-      if (!newAdjacencyList[source]) {
-        newAdjacencyList[source] = [];
-      }
-      newAdjacencyList[source].push(target);
-    } else {
-      newAdjacencyList[source] = newAdjacencyList[source].filter((node) => node !== target);
-    }
-    setAdjacencyList(newAdjacencyList);
-  };
 
   const fetchMetrics = async () => {
     try {
@@ -158,8 +123,32 @@ function App() {
         setLogData(newData);
         setLogError(null);
       }
+      //just gonna place topo chunk data here
+      
+      const schedule_response = await fetch('http://localhost:80/metrics');
+      const schedule_data = await schedule_response.json();
+      if (schedule_data){
+        //determine number of unique segments
+        const segments = new Set();
+        const newAdjacencyLists = {};
+        for (const key in schedule_data) {
+          schedule_data[key].forEach((element) => segments.add(element.segment));
+        }
+        //now we have the segments
+        segments.forEach((segment) => {
+          adjacencyLists[segment] = {};
+          for (const key in schedule_data) {
+            const adjacentNodes = schedule_data[key]
+              .filter((element) => element.segment === segment && element.tx === 1)
+              .map((element) => element.other_node);
+            newAdjacencyLists[segment][key] = adjacentNodes;
+          }
+        });
+        setAdjacencyLists(newAdjacencyLists)
+        setNumChunks(segments.size)
+      }
     } catch (error) {
-      console.error('Error fetching metrics:', error);
+      console.error('Error fetching metrics and node schedules:', error);
       setLogError('Log file not available yet.');
     }
   };
@@ -207,6 +196,10 @@ function App() {
   const handleChunksChange = (event) => {
     setChunks(event.target.value);
   };
+
+  const handleSelectedChunkChange = (event) => {
+    setSelectedChunk(parseInt(event.target.value));
+  }
 
   const handleStartExperiment = async () => {
     try {
@@ -333,50 +326,20 @@ function App() {
       <div class="divider"></div>
 
       <h3 class='subheader'>Topology Visualization</h3>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <label htmlFor="chunkSelector">Select Chunk:</label>
+        <select id="chunkSelector" value={selectedChunk} onChange={handleSelectedChunkChange}>
+          {[...Array(numChunks).keys()].map((chunk) => (
+            <option key={chunk} value={chunk}>
+              {chunk}
+            </option>
+        ))}
+        </select>
+        <p>Selected Chunk: {selectedChunk}</p>
+      </div>
       <div class="topology-visualization-div">
-        <TopologyVisualization adjacencyList={adjacencyList} />
+        <TopologyVisualization adjacencyList={adjacencyLists[selectedChunk]} />
       </div>
-      <div class='add-node'>
-        <h4>Add Node</h4>
-        <input
-          type="text"
-          placeholder="Node Name"
-          value={newNodeName}
-          onChange={(e) => setNewNodeName(e.target.value)}
-        />
-        <button onClick={handleAddNode}>Add Node</button>
-      </div>
-      <div class='adjacency-matrix'>
-        <h4>Adjacency Matrix</h4>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              {Object.keys(adjacencyList).map(node => (
-                <th key={node}>{node}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(adjacencyList).map(source => (
-              <tr key={source}>
-                <td>{source}</td>
-                {Object.keys(adjacencyList).map(target => (
-                  <td key={`${source}-${target}`}>
-                    <input
-                      type="checkbox"
-                      checked={adjacencyList[source].includes(target)}
-                      onChange={(e) => handleCheckboxChange(source, target, e.target.checked)}
-                    />
-                  </td>
-                ))}
-                <td><button onClick={() => handleDeleteNode(source)}>Delete Node</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
       <div class="divider"></div>
     </div>
   );
