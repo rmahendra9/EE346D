@@ -149,7 +149,7 @@ if node_id != 0:
 
 ip_mappings = generate_node_ip_mappings(num_nodes)
 ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '127.0.1.1'
+synchronizer_node_ip = '10.52.3.223'
 synchronizer_node_port = 6000
 
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
