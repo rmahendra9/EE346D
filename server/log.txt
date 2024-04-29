@@ -1,0 +1,26 @@
+Federated_Learning | INFO flwr 2024-04-29 02:16:55,461 | app.py:150 | Starting Flower server, config: num_rounds=10, no round_timeout
+Federated_Learning | INFO flwr 2024-04-29 02:16:55,469 | app.py:163 | Flower ECE: gRPC server running (10 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-29 02:16:55,469 | server.py:92 | [INIT]
+Federated_Learning | INFO flwr 2024-04-29 02:16:55,470 | server.py:279 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,178 | server.py:285 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,179 | server.py:94 | Evaluating initial global parameters
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,179 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,179 | server.py:111 | [ROUND 1]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,180 | server.py:224 | configure_fit: strategy sampled 7 clients (out of 7)
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,062 | server.py:238 | aggregate_fit: received 7 results and 0 failures
+Federated_Learning | WARNING flwr 2024-04-29 02:25:09,065 | strategy.py:257 | No fit_metrics_aggregation_fn provided
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,066 | server.py:176 | configure_evaluate: strategy sampled 7 clients (out of 7)
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,398 | server.py:190 | aggregate_evaluate: received 7 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,398 | server.py:59 | {'accuracy': 0.09918016396720655, 'loss': 122.03695170084636}
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,399 | strategy.py:293 | There was a delay of 412.219382 seconds for round 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,399 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,400 | server.py:111 | [ROUND 2]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,402 | server.py:224 | configure_fit: strategy sampled 7 clients (out of 7)
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,336 | server.py:238 | aggregate_fit: received 7 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,339 | server.py:176 | configure_evaluate: strategy sampled 7 clients (out of 7)
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,190 | server.py:190 | aggregate_evaluate: received 7 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,191 | server.py:59 | {'accuracy': 0.09938012397520496, 'loss': 121.87584459781647}
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,191 | strategy.py:293 | There was a delay of 421.791007 seconds for round 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,191 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,192 | server.py:111 | [ROUND 3]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,194 | server.py:224 | configure_fit: strategy sampled 7 clients (out of 7)

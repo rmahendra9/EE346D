@@ -1,0 +1,816 @@
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:04,069 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:04,071 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:04,072 | connection.py:55 | ChannelConnectivity.CONNECTING
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:04,075 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:12,319 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:12,323 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:12,323 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:22,336 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:22,338 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:22,338 | connection.py:55 | ChannelConnectivity.CONNECTING
+Federated_Learning | DEBUG flwr 2024-04-29 02:10:22,339 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,341 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,342 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,342 | app.py:465 | Received: get_parameters message b176a382-b116-40cb-af2d-6ac26b064b08
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,348 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,369 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,369 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,369 | app.py:465 | Received: train message 7c96b878-3fc5-4cfd-9af5-bc565c3fa00a
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,375 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,376 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,376 | app.py:465 | Received: train message af2d30cb-bc24-438b-a915-a52ac219b352
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,377 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,378 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:22,378 | app.py:465 | Received: train message e322713d-3175-46e7-912a-4dbcd8db239f
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,868 | client.py:232 | Node 1 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,869 | client.py:309 | There is a delay of 0.704 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,871 | client.py:232 | Node 2 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,872 | client.py:309 | There is a delay of 0.429 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,874 | client.py:232 | Node 2 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,874 | client.py:309 | There is a delay of 0.412 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,890 | client.py:232 | Node 1 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,891 | client.py:309 | There is a delay of 0.585 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,893 | client.py:232 | Node 1 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,893 | client.py:309 | There is a delay of 0.437 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,898 | client.py:232 | Node 2 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,899 | client.py:309 | There is a delay of 0.558 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,900 | client.py:232 | Node 2 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,921 | client.py:309 | There is a delay of 19.983 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,951 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,953 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,950 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,983 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,983 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,984 | app.py:465 | Received: evaluate message 534ba735-e750-4519-a7af-85cddacd1890
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,990 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,990 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:32,990 | app.py:465 | Received: evaluate message 7a8e6a97-20ea-4f4d-b7c5-0dd57c5ac1f0
+Federated_Learning | INFO flwr 2024-04-29 02:10:33,002 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:33,002 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:33,002 | app.py:465 | Received: evaluate message 9e021eb8-6c9e-46b6-bea4-652494a99794
+Federated_Learning | INFO flwr 2024-04-29 02:10:33,005 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,701 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,748 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,760 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,760 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,760 | app.py:465 | Received: train message 6645e635-070b-45d6-ab02-3be6ac7d09e9
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,768 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,768 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,768 | app.py:465 | Received: train message d36e998d-ed7a-420c-a4b3-a4051670ee95
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,779 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,779 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:34,779 | app.py:465 | Received: train message 20e4825c-c81e-41dd-9918-3b1fc080fbd7
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,084 | client.py:232 | Node 2 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,086 | client.py:309 | There is a delay of 0.844 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,201 | client.py:232 | Node 1 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,202 | client.py:309 | There is a delay of 0.46799999999999997 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,203 | client.py:232 | Node 1 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,204 | client.py:309 | There is a delay of 0.5469999999999999 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,208 | client.py:232 | Node 2 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,209 | client.py:309 | There is a delay of 0.519 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,211 | client.py:232 | Node 2 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,211 | client.py:309 | There is a delay of 0.47300000000000003 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,215 | client.py:232 | Node 1 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,215 | client.py:309 | There is a delay of 0.504 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,216 | client.py:232 | Node 1 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,237 | client.py:309 | There is a delay of 20.544 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,260 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,265 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,266 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,278 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,279 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,279 | app.py:465 | Received: evaluate message 34059f52-306c-4223-a1f1-b4e2b022d243
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,289 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,289 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,289 | app.py:465 | Received: evaluate message fdace01b-e788-4107-989a-4433da480f56
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,291 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,294 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,294 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:44,294 | app.py:465 | Received: evaluate message 7aaebaa0-225c-489a-962a-3743b69dba40
+Federated_Learning | INFO flwr 2024-04-29 02:10:45,943 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:45,986 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,005 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,005 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,005 | app.py:465 | Received: train message 02fb1572-cba6-4dc0-9e33-cd9e6f4190b5
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,007 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,007 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,007 | app.py:465 | Received: train message 6c95de17-d25d-49d7-a6e8-b669109ac2ad
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,019 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,020 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:46,020 | app.py:465 | Received: train message 69d7f4f5-2c46-44ca-b516-1471a893ecf7
+Federated_Learning | INFO flwr 2024-04-29 02:10:56,864 | client.py:232 | Node 1 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:10:56,865 | client.py:309 | There is a delay of 0.48000000000000004 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,207 | client.py:232 | Node 2 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,208 | client.py:309 | There is a delay of 0.8170000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,210 | client.py:232 | Node 2 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,211 | client.py:309 | There is a delay of 0.639 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,216 | client.py:232 | Node 1 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,217 | client.py:309 | There is a delay of 0.628 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,219 | client.py:232 | Node 1 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,242 | client.py:309 | There is a delay of 22.633 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,247 | client.py:232 | Node 2 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,247 | client.py:309 | There is a delay of 0.449 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,249 | client.py:232 | Node 2 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,249 | client.py:309 | There is a delay of 0.39 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,270 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,275 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,276 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,292 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,292 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,292 | app.py:465 | Received: evaluate message 3ae24a72-b256-472c-b110-82c521ef0f34
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,299 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,300 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,300 | app.py:465 | Received: evaluate message db043c08-e381-4d5a-a472-12ccac1949e0
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,319 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,320 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,320 | app.py:465 | Received: evaluate message 5c3babf0-bb91-494a-8079-dd7c832884b0
+Federated_Learning | INFO flwr 2024-04-29 02:10:57,324 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,365 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,456 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,479 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,479 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,479 | app.py:465 | Received: train message 9bd0994f-adc6-4f8a-99d1-511dce1e2760
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,488 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,489 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,489 | app.py:465 | Received: train message b74bea7a-f04a-4295-a2be-1037f54664d1
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,490 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,490 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:10:59,490 | app.py:465 | Received: train message a006f19d-ca76-4ca3-abd5-baa16322f5c1
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,590 | client.py:232 | Node 1 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,592 | client.py:309 | There is a delay of 0.653 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,593 | client.py:232 | Node 2 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,594 | client.py:309 | There is a delay of 0.46599999999999997 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,596 | client.py:232 | Node 2 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,597 | client.py:309 | There is a delay of 0.631 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,601 | client.py:232 | Node 1 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,602 | client.py:309 | There is a delay of 0.541 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,604 | client.py:232 | Node 1 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,605 | client.py:309 | There is a delay of 0.585 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,608 | client.py:232 | Node 2 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,609 | client.py:309 | There is a delay of 0.477 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,609 | client.py:232 | Node 2 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,630 | client.py:309 | There is a delay of 20.567 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,653 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,657 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,657 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,674 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,675 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,675 | app.py:465 | Received: evaluate message 7b4db221-8b26-4f39-823a-bd02dbbf5b14
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,686 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,686 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,686 | app.py:465 | Received: evaluate message 8347ec59-6d8c-40e4-ae73-771cb7dd21e9
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,687 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,690 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,691 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:10,691 | app.py:465 | Received: evaluate message 3b53a8e7-c2f4-42dd-a4ff-ac544a7a5fd1
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,619 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,772 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,788 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,788 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,788 | app.py:465 | Received: train message 141d2403-59d6-40c4-9945-fbc9ba0ee4bd
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,801 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,801 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,801 | app.py:465 | Received: train message 6620bf21-c3e6-4141-82d9-59653cd2fa16
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,806 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,806 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:12,806 | app.py:465 | Received: train message 4ffcf913-4e81-4d82-8aa1-cf12d6e3ea15
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,978 | client.py:232 | Node 1 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,979 | client.py:309 | There is a delay of 0.524 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,980 | client.py:232 | Node 2 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,981 | client.py:309 | There is a delay of 0.7 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,983 | client.py:232 | Node 2 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,983 | client.py:309 | There is a delay of 0.41300000000000003 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,987 | client.py:232 | Node 1 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,988 | client.py:309 | There is a delay of 0.734 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,989 | client.py:232 | Node 1 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,990 | client.py:309 | There is a delay of 0.643 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,993 | client.py:232 | Node 2 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,994 | client.py:309 | There is a delay of 0.8310000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:25,995 | client.py:232 | Node 2 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,017 | client.py:309 | There is a delay of 21.520999999999997 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,039 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,044 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,044 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,058 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,058 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,058 | app.py:465 | Received: evaluate message 2aebc8ac-3ee7-4b4d-9f3f-c98065a9f765
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,060 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,065 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,066 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,066 | app.py:465 | Received: evaluate message bff7efb8-cc5a-405c-b126-89a0659ce7a7
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,077 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,077 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:26,077 | app.py:465 | Received: evaluate message 1f5b42cd-413e-4686-b5b7-69032190071b
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,027 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,100 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,112 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,112 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,112 | app.py:465 | Received: train message 440e343c-d883-4196-a661-1e3912c7d103
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,121 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,122 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,122 | app.py:465 | Received: train message a52b9742-5fed-45bc-8bc6-4c960125d529
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,132 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,132 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:28,133 | app.py:465 | Received: train message 01d77001-303b-4022-883a-9740b0eed69a
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,328 | client.py:232 | Node 2 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,329 | client.py:309 | There is a delay of 0.5770000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,474 | client.py:232 | Node 1 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,475 | client.py:309 | There is a delay of 0.7919999999999999 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,477 | client.py:232 | Node 1 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,478 | client.py:309 | There is a delay of 0.7789999999999999 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,481 | client.py:232 | Node 2 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,482 | client.py:309 | There is a delay of 0.574 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,483 | client.py:232 | Node 2 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,505 | client.py:309 | There is a delay of 21.125 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,509 | client.py:232 | Node 1 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,510 | client.py:309 | There is a delay of 0.472 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,512 | client.py:232 | Node 1 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,533 | client.py:309 | There is a delay of 20.697 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,555 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,556 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,563 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,575 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,575 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,575 | app.py:465 | Received: evaluate message b09516d4-a77b-44ce-b8e8-b473b86cd137
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,589 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,590 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,590 | app.py:465 | Received: evaluate message d710ccde-a7a0-47d4-a086-b3d46b918522
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,595 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,596 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,596 | app.py:465 | Received: evaluate message 4fdc6462-91ab-40e1-809e-877c502b416c
+Federated_Learning | INFO flwr 2024-04-29 02:11:39,598 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,669 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,700 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,719 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,719 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,719 | app.py:465 | Received: train message a95fbfe4-e78f-4c21-8453-a1cc1115e410
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,722 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,722 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,723 | app.py:465 | Received: train message 2775ae1d-10fd-4d1e-a02f-1f9d42c93086
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,730 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,730 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:41,730 | app.py:465 | Received: train message 37977251-effc-4877-8ca2-835077ace883
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,304 | client.py:232 | Node 2 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,306 | client.py:309 | There is a delay of 1.231 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,308 | client.py:232 | Node 1 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,309 | client.py:309 | There is a delay of 0.5670000000000001 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,310 | client.py:232 | Node 1 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,311 | client.py:309 | There is a delay of 0.545 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,315 | client.py:232 | Node 2 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,316 | client.py:309 | There is a delay of 0.569 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,317 | client.py:232 | Node 2 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,338 | client.py:309 | There is a delay of 20.638 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,342 | client.py:232 | Node 1 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,343 | client.py:309 | There is a delay of 0.484 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,345 | client.py:232 | Node 1 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,367 | client.py:309 | There is a delay of 21.511 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,390 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,391 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,397 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,413 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,413 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,413 | app.py:465 | Received: evaluate message 047e7ec1-6e77-4a76-86ff-90715c4eaf56
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,420 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,420 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,421 | app.py:465 | Received: evaluate message 68e60acd-1261-403f-8d34-b8c4122fbb31
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,433 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,433 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,435 | app.py:465 | Received: evaluate message 185cdbfd-bf85-4a37-befe-4f9c81798b8f
+Federated_Learning | INFO flwr 2024-04-29 02:11:55,440 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,542 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,570 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,589 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,590 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,590 | app.py:465 | Received: train message 9c4189a1-a649-4484-8e33-c028c882c50b
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,593 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,593 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,593 | app.py:465 | Received: train message 922bfb6e-2ea8-479c-9f07-510c35c5af80
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,604 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,604 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:11:57,604 | app.py:465 | Received: train message 925a4b6d-ab29-487e-b979-fdcbf073dc59
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,813 | client.py:232 | Node 1 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,814 | client.py:309 | There is a delay of 0.62 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,815 | client.py:232 | Node 2 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,816 | client.py:309 | There is a delay of 0.5630000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,817 | client.py:232 | Node 2 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,818 | client.py:309 | There is a delay of 0.535 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,823 | client.py:232 | Node 1 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,824 | client.py:309 | There is a delay of 0.532 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,825 | client.py:232 | Node 1 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,845 | client.py:309 | There is a delay of 19.497 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,849 | client.py:232 | Node 2 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,850 | client.py:309 | There is a delay of 0.521 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,852 | client.py:232 | Node 2 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,876 | client.py:309 | There is a delay of 24.139 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,899 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,902 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,907 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,925 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,925 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,925 | app.py:465 | Received: evaluate message 2e55ba7d-eca2-4a6e-9757-8a4069a44aa9
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,940 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,941 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,941 | app.py:465 | Received: evaluate message c8de246d-452f-4bed-aa99-80b969757d6f
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,944 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,944 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,944 | app.py:465 | Received: evaluate message 1dd8b152-6f68-4f63-b2b0-10eec72c0362
+Federated_Learning | INFO flwr 2024-04-29 02:12:09,946 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:11,992 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,005 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,021 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,022 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,022 | app.py:465 | Received: train message acc8e51a-d35e-402b-b139-4222c962e18a
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,035 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,035 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,036 | app.py:465 | Received: train message bc39bae0-d0c8-4685-9361-264cb6fd25e2
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,040 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,040 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:12,040 | app.py:465 | Received: train message ae9952d1-236d-412f-856d-e325b7054123
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,405 | client.py:232 | Node 2 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,407 | client.py:309 | There is a delay of 0.9840000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,666 | client.py:232 | Node 1 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,667 | client.py:309 | There is a delay of 0.481 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,668 | client.py:232 | Node 1 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,669 | client.py:309 | There is a delay of 0.49 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,673 | client.py:232 | Node 2 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,674 | client.py:309 | There is a delay of 0.934 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,675 | client.py:232 | Node 2 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,676 | client.py:309 | There is a delay of 0.678 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,680 | client.py:232 | Node 1 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,681 | client.py:309 | There is a delay of 0.6 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,682 | client.py:232 | Node 1 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,705 | client.py:309 | There is a delay of 22.221999999999998 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,731 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,733 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,734 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,751 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,751 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,752 | app.py:465 | Received: evaluate message 1939e693-0a45-40d9-8729-56286c63b022
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,763 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,764 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,764 | app.py:465 | Received: evaluate message efe97ea7-6918-419b-a53b-770ee0acc4c6
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,769 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,774 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,775 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:24,775 | app.py:465 | Received: evaluate message ed602ac8-81a9-496c-b026-e1283ad4f155
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,886 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,930 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,954 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,954 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,954 | app.py:465 | Received: train message 159eb7e1-21fb-48ae-873c-c045c80d3d3a
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,956 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,956 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,956 | app.py:465 | Received: train message c29f7800-b3a2-403f-9e95-02ef128e02eb
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,959 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,959 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:26,959 | app.py:465 | Received: train message 48f2cdd1-4ded-4889-90b5-808e87698e0c
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,984 | client.py:232 | Node 2 is transmitter for slot 0
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,985 | client.py:309 | There is a delay of 0.5630000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,986 | client.py:232 | Node 1 is transmitter for slot 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,988 | client.py:309 | There is a delay of 0.892 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,989 | client.py:232 | Node 1 is transmitter for slot 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,990 | client.py:309 | There is a delay of 0.851 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,993 | client.py:232 | Node 2 is transmitter for slot 3
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,995 | client.py:309 | There is a delay of 0.605 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:38,996 | client.py:232 | Node 2 is transmitter for slot 4
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,020 | client.py:309 | There is a delay of 23.23 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,025 | client.py:232 | Node 1 is transmitter for slot 5
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,026 | client.py:309 | There is a delay of 0.507 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,028 | client.py:232 | Node 1 is transmitter for slot 6
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,048 | client.py:309 | There is a delay of 20.206 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,077 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,077 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,084 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,098 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,098 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,098 | app.py:465 | Received: evaluate message 3aa4ba32-c15f-4800-88fa-987e22ce193b
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,105 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,105 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,106 | app.py:465 | Received: evaluate message 16477979-c38e-449d-866a-208fe0d8e62b
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,108 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,115 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,115 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:39,115 | app.py:465 | Received: evaluate message b934c2ac-3454-4c3b-bb80-40a90d134fb9
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,267 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,334 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,343 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,343 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,343 | app.py:465 | Received: reconnect message d6d3c7f0-d8fd-423b-803d-0c961b243e20
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,343 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,343 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,343 | app.py:465 | Received: reconnect message 51654352-f9fa-4728-8f2a-e1af30ced80d
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,344 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,344 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,344 | app.py:465 | Received: reconnect message 5210e927-4f64-44c0-a710-366a6ac479c3
+Federated_Learning | DEBUG flwr 2024-04-29 02:12:41,358 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:12:41,358 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:12:41,359 | connection.py:231 | gRPC channel closed
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,359 | app.py:541 | Disconnect and shut down
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,359 | app.py:541 | Disconnect and shut down
+Federated_Learning | INFO flwr 2024-04-29 02:12:41,359 | app.py:541 | Disconnect and shut down
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:08,126 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:08,128 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:08,131 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:16,677 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:16,678 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:16,680 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:22,464 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:22,465 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:17:22,466 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:25,304 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:25,306 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:25,309 | connection.py:55 | ChannelConnectivity.CONNECTING
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:25,311 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:31,087 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:31,091 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:31,092 | connection.py:55 | ChannelConnectivity.CONNECTING
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:31,093 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:41,406 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:41,408 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:41,410 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:48,167 | grpc.py:52 | Opened insecure gRPC connection (no certificates were passed)
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:48,169 | connection.py:55 | ChannelConnectivity.IDLE
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:48,171 | connection.py:55 | ChannelConnectivity.CONNECTING
+Federated_Learning | DEBUG flwr 2024-04-29 02:18:48,171 | connection.py:55 | ChannelConnectivity.READY
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,173 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,173 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,173 | app.py:465 | Received: get_parameters message 91d9dd98-0441-4cae-9fae-424e4b3e9f95
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,174 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,184 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,184 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,185 | app.py:465 | Received: train message 0c3ea705-a7ba-403e-92dd-80ea7d62ed27
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,186 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,187 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,187 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,188 | app.py:465 | Received: train message a6fcf42b-8288-4089-b3ef-04293aa1820b
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,188 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,188 | app.py:465 | Received: train message efbefe10-5b28-49a3-9f67-857db9597c12
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,215 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,216 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,216 | app.py:465 | Received: train message ecc27b9c-a4a4-4782-aacc-5d73fc668980
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,245 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,245 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,245 | app.py:465 | Received: train message a960813c-b429-4e00-9c15-3723809a1713
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,264 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,264 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,264 | app.py:465 | Received: train message f9eadb14-126e-46ad-b745-8522d86f80cf
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,282 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,285 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:18:48,285 | app.py:465 | Received: train message a299c0e1-3cee-4f5c-bf63-928f9116f7eb
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,739 | client.py:308 | There is a delay of 0.384 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,924 | client.py:308 | There is a delay of 0.19699999999999998 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,989 | client.py:308 | There is a delay of 0.252 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,990 | client.py:308 | There is a delay of 0.159 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,990 | client.py:308 | There is a delay of 0.17200000000000001 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,990 | client.py:308 | There is a delay of 0.252 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,991 | client.py:308 | There is a delay of 0.14100000000000001 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,991 | client.py:308 | There is a delay of 0.232 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,992 | client.py:308 | There is a delay of 0.378 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,993 | client.py:308 | There is a delay of 0.16 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,993 | client.py:308 | There is a delay of 0.118 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,993 | client.py:308 | There is a delay of 0.14200000000000002 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,994 | client.py:308 | There is a delay of 0.215 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,994 | client.py:308 | There is a delay of 0.259 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,994 | client.py:308 | There is a delay of 0.262 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,996 | client.py:308 | There is a delay of 0.088 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,996 | client.py:308 | There is a delay of 0.212 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,996 | client.py:308 | There is a delay of 0.22599999999999998 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,997 | client.py:308 | There is a delay of 0.191 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,997 | client.py:308 | There is a delay of 0.206 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,997 | client.py:308 | There is a delay of 0.347 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,999 | client.py:308 | There is a delay of 0.189 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,999 | client.py:308 | There is a delay of 0.24600000000000002 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:08,999 | client.py:308 | There is a delay of 0.064 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,000 | client.py:308 | There is a delay of 0.216 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,000 | client.py:308 | There is a delay of 0.314 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,000 | client.py:308 | There is a delay of 0.332 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,002 | client.py:308 | There is a delay of 0.19699999999999998 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,002 | client.py:308 | There is a delay of 0.256 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,002 | client.py:308 | There is a delay of 0.28800000000000003 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,003 | client.py:308 | There is a delay of 0.25999999999999995 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,003 | client.py:308 | There is a delay of 0.31 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,003 | client.py:308 | There is a delay of 0.434 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,004 | client.py:308 | There is a delay of 0.107 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,005 | client.py:308 | There is a delay of 0.24600000000000002 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,005 | client.py:308 | There is a delay of 0.185 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,006 | client.py:308 | There is a delay of 0.131 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,006 | client.py:308 | There is a delay of 0.27599999999999997 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,006 | client.py:308 | There is a delay of 0.374 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,008 | client.py:308 | There is a delay of 0.243 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,008 | client.py:308 | There is a delay of 0.361 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,009 | client.py:308 | There is a delay of 0.202 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,009 | client.py:308 | There is a delay of 0.182 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,010 | client.py:308 | There is a delay of 0.26899999999999996 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,010 | client.py:308 | There is a delay of 0.24000000000000002 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,011 | client.py:308 | There is a delay of 0.217 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,011 | client.py:308 | There is a delay of 0.224 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,011 | client.py:308 | There is a delay of 0.199 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,012 | client.py:308 | There is a delay of 0.27599999999999997 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,012 | client.py:308 | There is a delay of 0.244 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,012 | client.py:308 | There is a delay of 0.4 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,013 | client.py:308 | There is a delay of 0.12000000000000001 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,013 | client.py:308 | There is a delay of 0.178 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,013 | client.py:308 | There is a delay of 0.12999999999999998 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,014 | client.py:308 | There is a delay of 0.214 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,014 | client.py:308 | There is a delay of 0.214 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,014 | client.py:308 | There is a delay of 0.23399999999999999 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,015 | client.py:308 | There is a delay of 0.146 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,015 | client.py:308 | There is a delay of 0.14400000000000002 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,015 | client.py:308 | There is a delay of 0.127 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,016 | client.py:308 | There is a delay of 0.229 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,016 | client.py:308 | There is a delay of 0.268 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,017 | client.py:308 | There is a delay of 0.714 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,018 | client.py:308 | There is a delay of 0.203 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,018 | client.py:308 | There is a delay of 0.18100000000000002 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,018 | client.py:308 | There is a delay of 0.217 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,019 | client.py:308 | There is a delay of 0.235 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,019 | client.py:308 | There is a delay of 0.314 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,019 | client.py:308 | There is a delay of 0.352 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,020 | client.py:308 | There is a delay of 0.22599999999999998 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,021 | client.py:308 | There is a delay of 0.22 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,021 | client.py:308 | There is a delay of 0.16799999999999998 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,022 | client.py:308 | There is a delay of 0.279 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,022 | client.py:308 | There is a delay of 0.231 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,022 | client.py:308 | There is a delay of 0.261 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,024 | client.py:308 | There is a delay of 0.229 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,025 | client.py:308 | There is a delay of 0.21800000000000003 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,025 | client.py:308 | There is a delay of 0.255 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,026 | client.py:308 | There is a delay of 0.13799999999999998 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,026 | client.py:308 | There is a delay of 0.214 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,026 | client.py:308 | There is a delay of 0.355 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,027 | client.py:308 | There is a delay of 0.191 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,027 | client.py:308 | There is a delay of 0.213 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,027 | client.py:308 | There is a delay of 0.214 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,028 | client.py:308 | There is a delay of 0.17300000000000001 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,028 | client.py:308 | There is a delay of 0.248 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,028 | client.py:308 | There is a delay of 0.312 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,030 | client.py:308 | There is a delay of 0.232 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,030 | client.py:308 | There is a delay of 0.159 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,030 | client.py:308 | There is a delay of 0.178 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,031 | client.py:308 | There is a delay of 0.224 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,031 | client.py:308 | There is a delay of 0.27599999999999997 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,031 | client.py:308 | There is a delay of 0.237 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,032 | client.py:308 | There is a delay of 0.203 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,032 | client.py:308 | There is a delay of 0.221 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,032 | client.py:308 | There is a delay of 0.199 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,033 | client.py:308 | There is a delay of 0.16899999999999998 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,033 | client.py:308 | There is a delay of 0.305 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,034 | client.py:308 | There is a delay of 0.40099999999999997 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,035 | client.py:308 | There is a delay of 0.216 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,035 | client.py:308 | There is a delay of 0.152 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,035 | client.py:308 | There is a delay of 0.215 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,036 | client.py:308 | There is a delay of 0.207 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,036 | client.py:308 | There is a delay of 0.337 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,036 | client.py:308 | There is a delay of 0.28600000000000003 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,038 | client.py:308 | There is a delay of 0.255 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,038 | client.py:308 | There is a delay of 0.27799999999999997 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,038 | client.py:308 | There is a delay of 0.248 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,039 | client.py:308 | There is a delay of 0.205 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,040 | client.py:308 | There is a delay of 0.277 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,040 | client.py:308 | There is a delay of 0.458 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,041 | client.py:308 | There is a delay of 0.265 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,041 | client.py:308 | There is a delay of 0.153 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,041 | client.py:308 | There is a delay of 0.19699999999999998 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,042 | client.py:308 | There is a delay of 0.281 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,042 | client.py:308 | There is a delay of 0.266 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,042 | client.py:308 | There is a delay of 0.303 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,043 | client.py:308 | There is a delay of 0.272 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,043 | client.py:308 | There is a delay of 0.161 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,055 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,056 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,058 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,058 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,058 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,059 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,060 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,070 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,070 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,070 | app.py:465 | Received: evaluate message c35c07c3-b691-41bc-b7bb-8ecd2853bce6
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,075 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,075 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,075 | app.py:465 | Received: evaluate message 663e405e-bef3-409c-8827-5eca8fea8569
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,076 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,076 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,077 | app.py:465 | Received: evaluate message b5a10ab5-89e7-4ca6-a154-2438811ba157
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,077 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,079 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,080 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,080 | app.py:465 | Received: evaluate message ff230e2f-b0f0-48a2-8d36-8c5efb5d9a44
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,091 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,091 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,091 | app.py:465 | Received: evaluate message 32f1f9a3-e743-4699-8db2-52a44c6f894c
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,107 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,107 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,108 | app.py:465 | Received: evaluate message 80f7d85a-f0fc-4b22-9719-793c84b29d65
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,124 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,125 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:09,125 | app.py:465 | Received: evaluate message 3a9f78d7-75d5-4681-b47e-7cd13a48c91b
+Federated_Learning | INFO flwr 2024-04-29 02:25:39,432 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,214 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,228 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,359 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,381 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,396 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,405 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,405 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,406 | app.py:465 | Received: train message 909fd25f-808d-40ae-8e3c-f22e166a516f
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,407 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,407 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,407 | app.py:465 | Received: train message ecb06cc5-0de7-4ed8-bbdb-dff63151b758
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,416 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,416 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,416 | app.py:465 | Received: train message 37bab088-439e-4fd0-b86c-0418f2a3c3bd
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,418 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,418 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,418 | app.py:465 | Received: train message 40d8f032-67f5-49a2-8b08-8e4bb333a10e
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,428 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,428 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,428 | app.py:465 | Received: train message 04ca0b24-a4f8-40d9-a25c-6c890baac846
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,428 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,429 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,429 | app.py:465 | Received: train message fac43df7-3717-42db-a545-90fdd8678e39
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,429 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,429 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:25:40,429 | app.py:465 | Received: train message 60d1c365-231d-4538-a4fa-081008f029ef
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,203 | client.py:308 | There is a delay of 12.404 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,255 | client.py:308 | There is a delay of 0.23800000000000002 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,270 | client.py:308 | There is a delay of 0.063 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,272 | client.py:308 | There is a delay of 0.124 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,272 | client.py:308 | There is a delay of 0.365 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,272 | client.py:308 | There is a delay of 0.32 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,274 | client.py:308 | There is a delay of 0.3 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,274 | client.py:308 | There is a delay of 0.742 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,274 | client.py:308 | There is a delay of 0.495 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,276 | client.py:308 | There is a delay of 0.225 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,276 | client.py:308 | There is a delay of 0.221 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,276 | client.py:308 | There is a delay of 0.211 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,278 | client.py:308 | There is a delay of 0.428 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,278 | client.py:308 | There is a delay of 0.467 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,278 | client.py:308 | There is a delay of 0.371 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,279 | client.py:308 | There is a delay of 0.132 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,279 | client.py:308 | There is a delay of 0.202 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,279 | client.py:308 | There is a delay of 0.315 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,281 | client.py:308 | There is a delay of 0.27799999999999997 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,281 | client.py:308 | There is a delay of 0.313 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,281 | client.py:308 | There is a delay of 0.33399999999999996 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,282 | client.py:308 | There is a delay of 0.153 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,282 | client.py:308 | There is a delay of 0.201 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,282 | client.py:308 | There is a delay of 0.25 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,284 | client.py:308 | There is a delay of 0.25 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,284 | client.py:308 | There is a delay of 0.314 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,284 | client.py:308 | There is a delay of 0.314 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,285 | client.py:308 | There is a delay of 0.19699999999999998 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,285 | client.py:308 | There is a delay of 0.186 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,286 | client.py:308 | There is a delay of 0.195 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,287 | client.py:308 | There is a delay of 0.28600000000000003 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,287 | client.py:308 | There is a delay of 0.314 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,287 | client.py:308 | There is a delay of 0.397 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,288 | client.py:308 | There is a delay of 0.17200000000000001 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,288 | client.py:308 | There is a delay of 0.212 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,288 | client.py:308 | There is a delay of 0.231 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,289 | client.py:308 | There is a delay of 0.22 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,289 | client.py:308 | There is a delay of 0.304 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,289 | client.py:308 | There is a delay of 0.24600000000000002 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,290 | client.py:308 | There is a delay of 0.15 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,290 | client.py:308 | There is a delay of 0.148 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,290 | client.py:308 | There is a delay of 0.16699999999999998 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,291 | client.py:308 | There is a delay of 0.182 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,292 | client.py:308 | There is a delay of 0.328 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,292 | client.py:308 | There is a delay of 0.244 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,293 | client.py:308 | There is a delay of 0.258 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,293 | client.py:308 | There is a delay of 0.20900000000000002 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,293 | client.py:308 | There is a delay of 0.23299999999999998 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,294 | client.py:308 | There is a delay of 0.193 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,294 | client.py:308 | There is a delay of 0.337 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,294 | client.py:308 | There is a delay of 0.27099999999999996 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,295 | client.py:308 | There is a delay of 0.241 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,295 | client.py:308 | There is a delay of 0.18000000000000002 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,295 | client.py:308 | There is a delay of 0.186 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,296 | client.py:308 | There is a delay of 0.195 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,296 | client.py:308 | There is a delay of 0.23900000000000002 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,297 | client.py:308 | There is a delay of 0.622 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,298 | client.py:308 | There is a delay of 0.122 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,298 | client.py:308 | There is a delay of 0.18000000000000002 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,298 | client.py:308 | There is a delay of 0.193 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,299 | client.py:308 | There is a delay of 0.166 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,299 | client.py:308 | There is a delay of 0.201 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,299 | client.py:308 | There is a delay of 0.42000000000000004 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,300 | client.py:308 | There is a delay of 0.187 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,300 | client.py:308 | There is a delay of 0.22699999999999998 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,300 | client.py:308 | There is a delay of 0.258 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,301 | client.py:308 | There is a delay of 0.13799999999999998 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,301 | client.py:308 | There is a delay of 0.25 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,301 | client.py:308 | There is a delay of 0.256 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,302 | client.py:308 | There is a delay of 0.131 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,302 | client.py:308 | There is a delay of 0.103 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,302 | client.py:308 | There is a delay of 0.18100000000000002 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,303 | client.py:308 | There is a delay of 0.10500000000000001 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,303 | client.py:308 | There is a delay of 0.266 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,303 | client.py:308 | There is a delay of 0.22599999999999998 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,304 | client.py:308 | There is a delay of 0.133 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,304 | client.py:308 | There is a delay of 0.176 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,305 | client.py:308 | There is a delay of 0.134 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,305 | client.py:308 | There is a delay of 0.205 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,305 | client.py:308 | There is a delay of 0.24600000000000002 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,305 | client.py:308 | There is a delay of 0.29500000000000004 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,307 | client.py:308 | There is a delay of 0.134 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,307 | client.py:308 | There is a delay of 0.163 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,307 | client.py:308 | There is a delay of 0.145 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,308 | client.py:308 | There is a delay of 0.158 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,308 | client.py:308 | There is a delay of 0.241 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,308 | client.py:308 | There is a delay of 0.30200000000000005 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,309 | client.py:308 | There is a delay of 0.147 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,309 | client.py:308 | There is a delay of 0.13899999999999998 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,309 | client.py:308 | There is a delay of 0.16699999999999998 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,310 | client.py:308 | There is a delay of 0.244 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,310 | client.py:308 | There is a delay of 0.22599999999999998 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,310 | client.py:308 | There is a delay of 0.225 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,311 | client.py:308 | There is a delay of 0.19 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,311 | client.py:308 | There is a delay of 0.128 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,312 | client.py:308 | There is a delay of 0.794 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,313 | client.py:308 | There is a delay of 0.266 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,313 | client.py:308 | There is a delay of 0.182 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,313 | client.py:308 | There is a delay of 0.22 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,314 | client.py:308 | There is a delay of 0.149 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,314 | client.py:308 | There is a delay of 0.162 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,314 | client.py:308 | There is a delay of 0.254 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,314 | client.py:308 | There is a delay of 0.27399999999999997 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,315 | client.py:308 | There is a delay of 0.307 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,315 | client.py:308 | There is a delay of 0.252 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,316 | client.py:308 | There is a delay of 0.12999999999999998 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,316 | client.py:308 | There is a delay of 0.107 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,316 | client.py:308 | There is a delay of 0.183 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,316 | client.py:308 | There is a delay of 0.192 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,316 | client.py:308 | There is a delay of 0.2 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,317 | client.py:308 | There is a delay of 0.16799999999999998 ms between this node and node 2
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,317 | client.py:308 | There is a delay of 0.11699999999999999 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,317 | client.py:308 | There is a delay of 0.164 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,317 | client.py:308 | There is a delay of 0.12999999999999998 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,318 | client.py:308 | There is a delay of 0.199 ms between this node and node 6
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,318 | client.py:308 | There is a delay of 0.20900000000000002 ms between this node and node 4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,319 | client.py:308 | There is a delay of 0.967 ms between this node and node 3
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,320 | client.py:308 | There is a delay of 0.16899999999999998 ms between this node and node 5
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,320 | client.py:308 | There is a delay of 0.176 ms between this node and node 1
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,328 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,331 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,333 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,333 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,332 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,333 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,334 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,342 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,342 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,342 | app.py:465 | Received: evaluate message 759df082-cf57-4ae0-be19-cff4343f71b4
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,344 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,344 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,344 | app.py:465 | Received: evaluate message 930cd37e-6035-43f1-b7a1-b954b44a7743
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,346 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,346 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,347 | app.py:465 | Received: evaluate message 0381d2b8-34fd-4fef-9458-cd64343bc6f0
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,394 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,394 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,394 | app.py:465 | Received: evaluate message ab5a3b2d-c2cb-413a-a4b1-f22670f23c49
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,396 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,396 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,396 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,396 | app.py:465 | Received: evaluate message 04f1c1c5-4d90-476f-879c-fd00cda3d7ee
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,403 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,403 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,403 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,403 | app.py:465 | Received: evaluate message 27048877-1fdc-4a33-aa91-be17f1d34cbd
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,403 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:10,403 | app.py:465 | Received: evaluate message f9f2fa99-de4b-459f-8e86-063b68b58b22
+Federated_Learning | INFO flwr 2024-04-29 02:32:41,378 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:41,951 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,116 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,173 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,183 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,188 | app.py:534 | Sent reply
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,198 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,198 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,198 | app.py:465 | Received: train message b9b604bf-ddee-4c76-8120-38d2af6e18c8
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,201 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,201 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,202 | app.py:465 | Received: train message 15b54756-3fdd-4a0e-a87c-589d21fe4096
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,203 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,203 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,203 | app.py:465 | Received: train message 6d1a60c1-f59f-42ac-8498-775d798324f5
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,219 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,219 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,219 | app.py:465 | Received: train message 4fd92827-64ed-42c4-8612-6f3c17736bc8
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,233 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,233 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,233 | app.py:465 | Received: train message add38b75-7469-4d11-8845-3e8f8f6be945
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,244 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,244 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,244 | app.py:465 | Received: train message c410d666-1b28-4c79-a16c-d7a6eb10305c
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,259 | app.py:458 | 
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,259 | app.py:459 | [RUN 0, ROUND ]
+Federated_Learning | INFO flwr 2024-04-29 02:32:42,259 | app.py:465 | Received: train message f582f2c0-27db-4ff6-8adc-a0aff2710b4a
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:25,359 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:27,086 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:27,201 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:27,995 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:28,785 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:29,546 | connection.py:231 | gRPC channel closed
+Federated_Learning | DEBUG flwr 2024-04-29 02:33:30,469 | connection.py:231 | gRPC channel closed

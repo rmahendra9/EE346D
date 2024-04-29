@@ -229,7 +229,6 @@ class FlowerClient(fl.client.NumPyClient):
             else:
                 #Talk in current slot id
                 if schedule[communication_idx]['tx'] == 1:
-                    log(INFO, f'Node {node_id} is transmitter for slot {slot_id}')
                     #Transmit chunk
                     chunk_id = schedule[communication_idx]['segment']
                     recv_node_id = schedule[communication_idx]['other_node']
@@ -356,6 +355,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="127.0.1.1:8080",
+    server_address="10.52.3.223:8080",
     client=FlowerClient(port).to_client(),
 )
