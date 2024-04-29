@@ -354,10 +354,10 @@ class FlowerClient(fl.client.NumPyClient):
                 #Increment communication id
                 communication_idx += 1
         #Set model parameters
-        model = restore_weights_from_flat(net, chunks)
+        net = restore_weights_from_flat(net, chunks)
         if node_id == 0:
             #Send to server
-            return model.get_parameters(), len_data, {}
+            return self.get_parameters(), len_data, {}
         else:
             #Send null to server
             return [], 0, {}
