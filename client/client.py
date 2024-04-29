@@ -168,7 +168,7 @@ class FlowerClient(fl.client.NumPyClient):
     def set_parameters(self, parameters):
         params_dict = zip(net.state_dict().keys(), parameters)
         state_dict = OrderedDict({k: torch.tensor(v).float() for k, v in params_dict})
-        net.load_state_dict(state_dict, strict=True)
+        net.load_state_dict(state_dict, strict=False)
 
     def fit(self, parameters, config):
         #Get server round
@@ -365,7 +365,7 @@ class FlowerClient(fl.client.NumPyClient):
     def evaluate(self, parameters, config):
         #Client nodes send loss and accuracy to server
         if node_id != 0:
-            net.set_parameters(parameters)
+            self.set_parameters(parameters)
             loss, accuracy = test(net, testloader)
             return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
         #"Server node" should not send anything, be ignored
