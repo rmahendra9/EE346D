@@ -129,12 +129,12 @@ def get_logs():
 
 @app.route('/schedule', methods=['GET'])
 def get_schedule():
-    schedule_list = []
+    schedule_list = {0:{}}
     try:
         schedule_list = pickle.load(open(SCHEDULE_FILE,'rb'))
         return schedule_list
     except FileNotFoundError:
-        schedule_list = {}
+        schedule_list = {0:{}}
     return schedule_list
 
 

@@ -125,22 +125,25 @@ function App() {
       }
       //just gonna place topo chunk data here
       
-      const schedule_response = await fetch('http://localhost:80/metrics');
+      const schedule_response = await fetch('http://localhost:80/schedule');
       const schedule_data = await schedule_response.json();
       if (schedule_data){
         //determine number of unique segments
         const segments = new Set();
-        const newAdjacencyLists = {};
+        const newAdjacencyLists = {0:{}};
         for (const key in schedule_data) {
           schedule_data[key].forEach((element) => segments.add(element.segment));
         }
         //now we have the segments
         segments.forEach((segment) => {
           adjacencyLists[segment] = {};
+          newAdjacencyLists[segment] = {}
           for (const key in schedule_data) {
-            const adjacentNodes = schedule_data[key]
-              .filter((element) => element.segment === segment && element.tx === 1)
-              .map((element) => element.other_node);
+            const currVals = schedule_data[key].filter((element) => element.segment === segment && element.tx === 0)
+            const adjacentNodes = []
+            for(const relevant_slot_entry in currVals){
+              adjacentNodes.push(currVals[relevant_slot_entry].other_node)
+            }
             newAdjacencyLists[segment][key] = adjacentNodes;
           }
         });
