@@ -5,8 +5,7 @@ import './App.css';
 import TopologyVisualization from './TopologyVisualization';
 
 function App() {
-  const [selectedStrategy, setSelectedStrategy] = useState('FedAvg');
-  const [selectedDataset, setSelectedDataset] = useState('CIFAR-10');
+  const [selectedIID, setSelectedIID] = useState('0');
   const [selectedModel, setSelectedModel] = useState('CNN');
   const [learningRate, setLearningRate] = useState(0);
   const [momentum, setMomentum] = useState(0);
@@ -173,12 +172,8 @@ function App() {
     return () => clearInterval(intervalId);
   }, []); 
 
-  const handleStrategyChange = (event) => {
-    setSelectedStrategy(event.target.value);
-  };
-
-  const handleDatasetChange = (event) => {
-    setSelectedDataset(event.target.value);
+  const handleIIDChange = (event) => {
+    setSelectedIID(event.target.value);
   };
 
   const handleModelChange = (event) => {
@@ -217,7 +212,7 @@ function App() {
     try {
       // Create a FormData object
       const formData = new FormData();
-      formData.append('strategy', selectedStrategy);
+      formData.append('iid', selectedIID); // Append the IID
       formData.append('model', selectedModel);
       formData.append('learningRate', learningRate);
       formData.append('momentum', momentum);
@@ -258,37 +253,23 @@ function App() {
       <div class="divider"></div>
 
       <div className='Inputs'>
-        <div class='strategy'>
-          <h3 className='subheader'>Strategy</h3>
-          <div class="select-wrapper">
-            <select value={selectedStrategy} onChange={handleStrategyChange}>
-              <option value="FedAvg">FedAvg</option>
-              <option value="FedProx">FedProx</option>
-              <option value="FedAdam">FedAdam</option>
-              <option value="Krum">Krum</option>
-              <option value="Bulyan">Bulyan</option>
-            </select>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
-          </div>
-        </div>
-
-
-        <div className='dataset'>
-          <h3 className='subheader'>Dataset</h3>
-          <div class="select-wrapper">
-            <select value={selectedDataset} onChange={handleDatasetChange}>
-              <option value="CIFAR-10">CIFAR-10</option>
-            </select>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
-          </div>
-        </div>
-
         <div className='model'>
           <h3 className='subheader'>Model</h3>
           <div class="select-wrapper">
             <select value={selectedModel} onChange={handleModelChange}>
               <option value="CNN">CNN</option>
               <option value="ResNet">ResNet</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
+          </div>
+        </div>
+
+        <div className='dataset'>
+          <h3 className='subheader'>IID: </h3>
+          <div class="select-wrapper">
+            <select value={selectedIID} onChange={handleIIDChange}>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
             </select>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z"/></svg>
           </div>
