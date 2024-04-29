@@ -17,6 +17,7 @@ import socket
 import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
+from models.CustomCNN import CustomCNN
 import datetime
 from utils.node_ip_mappings import generate_node_ip_mappings, get_node_info
 from logging import INFO 
@@ -141,7 +142,8 @@ client_id = node_id - 1
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
-    net = ResNet18().to(DEVICE)
+    #net = ResNet18().to(DEVICE)
+    net = CustomCNN().to(DEVICE)
 else:
     net = SimpleCNN().to(DEVICE)
 
