@@ -365,7 +365,7 @@ class FlowerClient(fl.client.NumPyClient):
     def evaluate(self, parameters, config):
         #Client nodes send loss and accuracy to server
         if node_id != 0:
-            self.set_parameters(parameters)
+            net.set_parameters(parameters)
             loss, accuracy = test(net, testloader)
             return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
         #"Server node" should not send anything, be ignored
