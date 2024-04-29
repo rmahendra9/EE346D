@@ -1,8 +1,6 @@
 import socket
 import argparse
 from scheduler import Optimal_Schedule
-from logging import INFO 
-from flwr.common.logger import log 
 
 parser = argparse.ArgumentParser(description="Synchronizer")
 parser.add_argument(
