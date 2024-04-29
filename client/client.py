@@ -31,7 +31,7 @@ import time
 
 warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
+DEVICE = torch.device('mps')
 
 def train(net, trainloader, epochs):
     """Train the model on the training set."""
@@ -161,14 +161,15 @@ class FlowerClient(fl.client.NumPyClient):
         log(INFO, f'Node {node_id} listening on port {port}')
         self.serversocket.listen(num_nodes)
         self.socket_open = False
+        self.net = net
 
     def get_parameters(self, config=None):
-        return [val.cpu().numpy() for _, val in net.state_dict().items()]
+        return [val.cpu().numpy() for _, val in self.net.state_dict().items()]
 
     def set_parameters(self, parameters):
-        params_dict = zip(net.state_dict().keys(), parameters)
+        params_dict = zip(self.net.state_dict().keys(), parameters)
         state_dict = OrderedDict({k: torch.tensor(v).float() for k, v in params_dict})
-        net.load_state_dict(state_dict, strict=False)
+        self.net.load_state_dict(state_dict, strict=False)
 
     def fit(self, parameters, config):
         #Get server round
@@ -187,7 +188,7 @@ class FlowerClient(fl.client.NumPyClient):
         self.set_parameters(parameters)
         #Train on params if not server
         if node_id != 0:
-            train(net, trainloader, epochs=1)
+            train(self.net, trainloader, epochs=1)
         #Generate chunks from parameters
         chunks = split_list(get_flattened_weights(self.get_parameters(config={})), num_chunks)
         #Length of the dataset for each chunk
@@ -354,7 +355,7 @@ class FlowerClient(fl.client.NumPyClient):
                 #Increment communication id
                 communication_idx += 1
         #Set model parameters
-        net = restore_weights_from_flat(net, chunks)
+        self.net = restore_weights_from_flat(self.net, chunks)
         if node_id == 0:
             #Send to server
             return self.get_parameters(), len_data, {}
@@ -366,7 +367,7 @@ class FlowerClient(fl.client.NumPyClient):
         #Client nodes send loss and accuracy to server
         if node_id != 0:
             self.set_parameters(parameters)
-            loss, accuracy = test(net, testloader)
+            loss, accuracy = test(self.net, testloader)
             return loss, len(testloader.dataset), {"accuracy": accuracy, "loss": loss}
         #"Server node" should not send anything, be ignored
         else:
