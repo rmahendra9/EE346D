@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torchsummary import summary
 
 class CustomCNN(nn.Module):
     def __init__(self, *args, **kwargs) -> None:
@@ -34,7 +33,3 @@ class CustomCNN(nn.Module):
     def get_parameters(self):
         return [val.cpu().numpy() for _, val in self.state_dict().items()]
     
-
-if __name__ == '__main__':
-    model = CustomCNN()
-    summary(model, (3, 32, 32))
