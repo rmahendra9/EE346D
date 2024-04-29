@@ -45,7 +45,7 @@ def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     # Aggregate and return custom metric (weighted average)
     metric = {"accuracy": sum(accuracies) / sum(examples), "loss": sum(losses) / sum(examples), "model": model}
     print(metric)
-    wandb.log(metric)
+    #wandb.log(metric)
     metricList.append(metric)
     
     # Save the updated metrics to the file
@@ -69,18 +69,29 @@ def start_experiment():
         file.save((os.path.join('../client/scheduler', file.filename)))
 
     # Access other form data from request.form (not request.json)
-    model = request.form.get('model')
-    num = int(request.form.get('num', 0))
+    strModel = request.form.get('model')
+    model = '0'
+    if strModel == "CNN":
+        model = '1'
 
-    subprocess.Popen(['python3', 'server.py'])
+    is_iid = request.form.get('iid')
 
-    if num == 0:
-        subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0', '--model', model])
-        subprocess.Popen(['python3', '../client/client.py', '--node-id', '0', '--has_parent', '0', '--model', model])
-    elif num == 1:
-        subprocess.Popen(['python3', '../client/dual_client.py', '--node-id', '0', '--num_clients', '1', '--port', '81'])
-        subprocess.Popen(['python3', '../client/client.py', '--node-id', '1', '--has_parent', '0', '--model', model])
-        subprocess.Popen(['python3', '../client/client.py', '--node-id', '2', '--parent_ip', '127.0.0.1', '--parent_port', '81'])
+    ipList = request.form.get('ipList')
+    ipList = ipList.split(',')
+    numNodes = len(ipList) + 1
+    clients = numNodes - 1
+
+    chunks = int(request.form.get('chunks'))
+    numRounds = 10
+
+    subprocess.Popen(['python3', 'server.py', '--num_rounds', str(numRounds), '--num_nodes', str(numNodes), '--num_chunks', str(chunks), '--num_replicas', '1'])
+    subprocess.Popen(['python3', 'synchronizer.py', '--num_rounds', str(numRounds), '--num_nodes', str(numNodes), '--num_chunks', str(chunks), '--num_replicas', '1'])
+
+    startId = 0
+    while numNodes > 0:
+        subprocess.Popen(['python3', '../client/client.py', '--node_id', str(startId), '--num_clients', str(clients), '--model_type', str(model), '--is_iid', str(is_iid)])
+        numNodes -= 1
+        startId += 1
 
     return jsonify({'message': 'Experiment started successfully'})
 
