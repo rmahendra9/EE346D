@@ -150,7 +150,7 @@ if node_id != 0:
 
 ip_mappings = generate_node_ip_mappings(num_nodes)
 ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '127.0.1.1'
+synchronizer_node_ip = '10.52.3.223'
 synchronizer_node_port = 6000
 
 # Define Flower client
@@ -375,6 +375,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="127.0.1.1:8080",
+    server_address="10.52.3.223:8080",
     client=FlowerClient(port).to_client(),
 )
