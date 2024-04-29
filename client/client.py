@@ -142,8 +142,8 @@ client_id = node_id - 1
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
-    #net = ResNet18().to(DEVICE)
-    net = CustomCNN().to(DEVICE)
+    net = ResNet18().to(DEVICE)
+    #net = CustomCNN().to(DEVICE)
 else:
     net = SimpleCNN().to(DEVICE)
 
