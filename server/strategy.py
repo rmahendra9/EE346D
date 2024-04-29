@@ -38,6 +38,7 @@ from flwr.server.client_manager import ClientManager
 from flwr.server.client_proxy import ClientProxy
 from flwr.server.strategy.aggregate import aggregate, aggregate_inplace, weighted_loss_avg
 from flwr.server.strategy.strategy import Strategy
+from datetime import datetime
 
 WARNING_MIN_AVAILABLE_CLIENTS_TOO_LOW = """
 Setting `min_available_clients` lower than `min_fit_clients` or
@@ -128,6 +129,8 @@ class CustomFed(Strategy):
         self.fit_metrics_aggregation_fn = fit_metrics_aggregation_fn
         self.evaluate_metrics_aggregation_fn = evaluate_metrics_aggregation_fn
         self.inplace = inplace
+        self.start_time = datetime.now()
+        self.end_time = datetime.now()
 
     def __repr__(self) -> str:
         """Compute a string representation of the strategy."""
@@ -170,6 +173,7 @@ class CustomFed(Strategy):
         self, server_round: int, parameters: Parameters, client_manager: ClientManager
     ) -> List[Tuple[ClientProxy, FitIns]]:
         """Configure the next round of training."""
+        self.start_time = datetime.now()
         config = {}
         if self.on_fit_config_fn is not None:
             # Custom fit config function provided
@@ -191,6 +195,7 @@ class CustomFed(Strategy):
         self, server_round: int, parameters: Parameters, client_manager: ClientManager
     ) -> List[Tuple[ClientProxy, EvaluateIns]]:
         """Configure the next round of evaluation."""
+        
         # Do not configure federated evaluation if fraction eval is 0.
         if self.fraction_evaluate == 0.0:
             return []
@@ -280,5 +285,9 @@ class CustomFed(Strategy):
             metrics_aggregated = self.evaluate_metrics_aggregation_fn(eval_metrics)
         elif server_round == 1:  # Only log this warning once
             log(WARNING, "No evaluate_metrics_aggregation_fn provided")
+        
+        self.end_time = datetime.now()
+        round_delay = self.end_time - self.start_time
+        log(INFO, f'There was a delay of {round_delay.total_seconds()} seconds for round {server_round}')
 
         return loss_aggregated, metrics_aggregated
