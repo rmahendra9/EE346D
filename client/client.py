@@ -45,7 +45,7 @@ def train(net, trainloader, epochs):
             optimizer.zero_grad()
             criterion(net(images.to(DEVICE)), labels.to(DEVICE)).backward()
             optimizer.step()
-
+    return net
 
 def test(net, testloader):
     """Validate the model on the test set."""
@@ -188,7 +188,7 @@ class FlowerClient(fl.client.NumPyClient):
         self.set_parameters(parameters)
         #Train on params if not server
         if node_id != 0:
-            train(self.net, trainloader, epochs=1)
+            self.net = train(self.net, trainloader, epochs=1)
         #Generate chunks from parameters
         chunks = split_list(get_flattened_weights(self.get_parameters(config={})), num_chunks)
         #Length of the dataset for each chunk
