@@ -31,10 +31,10 @@ import time
 
 warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-DEVICE = torch.device('mps')
+
 
 def train(net, trainloader, epochs):
-    """Train the model on the training set."""
+    """Train the model on the training set."""x
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
     net = net.float()
