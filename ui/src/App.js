@@ -10,6 +10,7 @@ function App() {
   const [selectedModel, setSelectedModel] = useState('CNN');
   const [learningRate, setLearningRate] = useState(0);
   const [momentum, setMomentum] = useState(0);
+  const [chunks, setChunks] = useState(1);
   const [file, setFile] = useState(null);
   const [ipList, setIpList] = useState('');
   const [newAccuracyData, setAccuracyData] = useState({
@@ -208,10 +209,13 @@ function App() {
     setIpList(event.target.value);
   }
 
+  const handleChunksChange = (event) => {
+    setChunks(event.target.value);
+  };
+
   const handleStartExperiment = async () => {
     try {
       // Create a FormData object
-      console.log(ipList);
       const formData = new FormData();
       formData.append('strategy', selectedStrategy);
       formData.append('model', selectedModel);
@@ -220,6 +224,7 @@ function App() {
       formData.append('num', 0);
       formData.append('file', file); // Append the file object
       formData.append('ipList', ipList); // Append the IP list
+      formData.append('chunks', chunks); // Append the number of chunks
   
       // Make the POST request with FormData
       const response = await fetch('http://localhost:80/start-experiment', {
@@ -311,6 +316,10 @@ function App() {
         <div class="input-group1">
             <label for="ip-input">IP List:</label>
             <input type="text" id="ip-input" placeholder="Separate with commas" onChange={handleIpChange}></input>
+        </div>
+        <div class="input-group1">
+            <label for="chunk-input">Number of Chunks:</label>
+            <input type="text" id="chunk-input" placeholder="Enter number" onChange={handleChunksChange}></input>
         </div>
         <div class="input-group2">
             <label for="file-input">Scheduler Code:</label>

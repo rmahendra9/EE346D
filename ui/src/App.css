@@ -162,7 +162,7 @@ body {
   align-items: flex-start;
 }
 
-#ip-input, #file-input {
+#chunk-input, ip-input, #file-input {
   width: 100%; /* Makes the input take the full width of its container */
   margin-top: 5px; /* Space between label and input */
 }
