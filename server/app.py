@@ -115,7 +115,7 @@ def get_logs():
     return jsonify(log_list)
 
 @app.route('/schedule', methods=['GET'])
-def get_logs():
+def get_schedule():
     schedule_list = []
     try:
         with open("schedule.txt", "r") as file:
