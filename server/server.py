@@ -13,8 +13,6 @@ from strategy import CustomFed
 from scheduler import Optimal_Schedule
 import pickle
 
-#TODO - strategy stuff - diff strats, etc
-
 parser = argparse.ArgumentParser(description="Flower")
 parser.add_argument(
     "--num_rounds",
@@ -52,8 +50,6 @@ wandb.init(
     name  = 'FLNET'
 )
 
-
-#TODO - Do we need this for fit also? Also do we only want weighted average ?
 def weighted_average(metrics: List[Tuple[int, Metrics]]) -> Metrics:
     # Multiply accuracy of each client by the number of examples used
     accuracies = [num_examples * m["accuracy"] for num_examples, m in metrics]

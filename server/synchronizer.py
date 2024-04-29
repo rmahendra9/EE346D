@@ -38,7 +38,6 @@ num_segments = num_chunks*num_replicas
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket.bind((socket.gethostbyname(socket.gethostname()), 6000))
-log(INFO, f'Synchronizer listening on port 6000')
 serversocket.listen(num_nodes)
 
 
@@ -48,9 +47,7 @@ for i in range(num_rounds):
     for i in range(len(scheduler.nodes_schedule)):
         for communication in scheduler.nodes_schedule[i]:
             total_slots = max(total_slots, communication['slot'])
-    log(INFO, f'Found total number slots of {total_slots} for this round')
     for i in range(total_slots):
-        log(INFO, f'Currently working on slot {i}')
         connections = []
         for j in range(num_nodes):
             (conn, addr) = serversocket.accept()
@@ -59,6 +56,5 @@ for i in range(num_rounds):
         for j in range(len(connections)):
             connections[j].send(str(i+1).encode())
             connections[j].close()
-        log(INFO, f'Slot {i} is done')
 
 serversocket.close()

@@ -32,7 +32,6 @@ import time
 warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-
 def train(net, trainloader, epochs):
     """Train the model on the training set."""
     criterion = torch.nn.CrossEntropyLoss()
@@ -150,15 +149,16 @@ if node_id != 0:
 
 ip_mappings = generate_node_ip_mappings(num_nodes)
 ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '10.52.3.223'
+synchronizer_node_ip = '127.0.1.1'
 synchronizer_node_port = 6000
+
+fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
     def __init__(self, port):
         self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.serversocket.bind((socket.gethostbyname(socket.gethostname()), port))
-        log(INFO, f'Node {node_id} listening on port {port}')
         self.serversocket.listen(num_nodes)
         self.socket_open = False
     
@@ -184,8 +184,6 @@ class FlowerClient(fl.client.NumPyClient):
         total_slots = pickle.loads(config['total_slots'])
         #Sort communications by slot id
         schedule = sorted(schedule, key=lambda communication: communication['slot'])
-        #Print schedule for the round
-        log(INFO, f'Node {node_id} schedule for round {current_round}: {schedule}')
         #Set parameters
         self.set_parameters(parameters)
         #Train on params if not server
@@ -211,7 +209,6 @@ class FlowerClient(fl.client.NumPyClient):
         while slot_id < total_slots:
             if slot_id > max_slot or slot_id != schedule[communication_idx]['slot']:
                 #Not current slot id, send ack to synchronizer and wait for next slot id
-                log(INFO, f'Node {node_id} is not communicating in slot {slot_id}')
                 try:
                     #Close socket
                     if self.socket_open:
@@ -221,13 +218,10 @@ class FlowerClient(fl.client.NumPyClient):
                     self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                     self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                     self.socket_open = True
-                    log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
                     self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
-                    log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
                     #Send node id
                     self.socket.send(str(node_id).encode())
                     slot_id = int(self.socket.recv(1024).decode())
-                    log(INFO, f'Received slot {slot_id} from synchronizer node')
                     self.socket.close()
                     self.socket_open = False
                 except Exception as e:
@@ -240,8 +234,6 @@ class FlowerClient(fl.client.NumPyClient):
                     chunk_id = schedule[communication_idx]['segment']
                     recv_node_id = schedule[communication_idx]['other_node']
                     recv_node_ip, recv_node_port = get_node_info(recv_node_id, ip_mappings)
-                    log(INFO, f'Node {node_id} will send chunk {chunk_id} to node {recv_node_id}')
-
                     #Just to be safe, close the socket
                     if self.socket_open:
                         self.socket.close()
@@ -254,14 +246,10 @@ class FlowerClient(fl.client.NumPyClient):
                     while not sent:
                         try:
                             #Attempt connection
-                            log(INFO, f'Node {node_id} is attempting to connect to {recv_node_ip}:{recv_node_port}')
                             self.socket.connect((recv_node_ip, recv_node_port))
-                            log(INFO, f'Node {node_id} successfully connected to {recv_node_ip}:{recv_node_port}')
-
                             #Send node_id and chunk_id
                             self.socket.send(f'{node_id}:{chunk_id}'.encode())
                             ack = self.socket.recv(1024).decode()
-                            log(INFO, f'Node {node_id} received ack from parent, will send chunk {chunk_id}')
 
                             #Create chunk of data
                             chunk = chunks[chunk_id]
@@ -271,7 +259,6 @@ class FlowerClient(fl.client.NumPyClient):
                             
                             #Send data
                             self.socket.sendall(data)
-                            log(INFO, f"Node {node_id} sent data of size: {len(data)}")
                             sent = True
 
                         except Exception as e:
@@ -284,20 +271,16 @@ class FlowerClient(fl.client.NumPyClient):
                         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                         self.socket_open = True
-                        log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
                         self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
-                        log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
                         #Send node id
                         self.socket.send(str(node_id).encode())
                         slot_id = int(self.socket.recv(1024).decode())
-                        log(INFO, f'Received slot {slot_id} from synchronizer node')
                         self.socket.close()
                         self.socket_open = False
                     except Exception as e:
                         log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
                 else:
                     #Receiving chunk
-                    log(INFO, f'Node {node_id} is receiver for slot {slot_id}')
                     #Accept connection
                     (conn, addr) = self.serversocket.accept()
                     #Get child node id
@@ -305,7 +288,6 @@ class FlowerClient(fl.client.NumPyClient):
                     info = msg.split(":")
                     chunk_id = int(info[1])
                     child_node_id = int(info[0])
-                    log(INFO, f"Node is receiving chunk {chunk_id} from node {child_node_id}")
                     #Send acknowledgement
                     conn.send('Ack'.encode())
                     #Receive the data
@@ -334,7 +316,6 @@ class FlowerClient(fl.client.NumPyClient):
 
                     len_datasets[chunk_id] += len_datasets_chunk
 
-                    log(INFO, f"Length of data received from node {child_node_id}: {len(pickle_data)}")
                     conn.close()     
 
                     len_data = max(len_datasets)
@@ -343,13 +324,10 @@ class FlowerClient(fl.client.NumPyClient):
                         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                         self.socket_open = True
-                        log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
                         self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
-                        log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
                         #Send node id
                         self.socket.send(str(node_id).encode())
                         slot_id = int(self.socket.recv(1024).decode())
-                        log(INFO, f'Received slot {slot_id} from synchronizer node')
                         self.socket.close()
                         self.socket_open = False
                     except Exception as e:
@@ -378,6 +356,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="10.52.3.223:8080",
+    server_address="127.0.1.1:8080",
     client=FlowerClient(port).to_client(),
 )
