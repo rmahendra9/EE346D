@@ -150,7 +150,7 @@ if node_id != 0:
 
 ip_mappings = generate_node_ip_mappings(num_nodes)
 ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '10.52.3.223'
+synchronizer_node_ip = '127.0.1.1'
 synchronizer_node_port = 6000
 
 # Define Flower client
@@ -209,31 +209,26 @@ class FlowerClient(fl.client.NumPyClient):
             if slot_id > max_slot or slot_id != schedule[communication_idx]['slot']:
                 #Not current slot id, send ack to synchronizer and wait for next slot id
                 log(INFO, f'Node {node_id} is not communicating in slot {slot_id}')
-                sent = False
-                while not sent:
-                    try:
-                        #Close socket
-                        if self.socket_open:
-                            self.socket.close()
-                            self.socket_open = False
-                        #Create socket
-                        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                        self.socket_open = True
-                        log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
-                        self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
-                        log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
-                        #Send node id
-                        self.socket.send(str(node_id).encode())
-                        msg = self.socket.recv(1024).decode()
-                        if msg.isnumeric():
-                            slot_id = int(msg)
-                            log(INFO, f'Node {node_id} received slot {slot_id} from synchronizer')
-                            sent = True
+                try:
+                    #Close socket
+                    if self.socket_open:
                         self.socket.close()
                         self.socket_open = False
-                    except Exception as e:
-                        time.sleep(1)
+                    #Create socket
+                    self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                    self.socket_open = True
+                    log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
+                    self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
+                    log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
+                    #Send node id
+                    self.socket.send(str(node_id).encode())
+                    slot_id = int(self.socket.recv(1024).decode())
+                    log(INFO, f'Received slot {slot_id} from synchronizer node')
+                    self.socket.close()
+                    self.socket_open = False
+                except Exception as e:
+                    log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
             else:
                 #Talk in current slot id
                 if schedule[communication_idx]['tx'] == 1:
@@ -281,27 +276,22 @@ class FlowerClient(fl.client.NumPyClient):
 
                     self.socket.close()
                     self.socket_open = False
-                    sent = False
-                    while not sent:
-                        try:
-                            #Now send ack to synchronizer and recv slot_id
-                            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                            self.socket_open = True
-                            log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
-                            self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
-                            log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
-                            #Send node id
-                            self.socket.send(str(node_id).encode())
-                            msg = self.socket.recv(1024).decode()
-                            if msg.isnumeric():
-                                slot_id = int(msg)
-                                log(INFO, f'Node {node_id} received slot {slot_id} from synchronizer')
-                                sent = True
-                            self.socket.close()
-                            self.socket_open = False
-                        except Exception as e:
-                            time.sleep(1)
+                    try:
+                        #Now send ack to synchronizer and recv slot_id
+                        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                        self.socket_open = True
+                        log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
+                        self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
+                        log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
+                        #Send node id
+                        self.socket.send(str(node_id).encode())
+                        slot_id = int(self.socket.recv(1024).decode())
+                        log(INFO, f'Received slot {slot_id} from synchronizer node')
+                        self.socket.close()
+                        self.socket_open = False
+                    except Exception as e:
+                        log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
                 else:
                     #Receiving chunk
                     log(INFO, f'Node {node_id} is receiver for slot {slot_id}')
@@ -345,28 +335,22 @@ class FlowerClient(fl.client.NumPyClient):
                     conn.close()     
 
                     len_data = max(len_datasets)
-
-                    sent = False
-                    while not sent:
-                        try:
-                            #Now send ack to synchronizer and recv slot_id
-                            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                            self.socket_open = True
-                            log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
-                            self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
-                            log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
-                            #Send node id
-                            self.socket.send(str(node_id).encode())
-                            msg = self.socket.recv(1024).decode()
-                            if msg.isnumeric():
-                                slot_id = int(msg)
-                                log(INFO, f'Node {node_id} received slot {slot_id} from synchronizer')
-                                sent = True
-                            self.socket.close()
-                            self.socket_open = False
-                        except Exception as e:
-                            time.sleep(1)
+                    try:
+                        #Now send ack to synchronizer and recv slot_id
+                        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+                        self.socket_open = True
+                        log(INFO, f'Node {node_id} is attempting to connect to {synchronizer_node_ip}:{synchronizer_node_port}')
+                        self.socket.connect((synchronizer_node_ip, synchronizer_node_port))
+                        log(INFO, f'Node {node_id} successfully connected to {synchronizer_node_ip}:{synchronizer_node_port}')
+                        #Send node id
+                        self.socket.send(str(node_id).encode())
+                        slot_id = int(self.socket.recv(1024).decode())
+                        log(INFO, f'Received slot {slot_id} from synchronizer node')
+                        self.socket.close()
+                        self.socket_open = False
+                    except Exception as e:
+                        log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
                 #Increment communication id
                 communication_idx += 1
         #Set model parameters
@@ -391,6 +375,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="10.52.3.223:8080",
+    server_address="127.0.1.1:8080",
     client=FlowerClient(port).to_client(),
 )

@@ -37,7 +37,7 @@ num_replicas = args.num_replicas
 num_segments = num_chunks*num_replicas
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind((socket.gethostbyname(socket.gethostname()), 6000))
+serversocket.bind(('127.0.1.1', 6000))
 log(INFO, f'Synchronizer listening on port 6000')
 serversocket.listen(num_nodes)
 
@@ -51,24 +51,14 @@ for i in range(num_rounds):
     log(INFO, f'Found total number slots of {total_slots} for this round')
     for i in range(total_slots):
         log(INFO, f'Currently working on slot {i}')
-        seen_all = False
-        nodes_seen = set()
-        while not seen_all:
+        connections = []
+        for j in range(num_nodes):
             (conn, addr) = serversocket.accept()
+            connections.append(conn)
             node_id = conn.recv(1024).decode()
-            log(INFO, f'Received node id {node_id}')
-            if node_id not in nodes_seen:
-                #Send next slot id
-                conn.send(str(i+1).encode())
-                log(INFO, f'Sent slot id {i+1} to node {node_id}')
-            else:
-                #Send that ahead
-                conn.send('Ahead'.encode())
-                log(INFO, f'Did not send slot id to node {node_id}')
-            conn.close()
-            nodes_seen.add(node_id)
-            if len(nodes_seen) == num_nodes:
-                seen_all = True
+        for j in range(len(connections)):
+            connections[j].send(str(i+1).encode())
+            connections[j].close()
         log(INFO, f'Slot {i} is done')
 
 serversocket.close()
