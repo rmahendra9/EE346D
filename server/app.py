@@ -7,12 +7,14 @@ import wandb
 import numpy as np
 import subprocess
 import os
+import pickle
 
 app = Flask(__name__)
 CORS(app)
 
 METRICS_FILE = "metrics.json"
 LOGS_FILE = "log.txt"
+SCHEDULE_FILE = "schedule.pkl"
 
 # Load initial metrics from the file
 try:
@@ -118,12 +120,11 @@ def get_logs():
 def get_schedule():
     schedule_list = []
     try:
-        with open("schedule.txt", "r") as file:
-            for line in file:
-                schedule_list.append(line)
+        schedule_list = pickle.load(open(SCHEDULE_FILE,'rb'))
+        return schedule_list
     except FileNotFoundError:
-        schedule_list = []
-    return jsonify(schedule_list)
+        schedule_list = {}
+    return schedule_list
 
 
 if __name__ == "__main__":

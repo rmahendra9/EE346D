@@ -75,16 +75,12 @@ def get_on_fit_config_fn() -> Callable[[int], Dict[str, bytes]]:
         schedule = {}
         
         #clear schedule file
-        open('schedule.txt','w').close()
+        pickle.dump(scheduler.nodes_schedule, open('schedule.pkl','wb'))
         
         #Set schedule for each node
         for i in range(len(scheduler.nodes_schedule)):
             config[str(i)] = pickle.dumps(scheduler.nodes_schedule[i])
-            schedule[str(i)] = pickle.dumps(scheduler.nodes_schedule[i])
-        #Save schedule to file
-        with open('schedule.txt','a') as f:
-            f.write(str(schedule)+'\n')
-        
+
         #Send other information
         config['server_round'] = pickle.dumps(server_round)
         config['num_chunks'] = pickle.dumps(num_chunks)
