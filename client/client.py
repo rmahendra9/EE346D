@@ -149,6 +149,7 @@ synchronizer_node_port = 6000
 ip, port = ip_mappings.get_node_info(node_id)
 
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
+open('log.txt','w').close()
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
