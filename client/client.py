@@ -143,6 +143,7 @@ if node_id != 0:
 ip_list = ['10.52.2.109','10.52.2.182','10.52.3.13','10.52.0.194']
 port_list = [4000]*(num_nodes)
 ip_mappings = IP_Mapper(ip_list, port_list, num_nodes)
+ip_mappings.generate_node_ip_mappings()
 synchronizer_node_ip = '10.52.2.112'
 synchronizer_node_port = 6000
 ip, port = ip_mappings.get_node_info(node_id)
