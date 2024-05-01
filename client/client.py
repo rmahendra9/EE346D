@@ -301,7 +301,7 @@ class FlowerClient(fl.client.NumPyClient):
                     #Get current time to measure time delay
                     end_time = datetime.datetime.now()
                     delay = end_time - start_time
-                    log(INFO, f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id} in communicating chunk {chunk_id}')
+                    log(INFO, f'There is a delay of {delay.total_seconds()*1000:.3f} ms between this node and node {child_node_id} in communicating chunk {chunk_id}')
                     #Load data
                     data_arr = pickle.loads(pickle_data)
                     #Aggregate parameters using weighted average
