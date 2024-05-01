@@ -140,11 +140,11 @@ else:
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
 
-ip_list = ['10.52.2.109','10.52.2.182','10.52.3.13','10.52.0.194']
+ip_list = ['10.52.3.106','10.52.3.9','10.52.2.86','10.52.2.225']
 port_list = [4000]*(num_nodes)
 ip_mappings = IP_Mapper(ip_list, port_list, num_nodes)
 ip_mappings.generate_node_ip_mappings()
-synchronizer_node_ip = '10.52.2.112'
+synchronizer_node_ip = '10.52.3.156'
 synchronizer_node_port = 6000
 ip, port = ip_mappings.get_node_info(node_id)
 
@@ -351,6 +351,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="10.52.2.112:8080",
+    server_address="10.52.3.156:8080",
     client=FlowerClient(port).to_client(),
 )
