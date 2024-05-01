@@ -1,7 +1,7 @@
 class IP_Mapper():
     def __init__(self, node_ip_list, node_port_list, num_nodes):
-        assert(len(ip_list) >= num_nodes)
-        assert(len(port_list) >= num_nodes)
+        assert(len(node_ip_list) >= num_nodes)
+        assert(len(node_port_list) >= num_nodes)
         self.ip_list = ip_list
         self.port_list = port_list
         self.mappings = {}
