@@ -11,5 +11,5 @@ class IP_Mapper():
         for i in range(self.num_nodes):
             mappings[i] = [ip_list[i], port_list[i]]
 
-    def get_node_info(node_id):
+    def get_node_info(self, node_id):
         return self.mappings[node_id]
