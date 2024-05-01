@@ -18,7 +18,7 @@ import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 import datetime
-from utils.node_ip_mappings import generate_node_ip_mappings, get_node_info
+from utils.node_ip_mappings import Node_IP_Mapper
 from logging import INFO 
 from flwr.common.logger import log 
 from pathlib import Path
