@@ -9,7 +9,7 @@ class IP_Mapper():
     
     def generate_node_ip_mappings(self):
         for i in range(self.num_nodes):
-            mappings[i] = [ip_list[i], port_list[i]]
+            self.mappings[i] = [self.ip_list[i], self.port_list[i]]
 
     def get_node_info(self, node_id):
         return self.mappings[node_id]
