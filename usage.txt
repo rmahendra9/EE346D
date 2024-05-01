@@ -1,6 +1,13 @@
-server - python server.py --num_rounds 10 --num_nodes 4 --num_chunks 4 --num_replicas 1
-client - python client.py --node_id 0 --num_clients 3 --model_type 1 --is_iid 1
-         python client.py --node_id 1 --num_clients 3 --model_type 1 --is_iid 1
-         python client.py --node_id 2 --num_clients 3 --model_type 1 --is_iid 1
-         python client.py --node_id 3 --num_clients 3 --model_type 1 --is_iid 1
-synchronizer - python synchronizer.py --num_rounds 10 --num_nodes 4 --num_chunks 4 --num_replicas 1
+Step 1: Set up networking with  sudo networking_setup.sh <subnet-cidr of Chameleon nodes>
+Step 2: Install Python3.10 with sudo install_python3_10.sh
+Step 3: Create a virtual environment in the top level of the repo EE364D with python -m venv .venv
+Step 4: Activate virtual environment with source .venv/bin/Activate
+Step 5: Install dependencies with pip install -r requirements.txt
+Step 6:
+    - If server node, run:
+        python synchronizer.py --num_rounds <num_rounds> --num_nodes <num_nodes> --num_chunks <num_chunks> --num_replicas <num_replicas> &
+        python server.py --num_rounds <num_rounds> --num_nodes <num_nodes> --num_chunks <num_chunks> --num_replicas <num_replicas>
+    - If client node, run:
+        python client.py --node_id <node_id> --num_clients <num_clients> --model_type <ResNet (0) or CNN (1)> --is_iid <Non-IID (0) or IID (1)>
+
+NOTE: num_clients = num_nodes - 1
