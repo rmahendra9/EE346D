@@ -18,7 +18,7 @@ import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 import datetime
-from utils.node_ip_mappings import Node_IP_Mapper
+from utils.node_ip_mappings import IP_Mapper
 from logging import INFO 
 from flwr.common.logger import log 
 from pathlib import Path
@@ -142,9 +142,10 @@ if node_id != 0:
 
 ip_list = ['10.52.2.109','10.52.2.182','10.52.3.13','10.52.0.194']
 port_list = [4000]*(num_nodes)
-node_ip_mapper = Node_IP_Mapper(ip_list, port_list, num_nodes)
+ip_mappings = IP_Mapper(ip_list, port_list, num_nodes)
 synchronizer_node_ip = '10.52.2.112'
 synchronizer_node_port = 6000
+ip, port = ip_mappings.get_node_info(node_id)
 
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
 
@@ -226,7 +227,7 @@ class FlowerClient(fl.client.NumPyClient):
                     #Transmit chunk
                     chunk_id = schedule[communication_idx]['segment']
                     recv_node_id = schedule[communication_idx]['other_node']
-                    recv_node_ip, recv_node_port = get_node_info(recv_node_id, ip_mappings)
+                    recv_node_ip, recv_node_port = ip_mappings.get_node_info(recv_node_id)
                     #Just to be safe, close the socket
                     if self.socket_open:
                         self.socket.close()
