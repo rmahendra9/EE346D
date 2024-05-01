@@ -61,13 +61,6 @@ def test(net, testloader):
     accuracy = correct / len(testloader.dataset)
     return loss, accuracy
 
-#TODO - is this the only agg function we want?
-def agg(param_list, len_datasets):
-    final_params = []
-    for i in range(len(param_list[0])):
-        final_params.append(np.mean(np.array([param_list[j][i] for j in range(len(param_list))]), axis=0))
-
-    return final_params
 
 def load_data(num_parts, is_iid, client_id):
     """Load partition CIFAR10 data."""
@@ -147,9 +140,10 @@ else:
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
 
-ip_mappings = generate_node_ip_mappings(num_nodes)
-ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '10.52.3.223'
+ip_list = ['10.52.2.109','10.52.2.182','10.52.3.13','10.52.0.194']
+port_list = [4000]*(num_nodes)
+node_ip_mapper = Node_IP_Mapper(ip_list, port_list, num_nodes)
+synchronizer_node_ip = '10.52.2.112'
 synchronizer_node_port = 6000
 
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
@@ -355,6 +349,6 @@ class FlowerClient(fl.client.NumPyClient):
 
 # Start Flower client
 fl.client.start_client(
-    server_address="10.52.3.223:8080",
+    server_address="10.52.2.112:8080",
     client=FlowerClient(port).to_client(),
 )
