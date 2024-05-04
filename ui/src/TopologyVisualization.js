@@ -35,8 +35,8 @@ const TopologyVisualization = ({ adjacencyList }) => {
           style: {
             'width': 3,
             'line-color': '#ccc',
-            'target-arrow-color': '#ccc',
-            'target-arrow-shape': 'triangle',
+            'source-arrow-color': '#ccc',
+            'source-arrow-shape': 'triangle',
             'curve-style': 'bezier' // Use bezier curves for edges
           }
         }
