@@ -8,7 +8,7 @@ import csv
 import time
 # We load the config from the file
 CLIENTS_PATH = './clients.csv'
-
+PORT = 6000
 is_iid = config['is_iid']
 model_type = config['model_type']
 num_rounds = config['num_rounds']
@@ -55,9 +55,8 @@ for i in range(len(mappings)):
                 time.sleep(1)
     initialsocket.close()
 
-print('Test')
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind((socket.gethostbyname(socket.gethostname()), 6000))
+serversocket.bind((socket.gethostbyname(socket.gethostname()), PORT))
 serversocket.listen(num_nodes)
 
 

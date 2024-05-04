@@ -12,37 +12,13 @@ from flwr.server.client_proxy import ClientProxy
 from strategy import CustomFed
 from scheduler import Optimal_Schedule
 import pickle
+from config import config
 
-parser = argparse.ArgumentParser(description="Flower")
-parser.add_argument(
-    "--num_rounds",
-    required=True,
-    type=int,
-    help="Number of rounds for FL experiment",
-)
-parser.add_argument(
-    "--num_nodes",
-    required=True,
-    type=int,
-    help="Number of nodes in the FL experiment",
-)
-parser.add_argument(
-    "--num_chunks",
-    required=True,
-    type=int,
-    help="Number of chunks to split files into"
-)
-parser.add_argument(
-    "--num_replicas",
-    required=True,
-    type=int,
-    help="Number of replicas of each chunk"
-)
-args = parser.parse_args()
-num_rounds = args.num_rounds
-num_nodes = args.num_nodes
-num_chunks = args.num_chunks
-num_replicas = args.num_replicas
+
+num_rounds = config['num_rounds']
+num_nodes = config['num_nodes']
+num_chunks = config['num_chunks']
+num_replicas = config['num_replicas']
 num_segments = num_chunks*num_replicas
 
 wandb.init(

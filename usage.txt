@@ -1,6 +1,6 @@
-server - python server.py --num_rounds 10 --num_nodes 4 --num_chunks 4 --num_replicas 1
-client - python client.py --node_id 0 --num_clients 3 --model_type 1 --is_iid 1
-         python client.py --node_id 1 --num_clients 3 --model_type 1 --is_iid 1
-         python client.py --node_id 2 --num_clients 3 --model_type 1 --is_iid 1
-         python client.py --node_id 3 --num_clients 3 --model_type 1 --is_iid 1
-synchronizer - python synchronizer.py --num_rounds 10 --num_nodes 4 --num_chunks 4 --num_replicas 1
+Edit server/config.py and server/cliets.csv with the different ips and settings for the experiment.
+1st Run client.py in all of the clients.
+2nd Run server.py in the server
+3rd Run synchronizer.py 
+
+(Order is important)

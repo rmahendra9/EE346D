@@ -98,45 +98,53 @@ def load_data(num_parts, is_iid, client_id):
 # 2. Federation of the pipeline with Flower
 # #############################################################################
 
-parser = argparse.ArgumentParser(description="Flower")
-parser.add_argument(
-    "--node_id",
-    required=True,
-    type=int,
-    help="ID of the current node",
-)
+# LOAD THE DATA FROM THE SERVER SIDE (SCHEDULER)
+# WE ARE GOING TO RECEIVE
+# OUR ARGS
+# NODE_ID, NUM_CLIENTS, MODEL_TYPE, IS_IID
 
-parser.add_argument(
-    "--num_clients",
-    required=True,
-    type=int,
-    help="Number of nodes in the federated learning"
-)
+# AND THE NODE ID MAPPINGS
+# SYNCHRONIZER IP, SERVER IP, (NODE_ID, NODE_IP)
 
-parser.add_argument(
-    "--model_type",
-    required=True,
-    type=int,
-    choices=[0,1],
-    help="Select model type - 0 for ResNet18, 1 for SimpleCNN"
-)
+PORT = 3002
+SOCKET = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+SOCKET.bind((socket.gethostbyname(socket.gethostname()), PORT))
+SOCKET.listen(1)
 
-parser.add_argument(
-    "--is_iid",
-    required=True,
-    type=int,
-    choices=[0,1],
-    help="Denotes if data is iid - 0 for no, 1 for yes"
-)
+print(f'{socket.gethostbyname(socket.gethostname())}')
+(conn, _) = SOCKET.accept()
 
-args = parser.parse_args()
 
-node_id = args.node_id
-num_clients = args.num_clients
-model_type = args.model_type
-is_iid=args.is_iid
-num_nodes = num_clients + 1
+data = []
+#Get current time to measure time delay of sending the data 
+start_time = datetime.datetime.now()
+while True:
+    packet = conn.recv(16384)
+    data.append(packet)
+    try:
+        pickle_data = b"".join(data)
+        config = pickle.loads(pickle_data)
+        break
+    except pickle.UnpicklingError:
+        continue
+
+#SOCKET.close()
+
+node_id = config['node_id']
+num_nodes = config['num_nodes'] 
+model_type = config['model_type']
+is_iid = config['is_iid']
+num_clients = num_nodes - 1
 client_id = node_id - 1
+ip_mappings = config['mappings']
+server_ip = config['server_ip']
+server_port = config['server_port']
+synchronizer_node_ip = config['synchronizer_ip']
+synchronizer_node_port = config['synchronizer_port']
+
+print(ip_mappings)
+# ip_mappings -> list where ip of node i is in position i
+# [(0.0.0.0, 80), (1.1.1.1,90), (2.2.2.2,30)]
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
@@ -147,18 +155,19 @@ else:
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
 
-ip_mappings = generate_node_ip_mappings(num_nodes)
-ip, port = get_node_info(node_id, ip_mappings)
-synchronizer_node_ip = '127.0.1.1'
-synchronizer_node_port = 6000
+#ip_mappings = generate_node_ip_mappings(num_nodes)
+#ip, port = get_node_info(node_id, ip_mappings)
+ip, port = ip_mappings[node_id]
+#synchronizer_node_ip = '127.0.1.1'
+#synchronizer_node_port = 6000
 
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
     def __init__(self, port):
-        self.serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.serversocket.bind((socket.gethostbyname(socket.gethostname()), port))
+        self.serversocket = SOCKET
+        #self.serversocket.bind((socket.gethostbyname(socket.gethostname()), port))
         self.serversocket.listen(num_nodes)
         self.socket_open = False
     
@@ -226,6 +235,7 @@ class FlowerClient(fl.client.NumPyClient):
                     self.socket_open = False
                 except Exception as e:
                     log(INFO, f'Unexpected {e=}, {type(e)=}, with message {repr(e)} from node {node_id}')
+                    time.sleep(1)
             else:
                 #Talk in current slot id
                 if schedule[communication_idx]['tx'] == 1:
@@ -354,8 +364,13 @@ class FlowerClient(fl.client.NumPyClient):
             return 0.0, 0, {"accuracy": 0.0, "loss": 0.0}
 
 
+
+
+# LOAD DATA
+
+
 # Start Flower client
 fl.client.start_client(
-    server_address="127.0.1.1:8080",
+    server_address=f"{server_ip}:{server_port}",
     client=FlowerClient(port).to_client(),
 )
