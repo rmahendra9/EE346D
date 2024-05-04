@@ -18,7 +18,7 @@ import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 import datetime
-from utils.node_ip_mappings import generate_node_ip_mappings, get_node_info
+from utils.node_ip_mappings import IP_Mapper
 from logging import INFO 
 from flwr.common.logger import log 
 from pathlib import Path
@@ -61,13 +61,6 @@ def test(net, testloader):
     accuracy = correct / len(testloader.dataset)
     return loss, accuracy
 
-#TODO - is this the only agg function we want?
-def agg(param_list, len_datasets):
-    final_params = []
-    for i in range(len(param_list[0])):
-        final_params.append(np.mean(np.array([param_list[j][i] for j in range(len(param_list))]), axis=0))
-
-    return final_params
 
 def load_data(num_parts, is_iid, client_id):
     """Load partition CIFAR10 data."""
@@ -162,6 +155,7 @@ ip, port = ip_mappings[node_id]
 #synchronizer_node_port = 6000
 
 fl.common.logger.configure(identifier="Federated_Learning", filename="log.txt")
+open('log.txt','w').close()
 
 # Define Flower client
 class FlowerClient(fl.client.NumPyClient):
@@ -239,11 +233,10 @@ class FlowerClient(fl.client.NumPyClient):
             else:
                 #Talk in current slot id
                 if schedule[communication_idx]['tx'] == 1:
-                    log(INFO, f'Node {node_id} is transmitter for slot {slot_id}')
                     #Transmit chunk
                     chunk_id = schedule[communication_idx]['segment']
                     recv_node_id = schedule[communication_idx]['other_node']
-                    recv_node_ip, recv_node_port = get_node_info(recv_node_id, ip_mappings)
+                    recv_node_ip, recv_node_port = ip_mappings.get_node_info(recv_node_id)
                     #Just to be safe, close the socket
                     if self.socket_open:
                         self.socket.close()
@@ -316,7 +309,7 @@ class FlowerClient(fl.client.NumPyClient):
                     #Get current time to measure time delay
                     end_time = datetime.datetime.now()
                     delay = end_time - start_time
-                    log(INFO, f'There is a delay of {delay.total_seconds()*1000} ms between this node and node {child_node_id}')
+                    log(INFO, f'There is a delay of {delay.total_seconds()*1000:.3f} ms between this node and node {child_node_id} in communicating chunk {chunk_id}')
                     #Load data
                     data_arr = pickle.loads(pickle_data)
                     #Aggregate parameters using weighted average

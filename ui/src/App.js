@@ -327,23 +327,6 @@ function App() {
       </div>
 
       <div class="divider"></div>
-
-      <h3 class='subheader'>Topology Visualization</h3>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <label htmlFor="chunkSelector">Select Chunk:</label>
-        <select id="chunkSelector" value={selectedChunk} onChange={handleSelectedChunkChange}>
-          {[...Array(numChunks).keys()].map((chunk) => (
-            <option key={chunk} value={chunk}>
-              {chunk}
-            </option>
-        ))}
-        </select>
-        <p>Selected Chunk: {selectedChunk}</p>
-      </div>
-      <div class="topology-visualization-div">
-        <TopologyVisualization adjacencyList={adjacencyLists[selectedChunk]} />
-      </div>
-      <div class="divider"></div>
     </div>
   );
 }

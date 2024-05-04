@@ -290,6 +290,6 @@ class CustomFed(Strategy):
         
         self.end_time = datetime.now()
         round_delay = self.end_time - self.start_time
-        log(INFO, f'There was a delay of {round_delay.total_seconds()} seconds for round {server_round}')
+        log(INFO, f'There was a delay of {round_delay.total_seconds():.3f} seconds for round {server_round}')
 
         return loss_aggregated, metrics_aggregated

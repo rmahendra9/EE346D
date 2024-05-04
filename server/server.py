@@ -46,7 +46,7 @@ def get_on_fit_config_fn() -> Callable[[int], Dict[str, bytes]]:
         scheduler = Optimal_Schedule(num_nodes, num_segments, num_chunks, num_replicas)
         schedule = {}
         
-        #clear schedule file
+        #schedule file
         pickle.dump(scheduler.nodes_schedule, open('schedule.pkl','wb'))
         
         #Set schedule for each node

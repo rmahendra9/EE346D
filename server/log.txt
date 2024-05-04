@@ -1,0 +1,1242 @@
+Federated_Learning | INFO flwr 2024-04-29 13:47:16,456 | app.py:150 | Starting Flower server, config: num_rounds=1000, no round_timeout
+Federated_Learning | INFO flwr 2024-04-29 13:47:16,467 | app.py:163 | Flower ECE: gRPC server running (1000 rounds), SSL is disabled
+Federated_Learning | INFO flwr 2024-04-29 13:47:16,467 | server.py:92 | [INIT]
+Federated_Learning | INFO flwr 2024-04-29 13:47:16,468 | server.py:279 | Requesting initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-29 13:47:29,835 | server.py:285 | Received initial parameters from one random client
+Federated_Learning | INFO flwr 2024-04-29 13:47:29,837 | server.py:94 | Evaluating initial global parameters
+Federated_Learning | INFO flwr 2024-04-29 13:47:29,838 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:47:29,838 | server.py:111 | [ROUND 1]
+Federated_Learning | INFO flwr 2024-04-29 13:47:29,840 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:48:42,737 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | WARNING flwr 2024-04-29 13:48:42,739 | strategy.py:257 | No fit_metrics_aggregation_fn provided
+Federated_Learning | INFO flwr 2024-04-29 13:48:42,740 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:48:54,134 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:48:54,134 | server.py:59 | {'accuracy': 0.10387922415516897, 'loss': 241.464474995931}
+Federated_Learning | INFO flwr 2024-04-29 13:48:54,134 | strategy.py:293 | There was a delay of 84.295514 seconds for round 1
+Federated_Learning | INFO flwr 2024-04-29 13:48:54,134 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:48:54,135 | server.py:111 | [ROUND 2]
+Federated_Learning | INFO flwr 2024-04-29 13:48:54,135 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:50:16,008 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:50:16,011 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:50:26,327 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:50:26,328 | server.py:59 | {'accuracy': 0.1936612677464507, 'loss': 238.93474872907004}
+Federated_Learning | INFO flwr 2024-04-29 13:50:26,329 | strategy.py:293 | There was a delay of 92.193654 seconds for round 2
+Federated_Learning | INFO flwr 2024-04-29 13:50:26,329 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:50:26,329 | server.py:111 | [ROUND 3]
+Federated_Learning | INFO flwr 2024-04-29 13:50:26,330 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:51:45,473 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:51:45,475 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:51:56,807 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:51:56,808 | server.py:59 | {'accuracy': 0.23305338932213557, 'loss': 222.10122561454773}
+Federated_Learning | INFO flwr 2024-04-29 13:51:56,808 | strategy.py:293 | There was a delay of 90.479096 seconds for round 3
+Federated_Learning | INFO flwr 2024-04-29 13:51:56,809 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:51:56,809 | server.py:111 | [ROUND 4]
+Federated_Learning | INFO flwr 2024-04-29 13:51:56,811 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:53:14,032 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:53:14,034 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:53:28,466 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:53:28,467 | server.py:59 | {'accuracy': 0.277744451109778, 'loss': 210.0786997874578}
+Federated_Learning | INFO flwr 2024-04-29 13:53:28,467 | strategy.py:293 | There was a delay of 91.65756 seconds for round 4
+Federated_Learning | INFO flwr 2024-04-29 13:53:28,467 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:53:28,467 | server.py:111 | [ROUND 5]
+Federated_Learning | INFO flwr 2024-04-29 13:53:28,468 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:54:34,329 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:54:34,330 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:54:45,338 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:54:45,338 | server.py:59 | {'accuracy': 0.3092381523695261, 'loss': 201.88991196950278}
+Federated_Learning | INFO flwr 2024-04-29 13:54:45,338 | strategy.py:293 | There was a delay of 76.8707 seconds for round 5
+Federated_Learning | INFO flwr 2024-04-29 13:54:45,338 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:54:45,338 | server.py:111 | [ROUND 6]
+Federated_Learning | INFO flwr 2024-04-29 13:54:45,339 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:55:58,855 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:55:58,858 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:56:10,545 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:56:10,546 | server.py:59 | {'accuracy': 0.3156368726254749, 'loss': 195.23276682694754}
+Federated_Learning | INFO flwr 2024-04-29 13:56:10,546 | strategy.py:293 | There was a delay of 85.207582 seconds for round 6
+Federated_Learning | INFO flwr 2024-04-29 13:56:10,546 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:56:10,546 | server.py:111 | [ROUND 7]
+Federated_Learning | INFO flwr 2024-04-29 13:56:10,547 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:57:26,472 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:57:26,474 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:57:37,303 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:57:37,304 | server.py:59 | {'accuracy': 0.3683263347330534, 'loss': 182.79462810357413}
+Federated_Learning | INFO flwr 2024-04-29 13:57:37,304 | strategy.py:293 | There was a delay of 86.757449 seconds for round 7
+Federated_Learning | INFO flwr 2024-04-29 13:57:37,304 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:57:37,304 | server.py:111 | [ROUND 8]
+Federated_Learning | INFO flwr 2024-04-29 13:57:37,305 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:58:45,703 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:58:45,705 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 13:58:56,759 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 13:58:56,759 | server.py:59 | {'accuracy': 0.3878224355128974, 'loss': 175.3830418586731}
+Federated_Learning | INFO flwr 2024-04-29 13:58:56,760 | strategy.py:293 | There was a delay of 79.455249 seconds for round 8
+Federated_Learning | INFO flwr 2024-04-29 13:58:56,760 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 13:58:56,761 | server.py:111 | [ROUND 9]
+Federated_Learning | INFO flwr 2024-04-29 13:58:56,762 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:00:11,258 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:00:11,260 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:00:21,552 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:00:21,552 | server.py:59 | {'accuracy': 0.4039192161567686, 'loss': 169.60767046610513}
+Federated_Learning | INFO flwr 2024-04-29 14:00:21,552 | strategy.py:293 | There was a delay of 84.791409 seconds for round 9
+Federated_Learning | INFO flwr 2024-04-29 14:00:21,552 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:00:21,553 | server.py:111 | [ROUND 10]
+Federated_Learning | INFO flwr 2024-04-29 14:00:21,554 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:01:27,745 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:01:27,747 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:01:39,846 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:01:39,846 | server.py:59 | {'accuracy': 0.42761447710457906, 'loss': 164.94527701536813}
+Federated_Learning | INFO flwr 2024-04-29 14:01:39,846 | strategy.py:293 | There was a delay of 78.293813 seconds for round 10
+Federated_Learning | INFO flwr 2024-04-29 14:01:39,847 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:01:39,847 | server.py:111 | [ROUND 11]
+Federated_Learning | INFO flwr 2024-04-29 14:01:39,848 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:02:56,987 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:02:56,989 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:03:07,654 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:03:07,655 | server.py:59 | {'accuracy': 0.4346130773845231, 'loss': 161.81834634145102}
+Federated_Learning | INFO flwr 2024-04-29 14:03:07,655 | strategy.py:293 | There was a delay of 87.807677 seconds for round 11
+Federated_Learning | INFO flwr 2024-04-29 14:03:07,655 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:03:07,656 | server.py:111 | [ROUND 12]
+Federated_Learning | INFO flwr 2024-04-29 14:03:07,656 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:04:15,655 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:04:15,656 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:04:28,604 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:04:28,605 | server.py:59 | {'accuracy': 0.46180763847230555, 'loss': 157.64491748809814}
+Federated_Learning | INFO flwr 2024-04-29 14:04:28,605 | strategy.py:293 | There was a delay of 80.949027 seconds for round 12
+Federated_Learning | INFO flwr 2024-04-29 14:04:28,606 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:04:28,606 | server.py:111 | [ROUND 13]
+Federated_Learning | INFO flwr 2024-04-29 14:04:28,608 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:05:42,293 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:05:42,295 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:05:50,402 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:05:50,403 | server.py:59 | {'accuracy': 0.4615076984603079, 'loss': 154.93175532420477}
+Federated_Learning | INFO flwr 2024-04-29 14:05:50,403 | strategy.py:293 | There was a delay of 81.796156 seconds for round 13
+Federated_Learning | INFO flwr 2024-04-29 14:05:50,403 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:05:50,403 | server.py:111 | [ROUND 14]
+Federated_Learning | INFO flwr 2024-04-29 14:05:50,404 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:06:59,050 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:06:59,052 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:07:10,821 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:07:10,822 | server.py:59 | {'accuracy': 0.47110577884423116, 'loss': 152.22749042510986}
+Federated_Learning | INFO flwr 2024-04-29 14:07:10,822 | strategy.py:293 | There was a delay of 80.41859 seconds for round 14
+Federated_Learning | INFO flwr 2024-04-29 14:07:10,822 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:07:10,822 | server.py:111 | [ROUND 15]
+Federated_Learning | INFO flwr 2024-04-29 14:07:10,823 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:08:27,927 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:08:27,928 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:08:41,704 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:08:41,705 | server.py:59 | {'accuracy': 0.489502099580084, 'loss': 148.34565856059393}
+Federated_Learning | INFO flwr 2024-04-29 14:08:41,705 | strategy.py:293 | There was a delay of 90.882399 seconds for round 15
+Federated_Learning | INFO flwr 2024-04-29 14:08:41,705 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:08:41,705 | server.py:111 | [ROUND 16]
+Federated_Learning | INFO flwr 2024-04-29 14:08:41,706 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:09:54,581 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:09:54,583 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:10:05,707 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:10:05,707 | server.py:59 | {'accuracy': 0.4978004399120176, 'loss': 145.6030684709549}
+Federated_Learning | INFO flwr 2024-04-29 14:10:05,707 | strategy.py:293 | There was a delay of 84.001908 seconds for round 16
+Federated_Learning | INFO flwr 2024-04-29 14:10:05,708 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:10:05,708 | server.py:111 | [ROUND 17]
+Federated_Learning | INFO flwr 2024-04-29 14:10:05,708 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:11:19,092 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:11:19,094 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:11:29,808 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:11:29,809 | server.py:59 | {'accuracy': 0.5110977804439112, 'loss': 142.95385160048804}
+Federated_Learning | INFO flwr 2024-04-29 14:11:29,809 | strategy.py:293 | There was a delay of 84.101318 seconds for round 17
+Federated_Learning | INFO flwr 2024-04-29 14:11:29,810 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:11:29,810 | server.py:111 | [ROUND 18]
+Federated_Learning | INFO flwr 2024-04-29 14:11:29,811 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:12:50,567 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:12:50,569 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:13:01,816 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:13:01,817 | server.py:59 | {'accuracy': 0.5208958208358329, 'loss': 140.30717545747757}
+Federated_Learning | INFO flwr 2024-04-29 14:13:01,817 | strategy.py:293 | There was a delay of 92.006389 seconds for round 18
+Federated_Learning | INFO flwr 2024-04-29 14:13:01,818 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:13:01,818 | server.py:111 | [ROUND 19]
+Federated_Learning | INFO flwr 2024-04-29 14:13:01,819 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:14:16,494 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:14:16,495 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:14:27,629 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:14:27,629 | server.py:59 | {'accuracy': 0.518996200759848, 'loss': 139.48434944947562}
+Federated_Learning | INFO flwr 2024-04-29 14:14:27,630 | strategy.py:293 | There was a delay of 85.811218 seconds for round 19
+Federated_Learning | INFO flwr 2024-04-29 14:14:27,630 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:14:27,630 | server.py:111 | [ROUND 20]
+Federated_Learning | INFO flwr 2024-04-29 14:14:27,631 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:15:33,354 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:15:33,355 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:15:44,616 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:15:44,617 | server.py:59 | {'accuracy': 0.5258948210357929, 'loss': 137.9453628063202}
+Federated_Learning | INFO flwr 2024-04-29 14:15:44,617 | strategy.py:293 | There was a delay of 76.986817 seconds for round 20
+Federated_Learning | INFO flwr 2024-04-29 14:15:44,617 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:15:44,618 | server.py:111 | [ROUND 21]
+Federated_Learning | INFO flwr 2024-04-29 14:15:44,618 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:16:52,610 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:16:52,612 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:17:04,682 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:17:04,682 | server.py:59 | {'accuracy': 0.5406918616276745, 'loss': 133.5607227285703}
+Federated_Learning | INFO flwr 2024-04-29 14:17:04,682 | strategy.py:293 | There was a delay of 80.064524 seconds for round 21
+Federated_Learning | INFO flwr 2024-04-29 14:17:04,683 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:17:04,683 | server.py:111 | [ROUND 22]
+Federated_Learning | INFO flwr 2024-04-29 14:17:04,684 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:18:16,168 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:18:16,170 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:18:27,201 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:18:27,201 | server.py:59 | {'accuracy': 0.5469906018796241, 'loss': 132.25238670905432}
+Federated_Learning | INFO flwr 2024-04-29 14:18:27,202 | strategy.py:293 | There was a delay of 82.518533 seconds for round 22
+Federated_Learning | INFO flwr 2024-04-29 14:18:27,202 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:18:27,202 | server.py:111 | [ROUND 23]
+Federated_Learning | INFO flwr 2024-04-29 14:18:27,202 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:19:38,907 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:19:38,910 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:19:50,689 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:19:50,690 | server.py:59 | {'accuracy': 0.555488902219556, 'loss': 131.53151402870813}
+Federated_Learning | INFO flwr 2024-04-29 14:19:50,690 | strategy.py:293 | There was a delay of 83.48808 seconds for round 23
+Federated_Learning | INFO flwr 2024-04-29 14:19:50,690 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:19:50,691 | server.py:111 | [ROUND 24]
+Federated_Learning | INFO flwr 2024-04-29 14:19:50,691 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:20:57,830 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:20:57,832 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:21:11,690 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:21:11,690 | server.py:59 | {'accuracy': 0.5453909218156369, 'loss': 132.28278174002966}
+Federated_Learning | INFO flwr 2024-04-29 14:21:11,691 | strategy.py:293 | There was a delay of 80.999927 seconds for round 24
+Federated_Learning | INFO flwr 2024-04-29 14:21:11,691 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:21:11,691 | server.py:111 | [ROUND 25]
+Federated_Learning | INFO flwr 2024-04-29 14:21:11,692 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:22:17,299 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:22:17,301 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:22:28,770 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:22:28,770 | server.py:59 | {'accuracy': 0.5555888822235553, 'loss': 128.84325834115347}
+Federated_Learning | INFO flwr 2024-04-29 14:22:28,771 | strategy.py:293 | There was a delay of 77.079572 seconds for round 25
+Federated_Learning | INFO flwr 2024-04-29 14:22:28,771 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:22:28,771 | server.py:111 | [ROUND 26]
+Federated_Learning | INFO flwr 2024-04-29 14:22:28,772 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:23:40,143 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:23:40,145 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:23:50,716 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:23:50,717 | server.py:59 | {'accuracy': 0.5691861627674465, 'loss': 126.55031539996465}
+Federated_Learning | INFO flwr 2024-04-29 14:23:50,717 | strategy.py:293 | There was a delay of 81.945899 seconds for round 26
+Federated_Learning | INFO flwr 2024-04-29 14:23:50,717 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:23:50,717 | server.py:111 | [ROUND 27]
+Federated_Learning | INFO flwr 2024-04-29 14:23:50,718 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:24:49,931 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:24:49,933 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:24:59,586 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:24:59,586 | server.py:59 | {'accuracy': 0.5724855028994201, 'loss': 126.02469531695048}
+Federated_Learning | INFO flwr 2024-04-29 14:24:59,586 | strategy.py:293 | There was a delay of 68.869003 seconds for round 27
+Federated_Learning | INFO flwr 2024-04-29 14:24:59,587 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:24:59,587 | server.py:111 | [ROUND 28]
+Federated_Learning | INFO flwr 2024-04-29 14:24:59,588 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:26:00,266 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:26:00,268 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:26:09,694 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:26:09,694 | server.py:59 | {'accuracy': 0.5809838032393522, 'loss': 123.97983431816101}
+Federated_Learning | INFO flwr 2024-04-29 14:26:09,695 | strategy.py:293 | There was a delay of 70.107104 seconds for round 28
+Federated_Learning | INFO flwr 2024-04-29 14:26:09,695 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:26:09,696 | server.py:111 | [ROUND 29]
+Federated_Learning | INFO flwr 2024-04-29 14:26:09,697 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:27:14,053 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:27:14,057 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:27:24,415 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:27:24,415 | server.py:59 | {'accuracy': 0.5855828834233153, 'loss': 123.56494013468425}
+Federated_Learning | INFO flwr 2024-04-29 14:27:24,415 | strategy.py:293 | There was a delay of 74.719064 seconds for round 29
+Federated_Learning | INFO flwr 2024-04-29 14:27:24,416 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:27:24,416 | server.py:111 | [ROUND 30]
+Federated_Learning | INFO flwr 2024-04-29 14:27:24,416 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:28:31,592 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:28:31,594 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:28:43,427 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:28:43,428 | server.py:59 | {'accuracy': 0.584883023395321, 'loss': 123.16224534312884}
+Federated_Learning | INFO flwr 2024-04-29 14:28:43,428 | strategy.py:293 | There was a delay of 79.012099 seconds for round 30
+Federated_Learning | INFO flwr 2024-04-29 14:28:43,428 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:28:43,429 | server.py:111 | [ROUND 31]
+Federated_Learning | INFO flwr 2024-04-29 14:28:43,429 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:29:52,166 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:29:52,168 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:30:01,837 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:30:01,837 | server.py:59 | {'accuracy': 0.5934813037392521, 'loss': 120.61839932203293}
+Federated_Learning | INFO flwr 2024-04-29 14:30:01,838 | strategy.py:293 | There was a delay of 78.408768 seconds for round 31
+Federated_Learning | INFO flwr 2024-04-29 14:30:01,838 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:30:01,838 | server.py:111 | [ROUND 32]
+Federated_Learning | INFO flwr 2024-04-29 14:30:01,839 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:31:03,671 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:31:03,673 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:31:15,771 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:31:15,771 | server.py:59 | {'accuracy': 0.5939812037592481, 'loss': 120.3329163591067}
+Federated_Learning | INFO flwr 2024-04-29 14:31:15,772 | strategy.py:293 | There was a delay of 73.933386 seconds for round 32
+Federated_Learning | INFO flwr 2024-04-29 14:31:15,772 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:31:15,772 | server.py:111 | [ROUND 33]
+Federated_Learning | INFO flwr 2024-04-29 14:31:15,773 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:32:22,334 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:32:22,337 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:32:32,000 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:32:32,000 | server.py:59 | {'accuracy': 0.5946810637872425, 'loss': 119.5567191640536}
+Federated_Learning | INFO flwr 2024-04-29 14:32:32,000 | strategy.py:293 | There was a delay of 76.227824 seconds for round 33
+Federated_Learning | INFO flwr 2024-04-29 14:32:32,001 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:32:32,001 | server.py:111 | [ROUND 34]
+Federated_Learning | INFO flwr 2024-04-29 14:32:32,001 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:33:34,664 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:33:34,665 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:33:44,868 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:33:44,868 | server.py:59 | {'accuracy': 0.595880823835233, 'loss': 120.16240515311559}
+Federated_Learning | INFO flwr 2024-04-29 14:33:44,868 | strategy.py:293 | There was a delay of 72.867344 seconds for round 34
+Federated_Learning | INFO flwr 2024-04-29 14:33:44,868 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:33:44,868 | server.py:111 | [ROUND 35]
+Federated_Learning | INFO flwr 2024-04-29 14:33:44,869 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:34:48,981 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:34:48,983 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:35:00,360 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:35:00,361 | server.py:59 | {'accuracy': 0.6054789042191562, 'loss': 116.92880261937778}
+Federated_Learning | INFO flwr 2024-04-29 14:35:00,361 | strategy.py:293 | There was a delay of 75.492351 seconds for round 35
+Federated_Learning | INFO flwr 2024-04-29 14:35:00,361 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:35:00,361 | server.py:111 | [ROUND 36]
+Federated_Learning | INFO flwr 2024-04-29 14:35:00,362 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:35:58,320 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:35:58,321 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:36:06,974 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:36:06,975 | server.py:59 | {'accuracy': 0.6082783443311338, 'loss': 117.41312963763873}
+Federated_Learning | INFO flwr 2024-04-29 14:36:06,975 | strategy.py:293 | There was a delay of 66.613616 seconds for round 36
+Federated_Learning | INFO flwr 2024-04-29 14:36:06,976 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:36:06,976 | server.py:111 | [ROUND 37]
+Federated_Learning | INFO flwr 2024-04-29 14:36:06,977 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:37:17,559 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:37:17,561 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:37:28,476 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:37:28,476 | server.py:59 | {'accuracy': 0.6104779044191162, 'loss': 116.72482633590698}
+Federated_Learning | INFO flwr 2024-04-29 14:37:28,477 | strategy.py:293 | There was a delay of 81.500321 seconds for round 37
+Federated_Learning | INFO flwr 2024-04-29 14:37:28,477 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:37:28,477 | server.py:111 | [ROUND 38]
+Federated_Learning | INFO flwr 2024-04-29 14:37:28,478 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:38:46,192 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:38:46,194 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:38:58,689 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:38:58,689 | server.py:59 | {'accuracy': 0.6049790041991602, 'loss': 116.70362092057864}
+Federated_Learning | INFO flwr 2024-04-29 14:38:58,690 | strategy.py:293 | There was a delay of 90.212667 seconds for round 38
+Federated_Learning | INFO flwr 2024-04-29 14:38:58,691 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:38:58,691 | server.py:111 | [ROUND 39]
+Federated_Learning | INFO flwr 2024-04-29 14:38:58,692 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:40:03,521 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:40:03,523 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:40:13,609 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:40:13,609 | server.py:59 | {'accuracy': 0.6131773645270946, 'loss': 116.3582779566447}
+Federated_Learning | INFO flwr 2024-04-29 14:40:13,610 | strategy.py:293 | There was a delay of 74.918022 seconds for round 39
+Federated_Learning | INFO flwr 2024-04-29 14:40:13,610 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:40:13,611 | server.py:111 | [ROUND 40]
+Federated_Learning | INFO flwr 2024-04-29 14:40:13,611 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:41:15,321 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:41:15,323 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:41:26,165 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:41:26,165 | server.py:59 | {'accuracy': 0.619876024795041, 'loss': 114.23185321688652}
+Federated_Learning | INFO flwr 2024-04-29 14:41:26,166 | strategy.py:293 | There was a delay of 72.554946 seconds for round 40
+Federated_Learning | INFO flwr 2024-04-29 14:41:26,166 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:41:26,166 | server.py:111 | [ROUND 41]
+Federated_Learning | INFO flwr 2024-04-29 14:41:26,167 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:42:33,417 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:42:33,419 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:42:44,246 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:42:44,246 | server.py:59 | {'accuracy': 0.6209758048390321, 'loss': 114.02486498157184}
+Federated_Learning | INFO flwr 2024-04-29 14:42:44,247 | strategy.py:293 | There was a delay of 78.080378 seconds for round 41
+Federated_Learning | INFO flwr 2024-04-29 14:42:44,247 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:42:44,247 | server.py:111 | [ROUND 42]
+Federated_Learning | INFO flwr 2024-04-29 14:42:44,248 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:43:50,205 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:43:50,207 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:44:01,552 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:44:01,552 | server.py:59 | {'accuracy': 0.622375524895021, 'loss': 113.38193822900455}
+Federated_Learning | INFO flwr 2024-04-29 14:44:01,553 | strategy.py:293 | There was a delay of 77.305504 seconds for round 42
+Federated_Learning | INFO flwr 2024-04-29 14:44:01,553 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:44:01,554 | server.py:111 | [ROUND 43]
+Federated_Learning | INFO flwr 2024-04-29 14:44:01,555 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:45:08,306 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:45:08,308 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:45:15,617 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:45:15,617 | server.py:59 | {'accuracy': 0.6246750649870026, 'loss': 112.55133633812268}
+Federated_Learning | INFO flwr 2024-04-29 14:45:15,617 | strategy.py:293 | There was a delay of 74.063234 seconds for round 43
+Federated_Learning | INFO flwr 2024-04-29 14:45:15,618 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:45:15,618 | server.py:111 | [ROUND 44]
+Federated_Learning | INFO flwr 2024-04-29 14:45:15,618 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:45:56,368 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:45:56,370 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:46:02,568 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:46:02,569 | server.py:59 | {'accuracy': 0.6217756448710258, 'loss': 113.19690470894177}
+Federated_Learning | INFO flwr 2024-04-29 14:46:02,569 | strategy.py:293 | There was a delay of 46.951454 seconds for round 44
+Federated_Learning | INFO flwr 2024-04-29 14:46:02,569 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:46:02,570 | server.py:111 | [ROUND 45]
+Federated_Learning | INFO flwr 2024-04-29 14:46:02,570 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:46:47,437 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:46:47,439 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:46:54,200 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:46:54,201 | server.py:59 | {'accuracy': 0.6265746850629874, 'loss': 112.0097053150336}
+Federated_Learning | INFO flwr 2024-04-29 14:46:54,201 | strategy.py:293 | There was a delay of 51.631249 seconds for round 45
+Federated_Learning | INFO flwr 2024-04-29 14:46:54,201 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:46:54,202 | server.py:111 | [ROUND 46]
+Federated_Learning | INFO flwr 2024-04-29 14:46:54,202 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:47:35,855 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:47:35,857 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:47:41,995 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:47:41,995 | server.py:59 | {'accuracy': 0.626874625074985, 'loss': 111.6793608168761}
+Federated_Learning | INFO flwr 2024-04-29 14:47:41,995 | strategy.py:293 | There was a delay of 47.793623 seconds for round 46
+Federated_Learning | INFO flwr 2024-04-29 14:47:41,996 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:47:41,996 | server.py:111 | [ROUND 47]
+Federated_Learning | INFO flwr 2024-04-29 14:47:41,996 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:48:29,438 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:48:29,440 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:48:35,595 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:48:35,596 | server.py:59 | {'accuracy': 0.6291741651669666, 'loss': 110.88689023256302}
+Federated_Learning | INFO flwr 2024-04-29 14:48:35,596 | strategy.py:293 | There was a delay of 53.5998 seconds for round 47
+Federated_Learning | INFO flwr 2024-04-29 14:48:35,596 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:48:35,596 | server.py:111 | [ROUND 48]
+Federated_Learning | INFO flwr 2024-04-29 14:48:35,597 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:49:23,051 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:49:23,053 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:49:30,274 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:49:30,274 | server.py:59 | {'accuracy': 0.6281743651269746, 'loss': 111.79184180498123}
+Federated_Learning | INFO flwr 2024-04-29 14:49:30,274 | strategy.py:293 | There was a delay of 54.677695 seconds for round 48
+Federated_Learning | INFO flwr 2024-04-29 14:49:30,275 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:49:30,275 | server.py:111 | [ROUND 49]
+Federated_Learning | INFO flwr 2024-04-29 14:49:30,275 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:50:14,389 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:50:14,391 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:50:20,782 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:50:20,783 | server.py:59 | {'accuracy': 0.6256748650269947, 'loss': 112.73229749004047}
+Federated_Learning | INFO flwr 2024-04-29 14:50:20,783 | strategy.py:293 | There was a delay of 50.508024 seconds for round 49
+Federated_Learning | INFO flwr 2024-04-29 14:50:20,783 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:50:20,783 | server.py:111 | [ROUND 50]
+Federated_Learning | INFO flwr 2024-04-29 14:50:20,784 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:51:04,797 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:51:04,799 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:51:09,857 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:51:09,857 | server.py:59 | {'accuracy': 0.6290741851629674, 'loss': 111.70755821466446}
+Federated_Learning | INFO flwr 2024-04-29 14:51:09,857 | strategy.py:293 | There was a delay of 49.07356 seconds for round 50
+Federated_Learning | INFO flwr 2024-04-29 14:51:09,857 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:51:09,858 | server.py:111 | [ROUND 51]
+Federated_Learning | INFO flwr 2024-04-29 14:51:09,858 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:51:50,395 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:51:50,397 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:51:56,239 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:51:56,239 | server.py:59 | {'accuracy': 0.6286742651469706, 'loss': 112.35547576347987}
+Federated_Learning | INFO flwr 2024-04-29 14:51:56,239 | strategy.py:293 | There was a delay of 46.381599 seconds for round 51
+Federated_Learning | INFO flwr 2024-04-29 14:51:56,240 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:51:56,240 | server.py:111 | [ROUND 52]
+Federated_Learning | INFO flwr 2024-04-29 14:51:56,241 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:52:43,095 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:52:43,097 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:52:50,157 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:52:50,157 | server.py:59 | {'accuracy': 0.6331733653269346, 'loss': 110.08854294816653}
+Federated_Learning | INFO flwr 2024-04-29 14:52:50,157 | strategy.py:293 | There was a delay of 53.917031 seconds for round 52
+Federated_Learning | INFO flwr 2024-04-29 14:52:50,157 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:52:50,158 | server.py:111 | [ROUND 53]
+Federated_Learning | INFO flwr 2024-04-29 14:52:50,158 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:53:32,561 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:53:32,562 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:53:39,335 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:53:39,336 | server.py:59 | {'accuracy': 0.6289742051589682, 'loss': 111.79982909560204}
+Federated_Learning | INFO flwr 2024-04-29 14:53:39,336 | strategy.py:293 | There was a delay of 49.178071 seconds for round 53
+Federated_Learning | INFO flwr 2024-04-29 14:53:39,336 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:53:39,336 | server.py:111 | [ROUND 54]
+Federated_Learning | INFO flwr 2024-04-29 14:53:39,337 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:54:20,867 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:54:20,869 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:54:27,882 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:54:27,883 | server.py:59 | {'accuracy': 0.6361727654469106, 'loss': 109.66241240004699}
+Federated_Learning | INFO flwr 2024-04-29 14:54:27,883 | strategy.py:293 | There was a delay of 48.546501 seconds for round 54
+Federated_Learning | INFO flwr 2024-04-29 14:54:27,883 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:54:27,883 | server.py:111 | [ROUND 55]
+Federated_Learning | INFO flwr 2024-04-29 14:54:27,884 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:55:09,358 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:55:09,359 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:55:15,996 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:55:15,996 | server.py:59 | {'accuracy': 0.6365726854629075, 'loss': 110.25284000237782}
+Federated_Learning | INFO flwr 2024-04-29 14:55:15,996 | strategy.py:293 | There was a delay of 48.113083 seconds for round 55
+Federated_Learning | INFO flwr 2024-04-29 14:55:15,996 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:55:15,997 | server.py:111 | [ROUND 56]
+Federated_Learning | INFO flwr 2024-04-29 14:55:15,997 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:55:59,312 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:55:59,313 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:56:05,642 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:56:05,642 | server.py:59 | {'accuracy': 0.6355728854229155, 'loss': 110.80089628696442}
+Federated_Learning | INFO flwr 2024-04-29 14:56:05,642 | strategy.py:293 | There was a delay of 49.645298 seconds for round 56
+Federated_Learning | INFO flwr 2024-04-29 14:56:05,642 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:56:05,642 | server.py:111 | [ROUND 57]
+Federated_Learning | INFO flwr 2024-04-29 14:56:05,643 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:56:42,828 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:56:42,829 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:56:48,458 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:56:48,458 | server.py:59 | {'accuracy': 0.629374125174965, 'loss': 111.3814014295737}
+Federated_Learning | INFO flwr 2024-04-29 14:56:48,459 | strategy.py:293 | There was a delay of 42.816257 seconds for round 57
+Federated_Learning | INFO flwr 2024-04-29 14:56:48,459 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:56:48,459 | server.py:111 | [ROUND 58]
+Federated_Learning | INFO flwr 2024-04-29 14:56:48,459 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:57:27,063 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:57:27,065 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:57:32,916 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:57:32,916 | server.py:59 | {'accuracy': 0.6354729054189162, 'loss': 112.06149701277415}
+Federated_Learning | INFO flwr 2024-04-29 14:57:32,916 | strategy.py:293 | There was a delay of 44.457302 seconds for round 58
+Federated_Learning | INFO flwr 2024-04-29 14:57:32,917 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:57:32,917 | server.py:111 | [ROUND 59]
+Federated_Learning | INFO flwr 2024-04-29 14:57:32,917 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:58:14,934 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:58:14,936 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:58:20,624 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:58:20,625 | server.py:59 | {'accuracy': 0.6362727454509098, 'loss': 110.4673281510671}
+Federated_Learning | INFO flwr 2024-04-29 14:58:20,625 | strategy.py:293 | There was a delay of 47.708065 seconds for round 59
+Federated_Learning | INFO flwr 2024-04-29 14:58:20,625 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:58:20,625 | server.py:111 | [ROUND 60]
+Federated_Learning | INFO flwr 2024-04-29 14:58:20,626 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:58:59,618 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:58:59,620 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:59:05,245 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:59:05,246 | server.py:59 | {'accuracy': 0.635872825434913, 'loss': 110.70554574330647}
+Federated_Learning | INFO flwr 2024-04-29 14:59:05,246 | strategy.py:293 | There was a delay of 44.62062 seconds for round 60
+Federated_Learning | INFO flwr 2024-04-29 14:59:05,246 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:59:05,247 | server.py:111 | [ROUND 61]
+Federated_Learning | INFO flwr 2024-04-29 14:59:05,247 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:59:44,481 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:59:44,483 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 14:59:50,302 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 14:59:50,302 | server.py:59 | {'accuracy': 0.636372725454909, 'loss': 111.01534608006477}
+Federated_Learning | INFO flwr 2024-04-29 14:59:50,302 | strategy.py:293 | There was a delay of 45.055494 seconds for round 61
+Federated_Learning | INFO flwr 2024-04-29 14:59:50,302 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 14:59:50,303 | server.py:111 | [ROUND 62]
+Federated_Learning | INFO flwr 2024-04-29 14:59:50,303 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:00:32,374 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:00:32,375 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:00:38,189 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:00:38,190 | server.py:59 | {'accuracy': 0.641871625674865, 'loss': 110.46287605166435}
+Federated_Learning | INFO flwr 2024-04-29 15:00:38,190 | strategy.py:293 | There was a delay of 47.887556 seconds for round 62
+Federated_Learning | INFO flwr 2024-04-29 15:00:38,191 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:00:38,191 | server.py:111 | [ROUND 63]
+Federated_Learning | INFO flwr 2024-04-29 15:00:38,192 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:01:18,906 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:01:18,908 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:01:26,376 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:01:26,376 | server.py:59 | {'accuracy': 0.6372725454909018, 'loss': 111.5758336186409}
+Federated_Learning | INFO flwr 2024-04-29 15:01:26,376 | strategy.py:293 | There was a delay of 48.185255 seconds for round 63
+Federated_Learning | INFO flwr 2024-04-29 15:01:26,376 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:01:26,377 | server.py:111 | [ROUND 64]
+Federated_Learning | INFO flwr 2024-04-29 15:01:26,377 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:02:05,068 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:02:05,070 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:02:12,229 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:02:12,229 | server.py:59 | {'accuracy': 0.637872425514897, 'loss': 111.00404388209184}
+Federated_Learning | INFO flwr 2024-04-29 15:02:12,229 | strategy.py:293 | There was a delay of 45.852687 seconds for round 64
+Federated_Learning | INFO flwr 2024-04-29 15:02:12,230 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:02:12,230 | server.py:111 | [ROUND 65]
+Federated_Learning | INFO flwr 2024-04-29 15:02:12,231 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:02:52,277 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:02:52,278 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:02:59,176 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:02:59,177 | server.py:59 | {'accuracy': 0.6432713457308539, 'loss': 109.68687077363332}
+Federated_Learning | INFO flwr 2024-04-29 15:02:59,177 | strategy.py:293 | There was a delay of 46.946579 seconds for round 65
+Federated_Learning | INFO flwr 2024-04-29 15:02:59,177 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:02:59,177 | server.py:111 | [ROUND 66]
+Federated_Learning | INFO flwr 2024-04-29 15:02:59,178 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:03:42,208 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:03:42,210 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:03:48,738 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:03:48,738 | server.py:59 | {'accuracy': 0.6436712657468506, 'loss': 111.06108378370602}
+Federated_Learning | INFO flwr 2024-04-29 15:03:48,738 | strategy.py:293 | There was a delay of 49.560931 seconds for round 66
+Federated_Learning | INFO flwr 2024-04-29 15:03:48,738 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:03:48,739 | server.py:111 | [ROUND 67]
+Federated_Learning | INFO flwr 2024-04-29 15:03:48,739 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:04:32,509 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:04:32,511 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:04:38,306 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:04:38,307 | server.py:59 | {'accuracy': 0.6409718056388722, 'loss': 110.51875009139378}
+Federated_Learning | INFO flwr 2024-04-29 15:04:38,307 | strategy.py:293 | There was a delay of 49.568094 seconds for round 67
+Federated_Learning | INFO flwr 2024-04-29 15:04:38,307 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:04:38,307 | server.py:111 | [ROUND 68]
+Federated_Learning | INFO flwr 2024-04-29 15:04:38,308 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:05:16,954 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:05:16,956 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:05:23,441 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:05:23,441 | server.py:59 | {'accuracy': 0.6361727654469106, 'loss': 111.47890329857667}
+Federated_Learning | INFO flwr 2024-04-29 15:05:23,441 | strategy.py:293 | There was a delay of 45.133908 seconds for round 68
+Federated_Learning | INFO flwr 2024-04-29 15:05:23,441 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:05:23,442 | server.py:111 | [ROUND 69]
+Federated_Learning | INFO flwr 2024-04-29 15:05:23,442 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:06:04,403 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:06:04,404 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:06:10,790 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:06:10,791 | server.py:59 | {'accuracy': 0.6454709058188363, 'loss': 110.1531945168972}
+Federated_Learning | INFO flwr 2024-04-29 15:06:10,791 | strategy.py:293 | There was a delay of 47.349124 seconds for round 69
+Federated_Learning | INFO flwr 2024-04-29 15:06:10,791 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:06:10,791 | server.py:111 | [ROUND 70]
+Federated_Learning | INFO flwr 2024-04-29 15:06:10,792 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:06:49,056 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:06:49,057 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:06:55,252 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:06:55,253 | server.py:59 | {'accuracy': 0.6386722655468906, 'loss': 111.538576344649}
+Federated_Learning | INFO flwr 2024-04-29 15:06:55,253 | strategy.py:293 | There was a delay of 44.461529 seconds for round 70
+Federated_Learning | INFO flwr 2024-04-29 15:06:55,253 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:06:55,253 | server.py:111 | [ROUND 71]
+Federated_Learning | INFO flwr 2024-04-29 15:06:55,254 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:07:34,273 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:07:34,274 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:07:40,756 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:07:40,756 | server.py:59 | {'accuracy': 0.639872025594881, 'loss': 111.17944584290187}
+Federated_Learning | INFO flwr 2024-04-29 15:07:40,756 | strategy.py:293 | There was a delay of 45.502959 seconds for round 71
+Federated_Learning | INFO flwr 2024-04-29 15:07:40,757 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:07:40,757 | server.py:111 | [ROUND 72]
+Federated_Learning | INFO flwr 2024-04-29 15:07:40,757 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:08:20,611 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:08:20,613 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:08:26,767 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:08:26,767 | server.py:59 | {'accuracy': 0.6382723455308938, 'loss': 112.78519413868587}
+Federated_Learning | INFO flwr 2024-04-29 15:08:26,768 | strategy.py:293 | There was a delay of 46.010739 seconds for round 72
+Federated_Learning | INFO flwr 2024-04-29 15:08:26,768 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:08:26,768 | server.py:111 | [ROUND 73]
+Federated_Learning | INFO flwr 2024-04-29 15:08:26,768 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:09:05,056 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:09:05,058 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:09:11,528 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:09:11,528 | server.py:59 | {'accuracy': 0.6441711657668466, 'loss': 111.17083006103833}
+Federated_Learning | INFO flwr 2024-04-29 15:09:11,528 | strategy.py:293 | There was a delay of 44.759991 seconds for round 73
+Federated_Learning | INFO flwr 2024-04-29 15:09:11,528 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:09:11,528 | server.py:111 | [ROUND 74]
+Federated_Learning | INFO flwr 2024-04-29 15:09:11,529 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:09:50,753 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:09:50,755 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:09:57,737 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:09:57,737 | server.py:59 | {'accuracy': 0.6474705058988203, 'loss': 111.80614396929741}
+Federated_Learning | INFO flwr 2024-04-29 15:09:57,738 | strategy.py:293 | There was a delay of 46.20911 seconds for round 74
+Federated_Learning | INFO flwr 2024-04-29 15:09:57,738 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:09:57,738 | server.py:111 | [ROUND 75]
+Federated_Learning | INFO flwr 2024-04-29 15:09:57,738 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:10:39,981 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:10:39,982 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:10:46,404 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:10:46,404 | server.py:59 | {'accuracy': 0.6505698860227954, 'loss': 111.75423117975394}
+Federated_Learning | INFO flwr 2024-04-29 15:10:46,404 | strategy.py:293 | There was a delay of 48.666374 seconds for round 75
+Federated_Learning | INFO flwr 2024-04-29 15:10:46,405 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:10:46,405 | server.py:111 | [ROUND 76]
+Federated_Learning | INFO flwr 2024-04-29 15:10:46,406 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:11:24,916 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:11:24,917 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:11:30,456 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:11:30,457 | server.py:59 | {'accuracy': 0.641871625674865, 'loss': 112.74095824360847}
+Federated_Learning | INFO flwr 2024-04-29 15:11:30,457 | strategy.py:293 | There was a delay of 44.051638 seconds for round 76
+Federated_Learning | INFO flwr 2024-04-29 15:11:30,457 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:11:30,457 | server.py:111 | [ROUND 77]
+Federated_Learning | INFO flwr 2024-04-29 15:11:30,458 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:12:10,799 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:12:10,800 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:12:16,912 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:12:16,912 | server.py:59 | {'accuracy': 0.640371925614877, 'loss': 112.67072308063507}
+Federated_Learning | INFO flwr 2024-04-29 15:12:16,912 | strategy.py:293 | There was a delay of 46.455074 seconds for round 77
+Federated_Learning | INFO flwr 2024-04-29 15:12:16,913 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:12:16,913 | server.py:111 | [ROUND 78]
+Federated_Learning | INFO flwr 2024-04-29 15:12:16,913 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:13:00,561 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:13:00,563 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:13:07,958 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:13:07,958 | server.py:59 | {'accuracy': 0.6445710857828434, 'loss': 112.87853555878003}
+Federated_Learning | INFO flwr 2024-04-29 15:13:07,959 | strategy.py:293 | There was a delay of 51.04577 seconds for round 78
+Federated_Learning | INFO flwr 2024-04-29 15:13:07,959 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:13:07,959 | server.py:111 | [ROUND 79]
+Federated_Learning | INFO flwr 2024-04-29 15:13:07,960 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:13:47,249 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:13:47,250 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:13:54,177 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:13:54,177 | server.py:59 | {'accuracy': 0.6436712657468506, 'loss': 112.94889075060685}
+Federated_Learning | INFO flwr 2024-04-29 15:13:54,178 | strategy.py:293 | There was a delay of 46.218397 seconds for round 79
+Federated_Learning | INFO flwr 2024-04-29 15:13:54,178 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:13:54,178 | server.py:111 | [ROUND 80]
+Federated_Learning | INFO flwr 2024-04-29 15:13:54,178 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:14:34,747 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:14:34,749 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:14:40,474 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:14:40,474 | server.py:59 | {'accuracy': 0.6417716456708659, 'loss': 113.82660935322444}
+Federated_Learning | INFO flwr 2024-04-29 15:14:40,475 | strategy.py:293 | There was a delay of 46.296782 seconds for round 80
+Federated_Learning | INFO flwr 2024-04-29 15:14:40,475 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:14:40,475 | server.py:111 | [ROUND 81]
+Federated_Learning | INFO flwr 2024-04-29 15:14:40,476 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:15:15,668 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:15:15,670 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:15:22,268 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:15:22,268 | server.py:59 | {'accuracy': 0.6454709058188363, 'loss': 114.62807139754295}
+Federated_Learning | INFO flwr 2024-04-29 15:15:22,269 | strategy.py:293 | There was a delay of 41.793039 seconds for round 81
+Federated_Learning | INFO flwr 2024-04-29 15:15:22,269 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:15:22,269 | server.py:111 | [ROUND 82]
+Federated_Learning | INFO flwr 2024-04-29 15:15:22,270 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:16:05,676 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:16:05,678 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:16:11,422 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:16:11,422 | server.py:59 | {'accuracy': 0.6436712657468506, 'loss': 114.54075892766316}
+Federated_Learning | INFO flwr 2024-04-29 15:16:11,422 | strategy.py:293 | There was a delay of 49.15317 seconds for round 82
+Federated_Learning | INFO flwr 2024-04-29 15:16:11,423 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:16:11,423 | server.py:111 | [ROUND 83]
+Federated_Learning | INFO flwr 2024-04-29 15:16:11,424 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:16:53,380 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:16:53,381 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:17:00,801 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:17:00,801 | server.py:59 | {'accuracy': 0.6447710457908419, 'loss': 114.16453668475151}
+Federated_Learning | INFO flwr 2024-04-29 15:17:00,802 | strategy.py:293 | There was a delay of 49.378523 seconds for round 83
+Federated_Learning | INFO flwr 2024-04-29 15:17:00,802 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:17:00,802 | server.py:111 | [ROUND 84]
+Federated_Learning | INFO flwr 2024-04-29 15:17:00,803 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:17:40,671 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:17:40,673 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:17:47,473 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:17:47,473 | server.py:59 | {'accuracy': 0.6420715856828634, 'loss': 116.90704141557217}
+Federated_Learning | INFO flwr 2024-04-29 15:17:47,473 | strategy.py:293 | There was a delay of 46.671016 seconds for round 84
+Federated_Learning | INFO flwr 2024-04-29 15:17:47,473 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:17:47,474 | server.py:111 | [ROUND 85]
+Federated_Learning | INFO flwr 2024-04-29 15:17:47,474 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:18:25,477 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:18:25,479 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:18:31,158 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:18:31,159 | server.py:59 | {'accuracy': 0.6417716456708659, 'loss': 115.72440852721532}
+Federated_Learning | INFO flwr 2024-04-29 15:18:31,159 | strategy.py:293 | There was a delay of 43.685516 seconds for round 85
+Federated_Learning | INFO flwr 2024-04-29 15:18:31,160 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:18:31,160 | server.py:111 | [ROUND 86]
+Federated_Learning | INFO flwr 2024-04-29 15:18:31,161 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:19:11,918 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:19:11,920 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:19:16,403 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:19:16,404 | server.py:59 | {'accuracy': 0.6416716656668666, 'loss': 117.02843901515007}
+Federated_Learning | INFO flwr 2024-04-29 15:19:16,404 | strategy.py:293 | There was a delay of 45.243774 seconds for round 86
+Federated_Learning | INFO flwr 2024-04-29 15:19:16,404 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:19:16,404 | server.py:111 | [ROUND 87]
+Federated_Learning | INFO flwr 2024-04-29 15:19:16,405 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:19:57,357 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:19:57,358 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:20:03,989 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:20:03,989 | server.py:59 | {'accuracy': 0.6410717856428714, 'loss': 118.12116990486781}
+Federated_Learning | INFO flwr 2024-04-29 15:20:03,990 | strategy.py:293 | There was a delay of 47.585135 seconds for round 87
+Federated_Learning | INFO flwr 2024-04-29 15:20:03,990 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:20:03,990 | server.py:111 | [ROUND 88]
+Federated_Learning | INFO flwr 2024-04-29 15:20:03,990 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:20:43,901 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:20:43,903 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:20:50,905 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:20:50,905 | server.py:59 | {'accuracy': 0.6386722655468906, 'loss': 118.95779364307721}
+Federated_Learning | INFO flwr 2024-04-29 15:20:50,905 | strategy.py:293 | There was a delay of 46.915136 seconds for round 88
+Federated_Learning | INFO flwr 2024-04-29 15:20:50,905 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:20:50,905 | server.py:111 | [ROUND 89]
+Federated_Learning | INFO flwr 2024-04-29 15:20:50,906 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:21:28,924 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:21:28,926 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:21:36,013 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:21:36,013 | server.py:59 | {'accuracy': 0.6392721455708859, 'loss': 120.37687341372173}
+Federated_Learning | INFO flwr 2024-04-29 15:21:36,013 | strategy.py:293 | There was a delay of 45.1077 seconds for round 89
+Federated_Learning | INFO flwr 2024-04-29 15:21:36,013 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:21:36,014 | server.py:111 | [ROUND 90]
+Federated_Learning | INFO flwr 2024-04-29 15:21:36,014 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:22:19,607 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:22:19,608 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:22:25,141 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:22:25,141 | server.py:59 | {'accuracy': 0.6405718856228754, 'loss': 119.18860830366611}
+Federated_Learning | INFO flwr 2024-04-29 15:22:25,142 | strategy.py:293 | There was a delay of 49.127889 seconds for round 90
+Federated_Learning | INFO flwr 2024-04-29 15:22:25,142 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:22:25,142 | server.py:111 | [ROUND 91]
+Federated_Learning | INFO flwr 2024-04-29 15:22:25,142 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:23:00,859 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:23:00,861 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:23:07,877 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:23:07,877 | server.py:59 | {'accuracy': 0.6431713657268546, 'loss': 119.46029212574165}
+Federated_Learning | INFO flwr 2024-04-29 15:23:07,877 | strategy.py:293 | There was a delay of 42.735561 seconds for round 91
+Federated_Learning | INFO flwr 2024-04-29 15:23:07,878 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:23:07,878 | server.py:111 | [ROUND 92]
+Federated_Learning | INFO flwr 2024-04-29 15:23:07,879 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:23:48,651 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:23:48,652 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:23:55,501 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:23:55,501 | server.py:59 | {'accuracy': 0.6432713457308539, 'loss': 118.85439378519852}
+Federated_Learning | INFO flwr 2024-04-29 15:23:55,501 | strategy.py:293 | There was a delay of 47.622965 seconds for round 92
+Federated_Learning | INFO flwr 2024-04-29 15:23:55,502 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:23:55,502 | server.py:111 | [ROUND 93]
+Federated_Learning | INFO flwr 2024-04-29 15:23:55,502 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:24:39,565 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:24:39,567 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:24:45,950 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:24:45,950 | server.py:59 | {'accuracy': 0.6422715456908619, 'loss': 122.23327759901683}
+Federated_Learning | INFO flwr 2024-04-29 15:24:45,950 | strategy.py:293 | There was a delay of 50.44847 seconds for round 93
+Federated_Learning | INFO flwr 2024-04-29 15:24:45,950 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:24:45,951 | server.py:111 | [ROUND 94]
+Federated_Learning | INFO flwr 2024-04-29 15:24:45,951 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:25:25,655 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:25:25,656 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:25:30,089 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:25:30,089 | server.py:59 | {'accuracy': 0.6382723455308938, 'loss': 122.09399185578029}
+Federated_Learning | INFO flwr 2024-04-29 15:25:30,090 | strategy.py:293 | There was a delay of 44.138827 seconds for round 94
+Federated_Learning | INFO flwr 2024-04-29 15:25:30,090 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:25:30,090 | server.py:111 | [ROUND 95]
+Federated_Learning | INFO flwr 2024-04-29 15:25:30,090 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:26:14,104 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:26:14,106 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:26:20,330 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:26:20,330 | server.py:59 | {'accuracy': 0.6372725454909018, 'loss': 124.2255153755347}
+Federated_Learning | INFO flwr 2024-04-29 15:26:20,330 | strategy.py:293 | There was a delay of 50.240383 seconds for round 95
+Federated_Learning | INFO flwr 2024-04-29 15:26:20,331 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:26:20,331 | server.py:111 | [ROUND 96]
+Federated_Learning | INFO flwr 2024-04-29 15:26:20,331 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:27:02,577 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:27:02,578 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:27:09,161 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:27:09,162 | server.py:59 | {'accuracy': 0.6401719656068786, 'loss': 124.04254886507988}
+Federated_Learning | INFO flwr 2024-04-29 15:27:09,162 | strategy.py:293 | There was a delay of 48.831032 seconds for round 96
+Federated_Learning | INFO flwr 2024-04-29 15:27:09,162 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:27:09,162 | server.py:111 | [ROUND 97]
+Federated_Learning | INFO flwr 2024-04-29 15:27:09,163 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:27:50,026 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:27:50,028 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:27:56,701 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:27:56,702 | server.py:59 | {'accuracy': 0.6375724855028995, 'loss': 126.0023848215739}
+Federated_Learning | INFO flwr 2024-04-29 15:27:56,702 | strategy.py:293 | There was a delay of 47.539625 seconds for round 97
+Federated_Learning | INFO flwr 2024-04-29 15:27:56,702 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:27:56,702 | server.py:111 | [ROUND 98]
+Federated_Learning | INFO flwr 2024-04-29 15:27:56,703 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:28:41,553 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:28:41,555 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:28:48,607 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:28:48,607 | server.py:59 | {'accuracy': 0.634873025394921, 'loss': 127.64599969983101}
+Federated_Learning | INFO flwr 2024-04-29 15:28:48,607 | strategy.py:293 | There was a delay of 51.904775 seconds for round 98
+Federated_Learning | INFO flwr 2024-04-29 15:28:48,608 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:28:48,608 | server.py:111 | [ROUND 99]
+Federated_Learning | INFO flwr 2024-04-29 15:28:48,609 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:29:27,798 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:29:27,799 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:29:34,605 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:29:34,605 | server.py:59 | {'accuracy': 0.6374725054989002, 'loss': 128.1847764054934}
+Federated_Learning | INFO flwr 2024-04-29 15:29:34,605 | strategy.py:293 | There was a delay of 45.997113 seconds for round 99
+Federated_Learning | INFO flwr 2024-04-29 15:29:34,606 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:29:34,606 | server.py:111 | [ROUND 100]
+Federated_Learning | INFO flwr 2024-04-29 15:29:34,606 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:30:12,665 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:30:12,666 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:30:18,636 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:30:18,636 | server.py:59 | {'accuracy': 0.6407718456308739, 'loss': 126.07784932355086}
+Federated_Learning | INFO flwr 2024-04-29 15:30:18,637 | strategy.py:293 | There was a delay of 44.030884 seconds for round 100
+Federated_Learning | INFO flwr 2024-04-29 15:30:18,637 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:30:18,637 | server.py:111 | [ROUND 101]
+Federated_Learning | INFO flwr 2024-04-29 15:30:18,638 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:30:57,970 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:30:57,971 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:31:03,672 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:31:03,673 | server.py:59 | {'accuracy': 0.6391721655668866, 'loss': 128.83306039869785}
+Federated_Learning | INFO flwr 2024-04-29 15:31:03,673 | strategy.py:293 | There was a delay of 45.035413 seconds for round 101
+Federated_Learning | INFO flwr 2024-04-29 15:31:03,673 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:31:03,673 | server.py:111 | [ROUND 102]
+Federated_Learning | INFO flwr 2024-04-29 15:31:03,674 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:31:49,191 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:31:49,192 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:31:55,643 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:31:55,643 | server.py:59 | {'accuracy': 0.6376724655068986, 'loss': 127.45773842930794}
+Federated_Learning | INFO flwr 2024-04-29 15:31:55,644 | strategy.py:293 | There was a delay of 51.970164 seconds for round 102
+Federated_Learning | INFO flwr 2024-04-29 15:31:55,644 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:31:55,644 | server.py:111 | [ROUND 103]
+Federated_Learning | INFO flwr 2024-04-29 15:31:55,645 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:32:36,255 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:32:36,256 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:32:42,165 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:32:42,166 | server.py:59 | {'accuracy': 0.6365726854629075, 'loss': 130.43327849109968}
+Federated_Learning | INFO flwr 2024-04-29 15:32:42,166 | strategy.py:293 | There was a delay of 46.521738 seconds for round 103
+Federated_Learning | INFO flwr 2024-04-29 15:32:42,166 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:32:42,166 | server.py:111 | [ROUND 104]
+Federated_Learning | INFO flwr 2024-04-29 15:32:42,167 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:33:25,431 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:33:25,433 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:33:33,401 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:33:33,402 | server.py:59 | {'accuracy': 0.6327734453109378, 'loss': 130.8585954606533}
+Federated_Learning | INFO flwr 2024-04-29 15:33:33,402 | strategy.py:293 | There was a delay of 51.235495 seconds for round 104
+Federated_Learning | INFO flwr 2024-04-29 15:33:33,402 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:33:33,402 | server.py:111 | [ROUND 105]
+Federated_Learning | INFO flwr 2024-04-29 15:33:33,403 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:34:17,722 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:34:17,725 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:34:24,915 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:34:24,916 | server.py:59 | {'accuracy': 0.6362727454509098, 'loss': 132.9906849960486}
+Federated_Learning | INFO flwr 2024-04-29 15:34:24,916 | strategy.py:293 | There was a delay of 51.513838 seconds for round 105
+Federated_Learning | INFO flwr 2024-04-29 15:34:24,917 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:34:24,917 | server.py:111 | [ROUND 106]
+Federated_Learning | INFO flwr 2024-04-29 15:34:24,917 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:35:11,203 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:35:11,205 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:35:15,535 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:35:15,535 | server.py:59 | {'accuracy': 0.6316736652669466, 'loss': 133.0715982913971}
+Federated_Learning | INFO flwr 2024-04-29 15:35:15,535 | strategy.py:293 | There was a delay of 50.61858 seconds for round 106
+Federated_Learning | INFO flwr 2024-04-29 15:35:15,536 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:35:15,536 | server.py:111 | [ROUND 107]
+Federated_Learning | INFO flwr 2024-04-29 15:35:15,536 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:35:58,791 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:35:58,792 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:36:05,674 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:36:05,674 | server.py:59 | {'accuracy': 0.634373125374925, 'loss': 133.42634177704653}
+Federated_Learning | INFO flwr 2024-04-29 15:36:05,674 | strategy.py:293 | There was a delay of 50.138411 seconds for round 107
+Federated_Learning | INFO flwr 2024-04-29 15:36:05,675 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:36:05,675 | server.py:111 | [ROUND 108]
+Federated_Learning | INFO flwr 2024-04-29 15:36:05,675 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:36:50,741 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:36:50,742 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:36:58,518 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:36:58,518 | server.py:59 | {'accuracy': 0.6299740051989602, 'loss': 134.8166514734427}
+Federated_Learning | INFO flwr 2024-04-29 15:36:58,518 | strategy.py:293 | There was a delay of 52.843526 seconds for round 108
+Federated_Learning | INFO flwr 2024-04-29 15:36:58,519 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:36:58,519 | server.py:111 | [ROUND 109]
+Federated_Learning | INFO flwr 2024-04-29 15:36:58,519 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:37:39,000 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:37:39,002 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:37:44,573 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:37:44,573 | server.py:59 | {'accuracy': 0.6310737852429514, 'loss': 137.7038562744856}
+Federated_Learning | INFO flwr 2024-04-29 15:37:44,573 | strategy.py:293 | There was a delay of 46.054473 seconds for round 109
+Federated_Learning | INFO flwr 2024-04-29 15:37:44,574 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:37:44,574 | server.py:111 | [ROUND 110]
+Federated_Learning | INFO flwr 2024-04-29 15:37:44,574 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:38:32,376 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:38:32,377 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:38:39,412 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:38:39,413 | server.py:59 | {'accuracy': 0.6336732653469306, 'loss': 136.77366492152214}
+Federated_Learning | INFO flwr 2024-04-29 15:38:39,413 | strategy.py:293 | There was a delay of 54.839097 seconds for round 110
+Federated_Learning | INFO flwr 2024-04-29 15:38:39,413 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:38:39,413 | server.py:111 | [ROUND 111]
+Federated_Learning | INFO flwr 2024-04-29 15:38:39,414 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:39:26,138 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:39:26,140 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:39:33,894 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:39:33,895 | server.py:59 | {'accuracy': 0.6286742651469706, 'loss': 138.5815359155337}
+Federated_Learning | INFO flwr 2024-04-29 15:39:33,895 | strategy.py:293 | There was a delay of 54.482067 seconds for round 111
+Federated_Learning | INFO flwr 2024-04-29 15:39:33,895 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:39:33,896 | server.py:111 | [ROUND 112]
+Federated_Learning | INFO flwr 2024-04-29 15:39:33,896 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:40:19,387 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:40:19,388 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:40:25,637 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:40:25,638 | server.py:59 | {'accuracy': 0.6325734853029394, 'loss': 138.08916889627776}
+Federated_Learning | INFO flwr 2024-04-29 15:40:25,638 | strategy.py:293 | There was a delay of 51.741892 seconds for round 112
+Federated_Learning | INFO flwr 2024-04-29 15:40:25,638 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:40:25,638 | server.py:111 | [ROUND 113]
+Federated_Learning | INFO flwr 2024-04-29 15:40:25,638 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:41:11,107 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:41:11,108 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:41:16,419 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:41:16,420 | server.py:59 | {'accuracy': 0.630373925214957, 'loss': 140.26401948432127}
+Federated_Learning | INFO flwr 2024-04-29 15:41:16,420 | strategy.py:293 | There was a delay of 50.781683 seconds for round 113
+Federated_Learning | INFO flwr 2024-04-29 15:41:16,420 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:41:16,420 | server.py:111 | [ROUND 114]
+Federated_Learning | INFO flwr 2024-04-29 15:41:16,420 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:41:57,851 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:41:57,852 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:42:04,396 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:42:04,396 | server.py:59 | {'accuracy': 0.6306738652269546, 'loss': 141.7627944946289}
+Federated_Learning | INFO flwr 2024-04-29 15:42:04,396 | strategy.py:293 | There was a delay of 47.976153 seconds for round 114
+Federated_Learning | INFO flwr 2024-04-29 15:42:04,396 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:42:04,397 | server.py:111 | [ROUND 115]
+Federated_Learning | INFO flwr 2024-04-29 15:42:04,397 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:42:48,650 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:42:48,652 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:42:55,234 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:42:55,234 | server.py:59 | {'accuracy': 0.6287742451509698, 'loss': 142.84584468106428}
+Federated_Learning | INFO flwr 2024-04-29 15:42:55,235 | strategy.py:293 | There was a delay of 50.83774 seconds for round 115
+Federated_Learning | INFO flwr 2024-04-29 15:42:55,235 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:42:55,235 | server.py:111 | [ROUND 116]
+Federated_Learning | INFO flwr 2024-04-29 15:42:55,235 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:43:38,905 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:43:38,907 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:43:45,152 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:43:45,152 | server.py:59 | {'accuracy': 0.6282743451309738, 'loss': 142.88978748520216}
+Federated_Learning | INFO flwr 2024-04-29 15:43:45,152 | strategy.py:293 | There was a delay of 49.917224 seconds for round 116
+Federated_Learning | INFO flwr 2024-04-29 15:43:45,152 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:43:45,153 | server.py:111 | [ROUND 117]
+Federated_Learning | INFO flwr 2024-04-29 15:43:45,153 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:44:31,323 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:44:31,325 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:44:38,098 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:44:38,099 | server.py:59 | {'accuracy': 0.6308738252349531, 'loss': 143.12102564175925}
+Federated_Learning | INFO flwr 2024-04-29 15:44:38,099 | strategy.py:293 | There was a delay of 52.946145 seconds for round 117
+Federated_Learning | INFO flwr 2024-04-29 15:44:38,099 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:44:38,099 | server.py:111 | [ROUND 118]
+Federated_Learning | INFO flwr 2024-04-29 15:44:38,100 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:45:23,636 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:45:23,638 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:45:29,240 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:45:29,240 | server.py:59 | {'accuracy': 0.6305738852229554, 'loss': 146.07426150639853}
+Federated_Learning | INFO flwr 2024-04-29 15:45:29,241 | strategy.py:293 | There was a delay of 51.141241 seconds for round 118
+Federated_Learning | INFO flwr 2024-04-29 15:45:29,241 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:45:29,241 | server.py:111 | [ROUND 119]
+Federated_Learning | INFO flwr 2024-04-29 15:45:29,241 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:46:12,134 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:46:12,135 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:46:19,017 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:46:19,017 | server.py:59 | {'accuracy': 0.6249750049990002, 'loss': 149.42748856544495}
+Federated_Learning | INFO flwr 2024-04-29 15:46:19,018 | strategy.py:293 | There was a delay of 49.776791 seconds for round 119
+Federated_Learning | INFO flwr 2024-04-29 15:46:19,018 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:46:19,018 | server.py:111 | [ROUND 120]
+Federated_Learning | INFO flwr 2024-04-29 15:46:19,019 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:47:02,633 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:47:02,634 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:47:09,405 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:47:09,406 | server.py:59 | {'accuracy': 0.6276744651069786, 'loss': 148.78040247162184}
+Federated_Learning | INFO flwr 2024-04-29 15:47:09,406 | strategy.py:293 | There was a delay of 50.386971 seconds for round 120
+Federated_Learning | INFO flwr 2024-04-29 15:47:09,406 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:47:09,406 | server.py:111 | [ROUND 121]
+Federated_Learning | INFO flwr 2024-04-29 15:47:09,407 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:47:51,407 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:47:51,408 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:47:56,894 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:47:56,895 | server.py:59 | {'accuracy': 0.6277744451109778, 'loss': 151.1294448276361}
+Federated_Learning | INFO flwr 2024-04-29 15:47:56,895 | strategy.py:293 | There was a delay of 47.488673 seconds for round 121
+Federated_Learning | INFO flwr 2024-04-29 15:47:56,895 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:47:56,895 | server.py:111 | [ROUND 122]
+Federated_Learning | INFO flwr 2024-04-29 15:47:56,896 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:48:40,830 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:48:40,832 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:48:47,262 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:48:47,262 | server.py:59 | {'accuracy': 0.6252749450109978, 'loss': 152.24143943190575}
+Federated_Learning | INFO flwr 2024-04-29 15:48:47,262 | strategy.py:293 | There was a delay of 50.366995 seconds for round 122
+Federated_Learning | INFO flwr 2024-04-29 15:48:47,262 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:48:47,263 | server.py:111 | [ROUND 123]
+Federated_Learning | INFO flwr 2024-04-29 15:48:47,263 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:49:32,433 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:49:32,434 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:49:38,420 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:49:38,420 | server.py:59 | {'accuracy': 0.624875024995001, 'loss': 152.53534592191377}
+Federated_Learning | INFO flwr 2024-04-29 15:49:38,421 | strategy.py:293 | There was a delay of 51.157909 seconds for round 123
+Federated_Learning | INFO flwr 2024-04-29 15:49:38,421 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:49:38,421 | server.py:111 | [ROUND 124]
+Federated_Learning | INFO flwr 2024-04-29 15:49:38,422 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:50:23,429 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:50:23,431 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:50:30,533 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:50:30,534 | server.py:59 | {'accuracy': 0.6272745450909818, 'loss': 154.59272276858488}
+Federated_Learning | INFO flwr 2024-04-29 15:50:30,534 | strategy.py:293 | There was a delay of 52.112506 seconds for round 124
+Federated_Learning | INFO flwr 2024-04-29 15:50:30,534 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:50:30,534 | server.py:111 | [ROUND 125]
+Federated_Learning | INFO flwr 2024-04-29 15:50:30,535 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:51:18,538 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:51:18,539 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:51:25,745 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:51:25,746 | server.py:59 | {'accuracy': 0.6194761047790442, 'loss': 157.78567141791186}
+Federated_Learning | INFO flwr 2024-04-29 15:51:25,746 | strategy.py:293 | There was a delay of 55.211554 seconds for round 125
+Federated_Learning | INFO flwr 2024-04-29 15:51:25,746 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:51:25,747 | server.py:111 | [ROUND 126]
+Federated_Learning | INFO flwr 2024-04-29 15:51:25,748 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:52:14,902 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:52:14,903 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:52:21,181 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:52:21,182 | server.py:59 | {'accuracy': 0.6239752049590082, 'loss': 158.65628275523582}
+Federated_Learning | INFO flwr 2024-04-29 15:52:21,182 | strategy.py:293 | There was a delay of 55.434808 seconds for round 126
+Federated_Learning | INFO flwr 2024-04-29 15:52:21,182 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:52:21,182 | server.py:111 | [ROUND 127]
+Federated_Learning | INFO flwr 2024-04-29 15:52:21,183 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:53:04,788 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:53:04,789 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:53:11,638 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:53:11,638 | server.py:59 | {'accuracy': 0.6185762847430514, 'loss': 160.0639568567276}
+Federated_Learning | INFO flwr 2024-04-29 15:53:11,638 | strategy.py:293 | There was a delay of 50.456118 seconds for round 127
+Federated_Learning | INFO flwr 2024-04-29 15:53:11,639 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:53:11,639 | server.py:111 | [ROUND 128]
+Federated_Learning | INFO flwr 2024-04-29 15:53:11,639 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:53:54,028 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:53:54,030 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:54:01,368 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:54:01,368 | server.py:59 | {'accuracy': 0.6221755648870226, 'loss': 156.9506963789463}
+Federated_Learning | INFO flwr 2024-04-29 15:54:01,368 | strategy.py:293 | There was a delay of 49.729447 seconds for round 128
+Federated_Learning | INFO flwr 2024-04-29 15:54:01,369 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:54:01,369 | server.py:111 | [ROUND 129]
+Federated_Learning | INFO flwr 2024-04-29 15:54:01,369 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:54:41,088 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:54:41,089 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:54:48,454 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:54:48,454 | server.py:59 | {'accuracy': 0.6219756048790241, 'loss': 164.25690579414368}
+Federated_Learning | INFO flwr 2024-04-29 15:54:48,454 | strategy.py:293 | There was a delay of 47.085481 seconds for round 129
+Federated_Learning | INFO flwr 2024-04-29 15:54:48,454 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:54:48,455 | server.py:111 | [ROUND 130]
+Federated_Learning | INFO flwr 2024-04-29 15:54:48,455 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:55:28,529 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:55:28,530 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:55:35,209 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:55:35,210 | server.py:59 | {'accuracy': 0.6227754449110178, 'loss': 162.8289823035399}
+Federated_Learning | INFO flwr 2024-04-29 15:55:35,210 | strategy.py:293 | There was a delay of 46.755163 seconds for round 130
+Federated_Learning | INFO flwr 2024-04-29 15:55:35,210 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:55:35,210 | server.py:111 | [ROUND 131]
+Federated_Learning | INFO flwr 2024-04-29 15:55:35,211 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:56:14,943 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:56:14,944 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:56:21,409 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:56:21,409 | server.py:59 | {'accuracy': 0.6206758648270346, 'loss': 166.4337960680326}
+Federated_Learning | INFO flwr 2024-04-29 15:56:21,410 | strategy.py:293 | There was a delay of 46.199294 seconds for round 131
+Federated_Learning | INFO flwr 2024-04-29 15:56:21,410 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:56:21,410 | server.py:111 | [ROUND 132]
+Federated_Learning | INFO flwr 2024-04-29 15:56:21,410 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:56:58,251 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:56:58,253 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:57:04,030 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:57:04,031 | server.py:59 | {'accuracy': 0.6214757048590281, 'loss': 167.34993441899618}
+Federated_Learning | INFO flwr 2024-04-29 15:57:04,031 | strategy.py:293 | There was a delay of 42.620859 seconds for round 132
+Federated_Learning | INFO flwr 2024-04-29 15:57:04,031 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:57:04,031 | server.py:111 | [ROUND 133]
+Federated_Learning | INFO flwr 2024-04-29 15:57:04,032 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:57:42,682 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:57:42,684 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:57:49,607 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:57:49,607 | server.py:59 | {'accuracy': 0.6246750649870026, 'loss': 167.12979903817177}
+Federated_Learning | INFO flwr 2024-04-29 15:57:49,608 | strategy.py:293 | There was a delay of 45.576285 seconds for round 133
+Federated_Learning | INFO flwr 2024-04-29 15:57:49,608 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:57:49,608 | server.py:111 | [ROUND 134]
+Federated_Learning | INFO flwr 2024-04-29 15:57:49,609 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:58:28,245 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:58:28,246 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:58:33,697 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:58:33,698 | server.py:59 | {'accuracy': 0.6206758648270346, 'loss': 171.79413949449858}
+Federated_Learning | INFO flwr 2024-04-29 15:58:33,698 | strategy.py:293 | There was a delay of 44.090009 seconds for round 134
+Federated_Learning | INFO flwr 2024-04-29 15:58:33,698 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:58:33,698 | server.py:111 | [ROUND 135]
+Federated_Learning | INFO flwr 2024-04-29 15:58:33,699 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:59:12,537 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:59:12,539 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:59:19,189 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:59:19,190 | server.py:59 | {'accuracy': 0.6161767646470706, 'loss': 171.63080447912216}
+Federated_Learning | INFO flwr 2024-04-29 15:59:19,190 | strategy.py:293 | There was a delay of 45.491546 seconds for round 135
+Federated_Learning | INFO flwr 2024-04-29 15:59:19,190 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 15:59:19,190 | server.py:111 | [ROUND 136]
+Federated_Learning | INFO flwr 2024-04-29 15:59:19,191 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 15:59:59,132 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 15:59:59,134 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:00:06,043 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:00:06,043 | server.py:59 | {'accuracy': 0.621375724855029, 'loss': 173.58258533477783}
+Federated_Learning | INFO flwr 2024-04-29 16:00:06,044 | strategy.py:293 | There was a delay of 46.853292 seconds for round 136
+Federated_Learning | INFO flwr 2024-04-29 16:00:06,044 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:00:06,044 | server.py:111 | [ROUND 137]
+Federated_Learning | INFO flwr 2024-04-29 16:00:06,045 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:00:51,121 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:00:51,122 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:00:56,864 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:00:56,864 | server.py:59 | {'accuracy': 0.621375724855029, 'loss': 174.17524054646492}
+Federated_Learning | INFO flwr 2024-04-29 16:00:56,865 | strategy.py:293 | There was a delay of 50.820089 seconds for round 137
+Federated_Learning | INFO flwr 2024-04-29 16:00:56,865 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:00:56,865 | server.py:111 | [ROUND 138]
+Federated_Learning | INFO flwr 2024-04-29 16:00:56,865 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:01:40,346 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:01:40,348 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:01:46,127 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:01:46,128 | server.py:59 | {'accuracy': 0.6187762447510498, 'loss': 175.63285223642984}
+Federated_Learning | INFO flwr 2024-04-29 16:01:46,128 | strategy.py:293 | There was a delay of 49.262795 seconds for round 138
+Federated_Learning | INFO flwr 2024-04-29 16:01:46,128 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:01:46,128 | server.py:111 | [ROUND 139]
+Federated_Learning | INFO flwr 2024-04-29 16:01:46,129 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:02:25,127 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:02:25,129 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:02:32,114 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:02:32,114 | server.py:59 | {'accuracy': 0.620875824835033, 'loss': 175.7598083515962}
+Federated_Learning | INFO flwr 2024-04-29 16:02:32,115 | strategy.py:293 | There was a delay of 45.986432 seconds for round 139
+Federated_Learning | INFO flwr 2024-04-29 16:02:32,115 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:02:32,115 | server.py:111 | [ROUND 140]
+Federated_Learning | INFO flwr 2024-04-29 16:02:32,116 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:03:16,828 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:03:16,830 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:03:21,394 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:03:21,394 | server.py:59 | {'accuracy': 0.6142771445710857, 'loss': 180.45165320237479}
+Federated_Learning | INFO flwr 2024-04-29 16:03:21,395 | strategy.py:293 | There was a delay of 49.279434 seconds for round 140
+Federated_Learning | INFO flwr 2024-04-29 16:03:21,395 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:03:21,395 | server.py:111 | [ROUND 141]
+Federated_Learning | INFO flwr 2024-04-29 16:03:21,396 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:04:05,515 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:04:05,516 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:04:13,349 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:04:13,350 | server.py:59 | {'accuracy': 0.6182763447310538, 'loss': 178.74045245846114}
+Federated_Learning | INFO flwr 2024-04-29 16:04:13,350 | strategy.py:293 | There was a delay of 51.95452 seconds for round 141
+Federated_Learning | INFO flwr 2024-04-29 16:04:13,350 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:04:13,350 | server.py:111 | [ROUND 142]
+Federated_Learning | INFO flwr 2024-04-29 16:04:13,350 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:04:57,615 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:04:57,616 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:05:04,188 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:05:04,189 | server.py:59 | {'accuracy': 0.6140771845630874, 'loss': 180.75549733638763}
+Federated_Learning | INFO flwr 2024-04-29 16:05:04,189 | strategy.py:293 | There was a delay of 50.838913 seconds for round 142
+Federated_Learning | INFO flwr 2024-04-29 16:05:04,189 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:05:04,189 | server.py:111 | [ROUND 143]
+Federated_Learning | INFO flwr 2024-04-29 16:05:04,190 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:05:49,260 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:05:49,263 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:05:54,276 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:05:54,276 | server.py:59 | {'accuracy': 0.6101779644071186, 'loss': 185.10705641905466}
+Federated_Learning | INFO flwr 2024-04-29 16:05:54,276 | strategy.py:293 | There was a delay of 50.086585 seconds for round 143
+Federated_Learning | INFO flwr 2024-04-29 16:05:54,276 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:05:54,276 | server.py:111 | [ROUND 144]
+Federated_Learning | INFO flwr 2024-04-29 16:05:54,277 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:06:37,559 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:06:37,561 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:06:44,126 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:06:44,127 | server.py:59 | {'accuracy': 0.6125774845030993, 'loss': 188.6024848719438}
+Federated_Learning | INFO flwr 2024-04-29 16:06:44,127 | strategy.py:293 | There was a delay of 49.85063 seconds for round 144
+Federated_Learning | INFO flwr 2024-04-29 16:06:44,127 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:06:44,128 | server.py:111 | [ROUND 145]
+Federated_Learning | INFO flwr 2024-04-29 16:06:44,129 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:07:29,955 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:07:29,957 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:07:35,629 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:07:35,630 | server.py:59 | {'accuracy': 0.6127774445110978, 'loss': 185.85076598326364}
+Federated_Learning | INFO flwr 2024-04-29 16:07:35,630 | strategy.py:293 | There was a delay of 51.501833 seconds for round 145
+Federated_Learning | INFO flwr 2024-04-29 16:07:35,630 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:07:35,630 | server.py:111 | [ROUND 146]
+Federated_Learning | INFO flwr 2024-04-29 16:07:35,631 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:08:37,157 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:08:37,159 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:08:44,321 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:08:44,323 | server.py:59 | {'accuracy': 0.6139772045590882, 'loss': 190.48278514544168}
+Federated_Learning | INFO flwr 2024-04-29 16:08:44,323 | strategy.py:293 | There was a delay of 68.692796 seconds for round 146
+Federated_Learning | INFO flwr 2024-04-29 16:08:44,324 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:08:44,324 | server.py:111 | [ROUND 147]
+Federated_Learning | INFO flwr 2024-04-29 16:08:44,324 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:09:28,497 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:09:28,499 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:09:32,926 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:09:32,927 | server.py:59 | {'accuracy': 0.6152769446110777, 'loss': 188.17106995979944}
+Federated_Learning | INFO flwr 2024-04-29 16:09:32,927 | strategy.py:293 | There was a delay of 48.603135 seconds for round 147
+Federated_Learning | INFO flwr 2024-04-29 16:09:32,927 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:09:32,927 | server.py:111 | [ROUND 148]
+Federated_Learning | INFO flwr 2024-04-29 16:09:32,928 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:10:17,292 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:10:17,293 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:10:23,604 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:10:23,605 | server.py:59 | {'accuracy': 0.616876624675065, 'loss': 192.5429534316063}
+Federated_Learning | INFO flwr 2024-04-29 16:10:23,605 | strategy.py:293 | There was a delay of 50.67746 seconds for round 148
+Federated_Learning | INFO flwr 2024-04-29 16:10:23,605 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:10:23,605 | server.py:111 | [ROUND 149]
+Federated_Learning | INFO flwr 2024-04-29 16:10:23,606 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:11:00,971 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:11:00,972 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:11:07,699 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:11:07,700 | server.py:59 | {'accuracy': 0.6142771445710857, 'loss': 194.1943403085073}
+Federated_Learning | INFO flwr 2024-04-29 16:11:07,700 | strategy.py:293 | There was a delay of 44.094433 seconds for round 149
+Federated_Learning | INFO flwr 2024-04-29 16:11:07,700 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:11:07,700 | server.py:111 | [ROUND 150]
+Federated_Learning | INFO flwr 2024-04-29 16:11:07,701 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:11:46,121 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:11:46,123 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:11:50,962 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:11:50,963 | server.py:59 | {'accuracy': 0.6139772045590882, 'loss': 196.90500066677728}
+Federated_Learning | INFO flwr 2024-04-29 16:11:50,963 | strategy.py:293 | There was a delay of 43.26283 seconds for round 150
+Federated_Learning | INFO flwr 2024-04-29 16:11:50,963 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:11:50,964 | server.py:111 | [ROUND 151]
+Federated_Learning | INFO flwr 2024-04-29 16:11:50,964 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:12:31,607 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:12:31,609 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:12:37,169 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:12:37,169 | server.py:59 | {'accuracy': 0.6097780443911218, 'loss': 198.4206501940886}
+Federated_Learning | INFO flwr 2024-04-29 16:12:37,169 | strategy.py:293 | There was a delay of 46.205202 seconds for round 151
+Federated_Learning | INFO flwr 2024-04-29 16:12:37,169 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:12:37,170 | server.py:111 | [ROUND 152]
+Federated_Learning | INFO flwr 2024-04-29 16:12:37,170 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:13:17,868 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:13:17,870 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:13:23,684 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:13:23,684 | server.py:59 | {'accuracy': 0.6124775044991002, 'loss': 200.0889908671379}
+Federated_Learning | INFO flwr 2024-04-29 16:13:23,684 | strategy.py:293 | There was a delay of 46.514515 seconds for round 152
+Federated_Learning | INFO flwr 2024-04-29 16:13:23,684 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:13:23,684 | server.py:111 | [ROUND 153]
+Federated_Learning | INFO flwr 2024-04-29 16:13:23,685 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:14:03,684 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:14:03,685 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:14:09,687 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:14:09,690 | server.py:59 | {'accuracy': 0.612877424515097, 'loss': 202.91754622260729}
+Federated_Learning | INFO flwr 2024-04-29 16:14:09,691 | strategy.py:293 | There was a delay of 46.005939 seconds for round 153
+Federated_Learning | INFO flwr 2024-04-29 16:14:09,691 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:14:09,691 | server.py:111 | [ROUND 154]
+Federated_Learning | INFO flwr 2024-04-29 16:14:09,691 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:14:49,125 | server.py:238 | aggregate_fit: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:14:49,127 | server.py:176 | configure_evaluate: strategy sampled 4 clients (out of 4)
+Federated_Learning | INFO flwr 2024-04-29 16:14:55,204 | server.py:190 | aggregate_evaluate: received 4 results and 0 failures
+Federated_Learning | INFO flwr 2024-04-29 16:14:55,205 | server.py:59 | {'accuracy': 0.6112777444511098, 'loss': 203.75917304555574}
+Federated_Learning | INFO flwr 2024-04-29 16:14:55,205 | strategy.py:293 | There was a delay of 45.513672 seconds for round 154
+Federated_Learning | INFO flwr 2024-04-29 16:14:55,205 | server.py:110 | 
+Federated_Learning | INFO flwr 2024-04-29 16:14:55,205 | server.py:111 | [ROUND 155]
+Federated_Learning | INFO flwr 2024-04-29 16:14:55,205 | server.py:224 | configure_fit: strategy sampled 4 clients (out of 4)
