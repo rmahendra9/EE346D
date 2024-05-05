@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from models.BaseModel import BaseModel
 
-
-class SimpleCNN(nn.Module):
+class SimpleCNN(BaseModel):
     def __init__(self) -> None:
         super(SimpleCNN, self).__init__()
         self.conv1 = nn.Conv2d(3, 6, 5)
@@ -21,5 +21,3 @@ class SimpleCNN(nn.Module):
         x = F.relu(self.fc2(x))
         return self.fc3(x)
     
-    def get_parameters(self):
-        return [val.cpu().numpy() for _, val in self.state_dict().items()]

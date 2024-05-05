@@ -1,8 +1,8 @@
 config = {
-    'model_type': 1,
+    'model_type': 0,
     'is_iid': 1,
     'num_rounds': 10,
-    'num_chunks': 4,
+    'num_chunks': 100,
     'num_replicas': 1,
     'server_ip': '127.0.0.1',
     'server_port': 8080,

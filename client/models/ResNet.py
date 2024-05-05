@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from models.BaseModel import BaseModel
 
-
-class ResNet(nn.Module):
+class ResNet(BaseModel):
     def __init__(self, block, num_blocks, num_classes=10) -> None:
         super(ResNet, self).__init__()
         self.in_planes = 64
@@ -36,8 +36,6 @@ class ResNet(nn.Module):
     
         return nn.Sequential(*layers)
     
-    def get_parameters(self):
-        return [param.data.numpy() for param in self.parameters()]
     
 class BasicBlock(nn.Module):
     expansion = 1
@@ -100,7 +98,6 @@ class Bottleneck(nn.Module):
     
 def ResNet18():
     return ResNet(BasicBlock, [2,2,2,2])
-
 
 def ResNet34():
     return ResNet(BasicBlock, [3,4,6,3])

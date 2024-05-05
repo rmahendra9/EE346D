@@ -18,7 +18,6 @@ import numpy as np
 from models.ResNet import ResNet18
 from models.simpleCNN import SimpleCNN
 import datetime
-from utils.node_ip_mappings import IP_Mapper
 from logging import INFO 
 from flwr.common.logger import log 
 from pathlib import Path
@@ -31,7 +30,7 @@ import time
 
 warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
+DEVICE = torch.device("mps")
 def train(net, trainloader, epochs):
     """Train the model on the training set."""
     criterion = torch.nn.CrossEntropyLoss()
@@ -135,7 +134,6 @@ server_port = config['server_port']
 synchronizer_node_ip = config['synchronizer_ip']
 synchronizer_node_port = config['synchronizer_port']
 
-print(ip_mappings)
 # ip_mappings -> list where ip of node i is in position i
 # [(0.0.0.0, 80), (1.1.1.1,90), (2.2.2.2,30)]
 
@@ -164,17 +162,17 @@ class FlowerClient(fl.client.NumPyClient):
         #self.serversocket.bind((socket.gethostbyname(socket.gethostname()), port))
         self.serversocket.listen(num_nodes)
         self.socket_open = False
+        self.net = net
     
     def __del__(self):
         self.serversocket.close()
 
     def get_parameters(self, config=None):
-        return [val.cpu().numpy() for _, val in net.state_dict().items()]
+        return self.net.get_parameters()
 
     def set_parameters(self, parameters):
-        params_dict = zip(net.state_dict().keys(), parameters)
-        state_dict = OrderedDict({k: torch.tensor(v).float() for k, v in params_dict})
-        net.load_state_dict(state_dict, strict=False)
+        self.net.set_parameters(parameters)
+        self.net = self.net.float().to(DEVICE)
 
     def fit(self, parameters, config):
         #Get server round
@@ -236,7 +234,7 @@ class FlowerClient(fl.client.NumPyClient):
                     #Transmit chunk
                     chunk_id = schedule[communication_idx]['segment']
                     recv_node_id = schedule[communication_idx]['other_node']
-                    recv_node_ip, recv_node_port = ip_mappings.get_node_info(recv_node_id)
+                    recv_node_ip, recv_node_port = ip_mappings[recv_node_id]
                     #Just to be safe, close the socket
                     if self.socket_open:
                         self.socket.close()
