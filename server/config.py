@@ -1,5 +1,5 @@
 config = {
-    'model_type': 0,
+    'model_type': 0, # 0: SimpleCNN, 1: ResNet 18, 2: ResNet34, 3: ResNet50, 4: ResNet101
     'is_iid': 1,
     'num_rounds': 10,
     'num_chunks': 100,

@@ -15,7 +15,7 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 from tqdm import tqdm
 import socket
 import numpy as np
-from models.ResNet import ResNet18
+from models.ResNet import ResNet18, ResNet50, ResNet34, ResNet101
 from models.simpleCNN import SimpleCNN
 import datetime
 from logging import INFO 
@@ -139,9 +139,15 @@ synchronizer_node_port = config['synchronizer_port']
 
 # Load model and data (simple CNN, CIFAR-10)
 if model_type == 0:
-    net = ResNet18().to(DEVICE)
-else:
     net = SimpleCNN().to(DEVICE)
+elif model_type ==1:
+    net = ResNet18().to(DEVICE)
+elif model_type ==2:
+    net = ResNet34().to(DEVICE)
+elif model_type ==3:
+    net = ResNet50().to(DEVICE)
+elif model_type == 4:
+    net = ResNet101().to(DEVICE)
 
 if node_id != 0:
     trainloader, testloader = load_data(num_parts=num_clients, is_iid=is_iid, client_id=client_id)
