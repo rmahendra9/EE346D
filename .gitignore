@@ -6,3 +6,4 @@ wandb
 *.txt
 *.ipynb
 *.json
+*.pkl
